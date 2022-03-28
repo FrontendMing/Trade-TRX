@@ -1,26 +1,33 @@
 <template>
-	<view class="container">
-		<view class="locale-setting">{{$t('index.language-info')}}</view>
-		<view class="list-item">
-			<text class="k">{{$t('index.system-language')}}:</text>
-			<text class="v">{{systemLocale}}</text>
-		</view>
-		<view class="list-item">
-			<text class="k">{{$t('index.application-language')}}:</text>
-			<text class="v">{{applicationLocale}}</text>
-		</view>
-		<view class="locale-setting">{{$t('index.language')}}</view>
-		<view class="locale-list">
-			<view class="locale-item" v-for="(item, index) in locales" :key="index" @click="onLocaleChange(item)">
-				<text class="text">{{item.text}}</text>
-				<text class="icon-check" v-if="item.code == applicationLocale"></text>
+	<view>
+		<header-bar :tabName="$t('index.home')"></header-bar>
+		<view class="container">
+			<view class="locale-setting">{{$t('index.language-info')}}</view>
+			<view class="list-item">
+				<text class="k">{{$t('index.system-language')}}:</text>
+				<text class="v">{{systemLocale}}</text>
+			</view>
+			<view class="list-item">
+				<text class="k">{{$t('index.application-language')}}:</text>
+				<text class="v">{{applicationLocale}}</text>
+			</view>
+			<view class="locale-setting">{{$t('index.language')}}</view>
+			<view class="locale-list">
+				<view class="locale-item" v-for="(item, index) in locales" :key="index" @click="onLocaleChange(item)">
+					<text class="text">{{item.text}}</text>
+					<text class="icon-check" v-if="item.code == applicationLocale"></text>
+				</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+import HeaderBar from '@/components/HeaderBar.vue'
 export default {
+	components: {
+		HeaderBar,
+	},
 	data() {
 		return {
 			systemLocale: '',
@@ -42,10 +49,6 @@ export default {
 					text: this.$t('locale.zh-hant'),
 					code: 'zh-Hant'
 			    },
-			  //   {
-					// text: this.$t('locale.ja'),
-					// code: 'ja'
-			  //   }
 			]
         }
     },

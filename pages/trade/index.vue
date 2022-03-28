@@ -1,20 +1,27 @@
 <template>
-  <view class="container">
-    <no-data></no-data>
-  </view>
+<view>
+	<header-bar :tabName="$t('index.trade')"></header-bar>
+	<view class="container">
+		<no-data></no-data>
+	</view>
+</view>
 </template>
 
 <script>
-  export default {
+import HeaderBar from '@/components/HeaderBar.vue'
+export default {
+	components: {
+		HeaderBar,
+	},
     data() {
-      return {
-        title: this.$t('')
-      }
+		return {
+			title: this.$t('')
+		}
     },
     methods: {
       
     }
-  }
+}
 </script>
 
 <style>

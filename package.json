@@ -1,0 +1,17 @@
+{
+    "id": "uni-trx",
+    "name": "TRX",
+    "version": "1.0.1",
+    "description": "uni-app 国际化演示",
+    "keywords": [
+        "i18n",
+        "hello-i18n",
+        "多语言"
+    ],
+    "dcloudext": {
+        "category": [
+            "uni-app前端模板",
+            "uni-app前端项目模板"
+        ]
+    }
+}

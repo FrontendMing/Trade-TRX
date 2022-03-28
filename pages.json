@@ -1,0 +1,74 @@
+{
+	"pages": [ // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "%index.title%"
+			}
+		},
+		{
+			"path": "pages/trade/index",
+			"style": {
+				"navigationBarTitleText": "%index.trade%",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/investment/index",
+			"style": {
+				"navigationBarTitleText": "%index.investment%",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/invite/index",
+			"style": {
+				"navigationBarTitleText": "%index.invite%",
+				"enablePullDownRefresh": false
+			}
+		}
+	    ,{
+            "path" : "pages/mine/index",
+            "style" :
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+        }
+    ],
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [
+			{
+				"pagePath": "pages/home/index",
+				"text": "%index.home%"
+			},
+			{
+				"pagePath": "pages/trade/index",
+				"text": "%index.trade%"
+			},
+			{
+				"pagePath": "pages/investment/index",
+				"text": "%index.investment%"
+			},
+			{
+				"pagePath": "pages/invite/index",
+				"text": "%index.invite%"
+			},
+			{
+				"pagePath": "pages/mine/index",
+				"text": "%index.mine%"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationStyle":"custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

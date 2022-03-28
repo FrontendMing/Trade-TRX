@@ -1,0 +1,26 @@
+{
+	"locale.auto": "系統",
+	"locale.en": "English",
+	"locale.zh-hans": "简体中文",
+	"locale.zh-hant": "繁體中文",
+	"locale.ja": "日语",
+
+	"index.home": "首頁",
+	"index.trade": "交易",
+	"index.investment": "投資",
+	"index.invite": "邀請",
+	"index.mine": "我的",
+
+	"index.demo": "uni-app 國際化演示",
+	"index.demo-description": "包含 uni-framework、manifest.json、pages.json、tabbar、頁面、組件、API、Schema",
+	"index.detail": "詳情",
+	"index.language": "語言",
+	"index.language-info": "語言信息",
+	"index.system-language": "系統語言",
+	"index.application-language": "應用語言",
+	"index.language-change-confirm": "應用此設置將重啟App",
+	"api.message": "提示",
+	"schema.name": "姓名",
+	"schema.add": "新增",
+	"schema.add-success": "新增成功"
+}

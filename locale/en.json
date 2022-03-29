@@ -10,6 +10,9 @@
 	"index.invite": "Invite",
 	"index.mine": "Mine",
 
+	"notice.title": "Notification",
+	"notice.detail": "Notification",
+
 	"index.demo": "uni-app globalization",
 	"index.demo-description": "Include uni-framework, manifest.json, pages.json, tabbar, Page, Component, API, Schema",
 	"index.detail": "Detail",

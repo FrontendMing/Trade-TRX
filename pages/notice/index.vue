@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back name="通知"></header-back>
+		<header-back :name="$t('notice.title')"></header-back>
 		<uni-list>
 			<uni-list-item
 				v-for="(item, index) in noticeList"

@@ -11,6 +11,9 @@
 	"index.invite": "邀請",
 	"index.mine": "我的",
 
+	"notice.title": "通知",
+	"notice.detail": "通知詳情",
+
 	"index.demo": "uni-app 國際化演示",
 	"index.demo-description": "包含 uni-framework、manifest.json、pages.json、tabbar、頁面、組件、API、Schema",
 	"index.detail": "詳情",

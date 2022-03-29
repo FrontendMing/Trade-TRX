@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back name="通知详情"></header-back>
+		<header-back :name="$t('notice.detail')"></header-back>
 		<uni-card
 			title="基础卡片"
 			sub-title="副标题"
@@ -21,11 +21,11 @@ export default {
 	},
 	data() {
 		return {
-			
+
 		}
 	},
 	methods: {
-		
+
 	}
 }
 </script>

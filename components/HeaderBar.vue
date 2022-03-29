@@ -3,11 +3,13 @@
 		<view :style="style">
 			<view class="header" :style="{'height': customBarH + 'px', 'padding-top': statusBarH + 'px'}">
 				<view class="header-logo">
-					<image mode="heightFix" src="../static/image/logo.png"></image>
+					<image mode="heightFix" src="../static/image/logo.png"/>
 					<text>{{tabName}}</text>
 				</view>
 				<view class="header-info">
-					<button plain size="mini" @click="changeLanguage">{{languageName}}</button>
+					<view>
+						<button plain size="mini" @click="changeLanguage">{{languageName}}</button>
+					</view>
 					<view class="header-info-icon" @click="toNotice">
 						<uni-icons type="notification-filled" size="26"></uni-icons>
 					</view>
@@ -103,6 +105,7 @@ export default {
 		display: flex;
 		align-items: center;
 		image{
+			width: 40px;
 			height: 40px;
 			margin-right: 5px;
 		}

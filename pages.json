@@ -35,6 +35,22 @@
                 "enablePullDownRefresh": false
             }
         }
+        ,{
+            "path" : "pages/notice/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+        }
+        ,{
+            "path" : "pages/notice/detail/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+        }
     ],
 	"tabBar": {
 		"color": "#7A7E83",

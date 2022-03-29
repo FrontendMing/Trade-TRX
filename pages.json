@@ -60,23 +60,33 @@
 		"list": [
 			{
 				"pagePath": "pages/home/index",
-				"text": "%index.home%"
+				"text": "%index.home%",
+				"iconPath": "/static/icon/home_line.png",
+				"selectedIconPath": "/static/icon/home_red.png"
 			},
 			{
 				"pagePath": "pages/trade/index",
-				"text": "%index.trade%"
+				"text": "%index.trade%",
+				"iconPath": "/static/icon/trade_line.png",
+				"selectedIconPath": "/static/icon/trade_red.png"
 			},
 			{
 				"pagePath": "pages/investment/index",
-				"text": "%index.investment%"
+				"text": "%index.investment%",
+				"iconPath": "/static/icon/investment_line.png",
+				"selectedIconPath": "/static/icon/investment_red.png"
 			},
 			{
 				"pagePath": "pages/invite/index",
-				"text": "%index.invite%"
+				"text": "%index.invite%",
+				"iconPath": "/static/icon/invite_line.png",
+				"selectedIconPath": "/static/icon/invite_red.png"
 			},
 			{
 				"pagePath": "pages/mine/index",
-				"text": "%index.mine%"
+				"text": "%index.mine%",
+				"iconPath": "/static/icon/mine_line.png",
+				"selectedIconPath": "/static/icon/mine_red.png"
 			}
 		]
 	},

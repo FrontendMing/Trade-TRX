@@ -3,7 +3,7 @@
 		<view :style="style">
 			<view class="header" :style="{'height': customBarH + 'px', 'padding-top': statusBarH + 'px'}">
 				<view class="header-logo">
-					<image mode="heightFix" src="../static/logo.png"></image>
+					<image mode="heightFix" src="../static/image/logo.png"></image>
 					<text>{{tabName}}</text>
 				</view>
 				<view class="header-info">

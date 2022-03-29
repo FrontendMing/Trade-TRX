@@ -9,7 +9,7 @@ import { copyText, } from '@/utils/index.js'
 export default {
 	data() {
 		return {
-			
+
 		}
 	},
 	methods: {
@@ -17,7 +17,7 @@ export default {
 			console.log(e.target)
 			copyText(e.target.dataset.code).then(() => {
 				uni.showToast({
-					title:"Copied!" 
+					title:"Copied!"
 				})
 			});
 		}

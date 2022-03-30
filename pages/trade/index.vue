@@ -6,7 +6,7 @@
 			+5.00%
 		</view>
 		<view class="level">VIP1</view>
-		<view class="wkbg"><image src="/static/image/pool_bg.png"></image></view>
+		<view class="wkbg"><image mode="aspectFit" src="/static/image/pool_bg.png"></image></view>
 		<view class="status">云挖矿正在运行</view>
 		<view class="trading">
 			<view class="tit">交易利润
@@ -36,5 +36,48 @@ export default {
 </script>
 
 <style>
-
+.rate {
+	font-size: 21px;
+	text-align: center;
+	font-weight: 700;
+	color: #2a2a2a;
+	padding: 24px 0 6px 0;
+}
+.level {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}
+.wkbg {
+	display: flex;
+	flex-direction: column;
+}
+.wkbg>image {
+	margin: 7px auto;
+	width: 88%;
+}
+.status {
+	text-align: center;
+}
+.tit {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 33px;
+	font-size: 19px;
+	font-weight: 700;
+	margin-bottom: 22px;
+}
+.tit>span {
+	font-size: 14px;
+	font-weight: 400;
+	color: #999;
+	margin-right: 11px;
+	cursor: pointer;
+}
+.trading {
+	padding: 33px 16px;
+	overflow: hidden;
+	padding-left: 33px;
+}
 </style>

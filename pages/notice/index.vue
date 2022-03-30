@@ -25,7 +25,7 @@ export default {
 	data() {
 		return {
 			noticeList:[],
-			loadingText:'加载中...',
+			loadingText: this.$t('system.loading'),
 			page: 1,
 			timer: null,
 		}
@@ -44,10 +44,10 @@ export default {
 	},
 	methods:{
 		getMoreNotice(){
-			if(this.loadingText != '' && this.loadingText != '加载更多'){
+			if(this.loadingText !== '' && this.loadingText !== this.$t('system.load-more')){
 				return false;
 			}
-			this.loadingText = '加载中...';
+			this.loadingText = this.$t('system.loading');
 			uni.showNavigationBarLoading();
 			uni.request({
 				url: '',
@@ -56,13 +56,13 @@ export default {
 					this.loadingText = '';
 					if(res.data == null){
 						uni.hideNavigationBarLoading();
-						this.loadingText = '已加载全部';
+						this.loadingText = this.$t('system.load-finish');
 						return false;
 					}
 					this.page++;
 					console.log(res);
 					this.noticeList = this.noticeList.concat(res.data.split('--hcSplitor--'));
-					this.loadingText = '加载更多';
+					this.loadingText = this.$t('system.load-more')
 					uni.hideNavigationBarLoading();
 				}
 			});
@@ -78,7 +78,7 @@ export default {
 			// 		this.noticeList = res.data.split('--hcSplitor--');
 			// 		uni.hideNavigationBarLoading();
 			// 		uni.stopPullDownRefresh();
-			// 		this.loadingText = '加载更多';
+			// 		this.loadingText = this.$t('system.load-more')
 			// 	}
 			// });
 			setTimeout(() => {
@@ -86,13 +86,13 @@ export default {
 				// if(res.data == null){
 					this.noticeList = 20;
 					uni.hideNavigationBarLoading();
-					this.loadingText = '已加载全部';
+					this.loadingText = this.$t('system.load-finish');
 					return false;
 				// }
 				// this.page++;
 				// console.log(res);
 				// this.noticeList = this.noticeList.concat(res.data.split('--hcSplitor--'));
-				// this.loadingText = '加载更多';
+				// this.loadingText = this.$t('system.load-more')
 				// uni.hideNavigationBarLoading();
 			}, 1000);
 		},

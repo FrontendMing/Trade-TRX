@@ -1,5 +1,4 @@
 {
-	"locale.auto": "系統",
 	"locale.en": "English",
 	"locale.zh-hans": "简体中文",
 	"locale.zh-hant": "繁體中文",
@@ -11,19 +10,17 @@
 	"index.invite": "邀請",
 	"index.mine": "我的",
 
+	"system.loading": "加載中...",
+	"system.load-more": "加載更多",
+	"system.load-finish": "已加載全部",
+
 	"notice.title": "通知",
 	"notice.detail": "通知詳情",
 
-	"index.demo": "uni-app 國際化演示",
-	"index.demo-description": "包含 uni-framework、manifest.json、pages.json、tabbar、頁面、組件、API、Schema",
-	"index.detail": "詳情",
-	"index.language": "語言",
-	"index.language-info": "語言信息",
-	"index.system-language": "系統語言",
-	"index.application-language": "應用語言",
-	"index.language-change-confirm": "應用此設置將重啟App",
-	"api.message": "提示",
-	"schema.name": "姓名",
-	"schema.add": "新增",
-	"schema.add-success": "新增成功"
+	"invite.invite-code": "邀請碼",
+	"invite.invite-your-contacts": "邀請您的聯繫人",
+	"invite.invite-your-friends": "或朋友並賺取獎勵",
+	"invite.invite-rule": "邀請規則",
+	"invite.invite-copy-link": "複製鏈接",
+	"invite.vip-level": "VIP等級"
 }

@@ -26,24 +26,31 @@
 				"navigationBarTitleText": "%index.invite%",
 				"enablePullDownRefresh": false
 			}
-		}
-	    ,{
+		},
+		{
+			"path": "pages/invite/rules/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
             "path" : "pages/mine/index",
             "style" :
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-        }
-        ,{
+        },
+		{
             "path" : "pages/notice/index",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-        }
-        ,{
+        },
+		{
             "path" : "pages/notice/detail/index",
             "style" :                                                                                    
             {

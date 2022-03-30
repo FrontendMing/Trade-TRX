@@ -10,19 +10,17 @@
 	"index.invite": "Invite",
 	"index.mine": "Mine",
 
+	"system.loading": "loading...",
+	"system.load-more": "load more",
+	"system.load-finish": "all loaded",
+
 	"notice.title": "Notification",
 	"notice.detail": "Notification",
 
-	"index.demo": "uni-app globalization",
-	"index.demo-description": "Include uni-framework, manifest.json, pages.json, tabbar, Page, Component, API, Schema",
-	"index.detail": "Detail",
-	"index.language": "Language",
-	"index.language-info": "Settings",
-	"index.system-language": "System language",
-	"index.application-language": "Application language",
-	"index.language-change-confirm": "Applying this setting will restart the app",
-	"api.message": "Message",
-	"schema.name": "Name",
-	"schema.add": "Add",
-	"schema.add-success": "Add success"
+	"invite.invite-code": "Invite code",
+	"invite.invite-your-contacts": "Invite your contacts",
+	"invite.invite-your-friends": "or Friends and Earn Rewards",
+	"invite.invite-rule": "Invite rule",
+	"invite.invite-copy-link": "Copy link",
+	"invite.vip-level": "VIP LEVEL"
 }

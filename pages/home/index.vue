@@ -2,22 +2,7 @@
 	<view>
 		<header-bar :tabName="$t('index.home')"></header-bar>
 		<view class="container">
-			<view class="locale-setting">{{$t('index.language-info')}}</view>
-			<view class="list-item">
-				<text class="k">{{$t('index.system-language')}}:</text>
-				<text class="v">{{systemLocale}}</text>
-			</view>
-			<view class="list-item">
-				<text class="k">{{$t('index.application-language')}}:</text>
-				<text class="v">{{applicationLocale}}</text>
-			</view>
-			<view class="locale-setting">{{$t('index.language')}}</view>
-			<view class="locale-list">
-				<view class="locale-item" v-for="(item, index) in locales" :key="index" @click="onLocaleChange(item)">
-					<text class="text">{{item.text}}</text>
-					<text class="icon-check" v-if="item.code == applicationLocale"></text>
-				</view>
-			</view>
+
 		</view>
 	</view>
 </template>
@@ -30,8 +15,7 @@ export default {
 	},
 	data() {
 		return {
-			systemLocale: '',
-			applicationLocale: ''
+
 		}
 	},
     computed:{
@@ -53,30 +37,10 @@ export default {
         }
     },
     onLoad() {
-		let systemInfo = uni.getSystemInfoSync();
-		this.systemLocale = systemInfo.language;
-		this.applicationLocale = uni.getLocale();
-		this.isAndroid = systemInfo.platform.toLowerCase() === 'android';
-		uni.onLocaleChange((e) => {
-			this.applicationLocale = e.locale;
-		})
+
     },
     methods: {
-		onLocaleChange(e) {
-			if (this.isAndroid) {
-				uni.showModal({
-					content: this.$t('index.language-change-confirm'),
-					success: (res) => {
-						if (res.confirm) {
-							uni.setLocale(e.code);
-						}
-					}
-				})
-			} else {
-				uni.setLocale(e.code);
-				this.$i18n.locale = e.code;
-			}
-		}
+
     }
   }
 </script>

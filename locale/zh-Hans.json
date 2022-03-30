@@ -10,19 +10,17 @@
 	"index.invite": "邀请",
 	"index.mine": "我的",
 
+	"system.loading": "加载中...",
+	"system.load-more": "加载更多",
+	"system.load-finish": "已加载全部",
+
 	"notice.title": "通知",
 	"notice.detail": "通知详情",
 
-	"index.demo": "uni-app 国际化演示",
-	"index.demo-description": "包含 uni-framework、manifest.json、pages.json、tabbar、页面、组件、API、Schema",
-	"index.detail": "详情",
-	"index.language": "语言",
-	"index.language-info": "语言信息",
-	"index.system-language": "系统语言",
-	"index.application-language": "应用语言",
-	"index.language-change-confirm": "应用此设置将重启App",
-	"api.message": "提示",
-	"schema.name": "姓名",
-	"schema.add": "新增",
-	"schema.add-success": "新增成功"
+	"invite.invite-code": "邀请码",
+	"invite.invite-your-contacts": "邀请您的联系人",
+	"invite.invite-your-friends": "或朋友并赚取奖励",
+	"invite.invite-rule": "邀请规则",
+	"invite.invite-copy-link": "复制链接",
+	"invite.vip-level": "VIP等级"
 }

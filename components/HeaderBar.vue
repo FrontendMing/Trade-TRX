@@ -43,23 +43,25 @@ export default {
 		return {
 			statusBarH: this.statusBar,
 			customBarH: this.customBar,
-			locales: [
+		}
+	},
+	computed: {
+		locales() {
+			return [
 				{
 					text: this.$t('locale.en'),
 					code: 'en'
 				},
-				{
+			    {
 					text: this.$t('locale.zh-hans'),
 					code: 'zh-Hans'
-				},
-				{
+			    },
+			    {
 					text: this.$t('locale.zh-hant'),
 					code: 'zh-Hant'
-				},
+			    },
 			]
-		}
-	},
-	computed: {
+        },
 		localeCode() {
 			return uni.getLocale();
 		},

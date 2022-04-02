@@ -22,14 +22,22 @@
 			</view>
 			<view class="quantity">
 				<view class="word">
-					<h2>TRX Deposit quantity</h2><p>Basic account</p><h3><strong>0</strong><label for="">TRX</label></h3><p>Promotion account</p><h3><strong>0</strong><label for="">TRX</label></h3><p>Recharge any number of TRX to activate the account and open the withdrawal function.</p>
+					<h2>TRX Deposit quantity</h2>
+					<p>Basic account</p>
+					<h3><strong>0</strong><label for="">TRX</label></h3>
+					<p>Promotion account</p>
+					<h3><strong>0</strong><label for="">TRX</label></h3>
+					<p>Recharge any number of TRX to activate the account and open the withdrawal function.</p>
 				</view>
 				<image src="/static/image/mine_bg.png" mode="aspectFit"></image>
 			</view>
 			<view class="service">
-				<view v-for="(item,index) in data" :key="index">
-					
-				</view>
+				<ul>
+					<li v-for="(item,index) in serviceData" :key="index">
+						<image :src="item.img" mode="widthFix"></image>
+						<p>{{item.name}}</p>
+					</li>
+				</ul>
 			</view>
 		</view>
 	</view>
@@ -39,7 +47,31 @@
 	export default {
 		data() {
 			return {
-
+				serviceData: [{
+						"name": "团队",
+						"img": "/static/image/tab_7.png"
+					},
+					{
+						"name": "账务记录",
+						"img": "/static/image/tab_8.png"
+					},
+					{
+						"name": "转账",
+						"img": "/static/image/tab_9.png"
+					},
+					{
+						"name": "邀请",
+						"img": "/static/image/tab_10.png"
+					},
+					{
+						"name": "VIP等级",
+						"img": "/static/image/tab_17.png"
+					},
+					{
+						"name": "登出",
+						"img": "/static/image/tab_12.png"
+					},
+				]
 			}
 		},
 		methods: {
@@ -49,104 +81,155 @@
 </script>
 
 <style>
-.mine {
-    padding: 250px 16px 16px;
-}
-.logo {
-    display: block;
-    text-align: center;
-}
-.logo>image {
-	height: 120px;
-}
-.mine .level {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-.mine .balance {
-    overflow: hidden;
-    margin-top: 18px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-.mine .balance>strong {
-    font-size: 22px;
-    color: #b73e31;
-    margin: 0 6px;
-    line-height: 1;
-}
-.mine .balance>span {
-    color: #999;
-    font-size: 15px;
-    font-weight: 500;
-}
-.mine .balance>em {
-    font-style: normal;
-    font-weight: 700;
-    color: #2a2a2a;
-    font-size: 15px;
-}
-.mine .rock {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    padding: 10px 0;
-    background: #fff4f4;
-    border-radius: 10px;
-    margin-top: 12px;
-}
-.mine .rock>view {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: opacity .2s ease 0s;
-}
-.rock>view>image {
-    height: 38px;
-	width: 32px;
-}
-.rock>view>span {
-    margin-left: 6px;
-    font-size: 15px;
-    font-weight: 500;
-}
-.quantity {
-    overflow: hidden;
-    padding: 32px 18px 0 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.quantity h2 {
-    font-size: 16px;
-    padding-bottom: 16px;
-}
-.quantity p {
-    line-height: 1.5;
-    color: #999;
-    font-size: 13px;
-}
-.quantity h3 {
-    padding-bottom: 16px;
-    color: #b73e31;
-}
-.quantity h3>strong {
-    font-size: 22px;
-}
-.quantity h3>uni-label {
-    font-size: 14px;
-    margin-left: 6px;
-}
-.quantity>image {
-    width: 207px;
-}
-.container {
-    background: #fff url(/static/image/mine_banner.png) no-repeat top;
-    background-size: 100%;
-}
+	.mine {
+		padding: 250px 16px 16px;
+	}
+
+	.logo {
+		display: block;
+		text-align: center;
+	}
+
+	.logo>image {
+		/* height: 120px; */
+	}
+
+	.mine .level {
+		justify-content: center;
+		display: flex;
+		align-items: center;
+	}
+
+	.mine .balance {
+		overflow: hidden;
+		margin-top: 18px;
+		justify-content: center;
+		display: flex;
+		align-items: center;
+	}
+
+	.mine .balance>strong {
+		font-size: 22px;
+		color: #b73e31;
+		margin: 0 6px;
+		line-height: 1;
+	}
+
+	.mine .balance>span {
+		color: #999;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	.mine .balance>em {
+		font-style: normal;
+		font-weight: 700;
+		color: #2a2a2a;
+		font-size: 15px;
+	}
+
+	.mine .rock {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		padding: 10px 0;
+		background: #fff4f4;
+		border-radius: 10px;
+		margin-top: 12px;
+	}
+
+	.mine .rock>view {
+		flex: 1;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: opacity .2s ease 0s;
+	}
+
+	.rock>view>image {
+		height: 38px;
+		width: 32px;
+	}
+
+	.rock>view>span {
+		margin-left: 6px;
+		font-size: 15px;
+		font-weight: 500;
+	}
+
+	.quantity {
+		overflow: hidden;
+		padding: 32px 18px 0 18px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.quantity h2 {
+		font-size: 16px;
+		padding-bottom: 16px;
+	}
+
+	.quantity p {
+		line-height: 1.5;
+		color: #999;
+		font-size: 13px;
+	}
+
+	.quantity h3 {
+		padding-bottom: 16px;
+		color: #b73e31;
+	}
+
+	.quantity h3>strong {
+		font-size: 22px;
+	}
+
+	.quantity h3>uni-label {
+		font-size: 14px;
+		margin-left: 6px;
+	}
+
+	.quantity>image {
+		width: 207px;
+	}
+
+	.container {
+		background: #fff url(/static/image/mine_banner.png) no-repeat top;
+		background-size: 100%;
+	}
+
+	.service ul {
+		list-style: none;
+	}
+
+	.service ul li {
+		width: 33.333%;
+		float: left;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+		padding: 16px 0;
+		transition: opacity .2s ease 0s;
+		cursor: pointer;
+	}
+
+	.service {
+		overflow: hidden;
+		padding: 12px 12px 0 12px;
+		display: block;
+		background: #ff575e;
+		color: #fff;
+		margin-top: 12px;
+		border-radius: 12px;
+	}
+	
+	.service li image {
+		width: 50%;
+		height: 50%;
+		margin: auto;
+	}
 </style>

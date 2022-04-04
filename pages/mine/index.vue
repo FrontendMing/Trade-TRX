@@ -1,75 +1,82 @@
 <template>
-	<view class="container">
-		<view class="mine">
-			<view class="logo">
-				<image src="/static/image/mine_logo.png" mode="aspectFit"></image>
-			</view>
-			<view class="level">
-				<label for="">王者</label>
-			</view>
-			<view class="balance">
-				<span>Total Balance:</span>
-				<strong>999999</strong>
-				<em>TRX</em>
-			</view>
-			<view class="rock">
-				<view>
-					<image src="/static/image/icon_5.png" mode="aspectFit"></image><span>Deposit</span>
+	<view>
+		<header-bar :tabName="$t('index.mine')"></header-bar>
+		<view class="container">
+			<view class="mine">
+				<view class="logo">
+					<image src="/static/image/mine_logo.png" mode="widthFix"></image>
 				</view>
-				<view>
-					<image src="/static/image/icon_6.png" mode="aspectFit"></image><span>Withdrawal</span>
+				<view class="level">
+					<label for="">王者</label>
 				</view>
-			</view>
-			<view class="quantity">
-				<view class="word">
-					<h2>TRX Deposit quantity</h2>
-					<p>Basic account</p>
-					<h3><strong>0</strong><label for="">TRX</label></h3>
-					<p>Promotion account</p>
-					<h3><strong>0</strong><label for="">TRX</label></h3>
-					<p>Recharge any number of TRX to activate the account and open the withdrawal function.</p>
+				<view class="balance">
+					<span>Total Balance:</span>
+					<strong>999999</strong>
+					<em>TRX</em>
 				</view>
-				<image src="/static/image/mine_bg.png" mode="aspectFit"></image>
-			</view>
-			<view class="service">
-				<ul>
-					<li v-for="(item,index) in serviceData" :key="index">
-						<image :src="item.img" mode="widthFix"></image>
-						<p>{{item.name}}</p>
-					</li>
-				</ul>
+				<view class="rock">
+					<view>
+						<image src="/static/image/icon_5.png" mode="aspectFit"></image><span>Deposit</span>
+					</view>
+					<view>
+						<image src="/static/image/icon_6.png" mode="aspectFit"></image><span>Withdrawal</span>
+					</view>
+				</view>
+				<view class="quantity">
+					<view class="word">
+						<h2>TRX Deposit quantity</h2>
+						<p>Basic account</p>
+						<h3><strong>0</strong><label for="">TRX</label></h3>
+						<p>Promotion account</p>
+						<h3><strong>0</strong><label for="">TRX</label></h3>
+						<p>Recharge any number of TRX to activate the account and open the withdrawal function.</p>
+					</view>
+					<image src="/static/image/mine_bg.png" mode="widthFix"></image>
+				</view>
+				<view class="service">
+					<ul>
+						<li v-for="(item,index) in serviceData" :key="index">
+							<image :src="item.img" mode="widthFix"></image>
+							<p>{{item.name}}</p>
+						</li>
+					</ul>
+				</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import HeaderBar from '@/components/HeaderBar.vue'
 	export default {
+		components: {
+			HeaderBar,
+		},
 		data() {
 			return {
 				serviceData: [{
-						"name": "团队",
-						"img": "/static/image/tab_7.png"
+						name: '团队',
+						img: '/static/image/tab_7.png'
 					},
 					{
-						"name": "账务记录",
-						"img": "/static/image/tab_8.png"
+						name: '账务记录',
+						img: '/static/image/tab_8.png'
 					},
 					{
-						"name": "转账",
-						"img": "/static/image/tab_9.png"
+						name: '转账',
+						img: '/static/image/tab_9.png'
 					},
 					{
-						"name": "邀请",
-						"img": "/static/image/tab_10.png"
+						name: '邀请',
+						img: '/static/image/tab_10.png'
 					},
 					{
-						"name": "VIP等级",
-						"img": "/static/image/tab_17.png"
+						name: 'VIP等级',
+						img: '/static/image/tab_17.png'
 					},
 					{
-						"name": "登出",
-						"img": "/static/image/tab_12.png"
+						name: '登出',
+						img: '/static/image/tab_12.png'
 					},
 				]
 			}
@@ -82,7 +89,7 @@
 
 <style>
 	.mine {
-		padding: 250px 16px 16px;
+		box-sizing: border-box;
 	}
 
 	.logo {
@@ -91,7 +98,7 @@
 	}
 
 	.logo>image {
-		/* height: 120px; */
+		width: 119px;
 	}
 
 	.mine .level {
@@ -192,17 +199,19 @@
 		margin-left: 6px;
 	}
 
-	.quantity>image {
+	.quantity image {
 		width: 207px;
 	}
 
 	.container {
 		background: #fff url(/static/image/mine_banner.png) no-repeat top;
 		background-size: 100%;
+		padding: 210px 16px 16px;
 	}
 
 	.service ul {
 		list-style: none;
+		padding: 0;
 	}
 
 	.service ul li {
@@ -226,10 +235,17 @@
 		margin-top: 12px;
 		border-radius: 12px;
 	}
-	
+
 	.service li image {
 		width: 50%;
 		height: 50%;
 		margin: auto;
+	}
+
+	.mine .service .box>ul>li>p {
+		font-weight: 500;
+		padding-top: 9px;
+		font-size: 13px;
+		min-height: 40px;
 	}
 </style>

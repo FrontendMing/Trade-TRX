@@ -98,7 +98,8 @@ export default {
 	box-sizing: border-box;
 	padding: 0 12px;
 	margin: 0;
-	width: 100vw;
+	width: 100%;
+	max-width: 750px;
 	background-color: #fff;
 	position: fixed;
 	z-index: 10;

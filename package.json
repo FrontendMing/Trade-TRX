@@ -13,5 +13,10 @@
             "uni-app前端模板",
             "uni-app前端项目模板"
         ]
-    }
+    },
+	"globalStyle": {
+		"rpxCalcBaseDeviceWidth": 375,
+		"rpxCalcIncludeWidth": 750,
+		"maxWidth": 750
+	}
 }

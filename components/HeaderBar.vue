@@ -7,9 +7,7 @@
 					<text>{{tabName}}</text>
 				</view>
 				<view class="header-info">
-					<view>
-						<button plain size="mini" @click="changeLanguage">{{languageName}}</button>
-					</view>
+					<button plain size="mini" @click="changeLanguage">{{languageName}}</button>
 					<view class="header-info-icon" @click="toNotice">
 						<uni-icons type="notification-filled" size="26"></uni-icons>
 					</view>
@@ -99,10 +97,11 @@ export default {
 	justify-content: space-between;
 	box-sizing: border-box;
 	padding: 0 12px;
-	margin: 12px 0;
+	margin: 0;
 	width: 100vw;
 	background-color: #fff;
 	position: fixed;
+	z-index: 10;
 	&-logo{
 		display: flex;
 		align-items: center;

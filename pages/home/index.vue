@@ -75,92 +75,77 @@
 		components: {
 			HeaderBar
 		},
-		data() {
-			return {
-				tabs: [{
-						name: '充值',
-						imgurl: '/static/image/tab_1.png',
-					},
-					{
-						name: '提款',
-						imgurl: '/static/image/tab_2.png',
-					},
-					{
-						name: '邀请',
-						imgurl: '/static/image/tab_3.png',
-					},
-					{
-						name: '团队',
-						imgurl: '/static/image/tab_4.png',
-					},
-					{
-						name: 'APP',
-						imgurl: '/static/image/tab_5.png',
-					},
-					{
-						name: '登出',
-						imgurl: '/static/image/tab_6.png',
-					}
-				],
-				amount: [{
-						name: '钱包',
-						url: '/static/image/icon_1.png',
-						balance: 0
-					},
-					{
-						name: '佣金',
-						url: '/static/image/icon_2.png',
-						balance: 0
-					}
-				],
-				platformData: [{
-						img: '/static/image/icon_3.png',
-						itm: '累计利润',
-						vle: 0
-					},
-					{
-						img: '/static/image/icon_4.png',
-						itm: '会员数量',
-						vle: 0
-					}
-				],
-				partner: [{
-						url: '/static/image/icon_10.jpeg'
-					},
-					{
-						url: '/static/image/icon_11.jpeg'
-					},
-					{
-						url: '/static/image/icon_13.jpeg'
-					},
-					{
-						url: '/static/image/icon_14.jpeg'
-					},
-					{
-						url: '/static/image/icon_15.jpeg'
-					},
-					{
-						url: '/static/image/icon_16.jpeg'
-					}
-				]
-			}
-		},
 		computed: {
-			locales() {
-				return [{
-						text: this.$t('locale.en'),
-						code: 'en'
-					},
-					{
-						text: this.$t('locale.zh-hans'),
-						code: 'zh-Hans'
-					},
-					{
-						text: this.$t('locale.zh-hant'),
-						code: 'zh-Hant'
-					},
-				]
-			}
+			tabs: () => [
+				{
+					name: '充值',
+					imgurl: '/static/image/tab_1.png',
+				},
+				{
+					name: '提款',
+					imgurl: '/static/image/tab_2.png',
+				},
+				{
+					name: '邀请',
+					imgurl: '/static/image/tab_3.png',
+				},
+				{
+					name: '团队',
+					imgurl: '/static/image/tab_4.png',
+				},
+				{
+					name: 'APP',
+					imgurl: '/static/image/tab_5.png',
+				},
+				{
+					name: '登出',
+					imgurl: '/static/image/tab_6.png',
+				}
+			],
+			amount: () => [
+				{
+					name: '钱包',
+					url: '/static/image/icon_1.png',
+					balance: 0
+				},
+				{
+					name: '佣金',
+					url: '/static/image/icon_2.png',
+					balance: 0
+				}
+			],
+			platformData: () => [
+				{
+					img: '/static/image/icon_3.png',
+					itm: '累计利润',
+					vle: 0
+				},
+				{
+					img: '/static/image/icon_4.png',
+					itm: '会员数量',
+					vle: 0
+				}
+			],
+			partner: () => [
+				{
+					url: '/static/image/icon_10.jpeg'
+				},
+				{
+					url: '/static/image/icon_11.jpeg'
+				},
+				{
+					url: '/static/image/icon_13.jpeg'
+				},
+				{
+					url: '/static/image/icon_14.jpeg'
+				},
+				{
+					url: '/static/image/icon_15.jpeg'
+				},
+				{
+					url: '/static/image/icon_16.jpeg'
+				}
+			],
 		},
 		onLoad() {
 

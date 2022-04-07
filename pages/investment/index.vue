@@ -9,8 +9,8 @@
 		<view class="invest">
 			<view class="toptab">
 				<span class="cur">投资产品</span>
-				<span>充值</span>
-				<span>我的投资</span>
+				<span @click="topUp">充值</span>
+				<span @click="toMyinvests">我的投资</span>
 			</view>
 			<view class="intsbox">
 				<view class="itembox" v-for="(item,index) in ints">
@@ -74,6 +74,16 @@
 					})
 				}).finally(() => {
 					uni.hideLoading();
+				})
+			},
+			toMyinvests() {
+				uni.navigateTo({
+					url: '/pages/investment/myinvests/myinvests'
+				})
+			},
+			topUp() {
+				uni.navigateTo({
+					url: '/pages/topup/topup'
 				})
 			}
 		}

@@ -151,7 +151,7 @@
 
 		},
 		methods: {
-
+			
 		}
 	}
 </script>

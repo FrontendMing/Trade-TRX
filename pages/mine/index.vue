@@ -15,7 +15,7 @@
 					<em>TRX</em>
 				</view>
 				<view class="rock">
-					<view>
+					<view @click="topUp">
 						<image src="/static/image/icon_5.png" mode="aspectFit"></image><span>Deposit</span>
 					</view>
 					<view>
@@ -82,7 +82,11 @@
 			}
 		},
 		methods: {
-
+			topUp() {
+				uni.navigateTo({
+					url: '/pages/topup/topup'
+				})
+			}
 		}
 	}
 </script>

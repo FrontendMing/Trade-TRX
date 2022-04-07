@@ -10,7 +10,7 @@
 		<view class="status">云挖矿正在运行</view>
 		<view class="trading">
 			<view class="tit">交易利润
-			<span><text>查看全部</text>></span>
+			<span @click="toTradeList"><text>查看全部</text>></span>
 			</view>
 			<view class="box">99999</view>
 		</view>
@@ -30,7 +30,11 @@ export default {
 		}
     },
     methods: {
-      
+		toTradeList() {
+			uni.navigateTo({
+				url: '/pages/trade/tradeList/tradeList'
+			})
+		}
     }
 }
 </script>

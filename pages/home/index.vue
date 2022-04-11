@@ -148,7 +148,9 @@
 			],
 		},
 		onLoad() {
-
+			this.$api.test().then(res => {
+				console.log('接口请求示例：', res)
+			})
 		},
 		methods: {
 			

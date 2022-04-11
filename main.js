@@ -1,5 +1,6 @@
 import App from './App'
 import messages from './locale/index'
+import './api'
 
 let i18nConfig = {
 	locale: uni.getLocale(),

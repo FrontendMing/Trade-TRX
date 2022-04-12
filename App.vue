@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style>
+@import "@/static/style/uniicons.css";
+
 .container {
     padding: 15px;
 }

@@ -1,7 +1,5 @@
 import * as common from './common'
 import * as user from './user'
-// import * as product from './product'
-// import * as relations from './relations'
 import * as trade from './trade'
 import Vue from 'vue'
 
@@ -12,8 +10,6 @@ const api = {
 	STATUS_OK: STATUS_OK,
 	...common,
 	...user,
-	// ...product,
-	// ...relations,
 	...trade,
 }
 

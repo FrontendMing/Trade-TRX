@@ -11,30 +11,30 @@
 						<view class="icon">
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="邮箱地址" /></view>
+						<view class="text"><input v-model="form.email" type="text" placeholder="邮箱地址" /></view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="登录密码" /></view>
+						<view class="text"><input v-model="form.loginPass" type="text" placeholder="登录密码" /></view>
 						<view class="show"><uni-icons type="eye" size="22"></uni-icons></view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="安全密码" /></view>
+						<view class="text"><input v-model="form.safePass" type="text" placeholder="安全密码" /></view>
 						<view class="show"><uni-icons type="eye" size="22"></uni-icons></view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="mail-open" size="22"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="邀请码" /></view>
+						<view class="text"><input v-model="form.inviteCode" type="text" placeholder="邀请码" /></view>
 					</view>
 					<view class="item noline">
-						<button class="btn a" type="default" @click="">注册</button>
+						<button class="btn a" type="default" @click="register">注册</button>
 					</view>
 					<view class="item noline">
 						<button class="txt a" type="default" @click="login">登录</button>
@@ -54,10 +54,19 @@
 		},
 		data() {
 			return {
-
+				form: {
+					email: '',
+					loginPass: '',
+					safePass: '',
+				}
 			}
 		},
 		methods: {
+			register() {
+				this.$api.register(this.form).then(res => {
+					console.log(res)
+				})
+			},
 			login (){
 				uni.navigateTo({
 					url:'/pages/login'

@@ -13,14 +13,14 @@
 				<span @click="toMyinvests">我的投资</span>
 			</view>
 			<view class="intsbox">
-				<view class="itembox" v-for="(item,index) in ints">
+				<view class="itembox" v-for="item in list" :key="item.id">
 					<view class="thumb">
 						<image src="/static/image/invests.jpeg" mode="scaleToFill"></image>
 					</view>
 					<view class="intro">
-						<p>周期：<span>{{item.cyc}}</span>日</p>
-						<p>每日收益率：<span>{{item.rate}}</span>%</p>
-						<p>起投金额：<span>{{item.miniAmount}}</span></p>
+						<p>周期：<span>{{item.cycle}}</span>日</p>
+						<p>每日收益率：<span>{{item.interestRate || 0}}</span>%</p>
+						<p>起投金额：<span>{{item.minAmount}}</span></p>
 					</view>
 				</view>
 			</view>
@@ -38,24 +38,13 @@
 		data() {
 			return {
 				name: "",
-				ints: [
-					{
-						cyc: 28,
-						rate: 9.08,
-						miniAmount: 10000.00
-					},
-					{
-						cyc: 5,
-						rate: 1.30,
-						miniAmount: 100.00
-					},
-					{
-						cyc: 120,
-						rate: 12.89,
-						miniAmount: 5000.00
-					}
-				]
+				list: []
 			}
+		},
+		onLoad() {
+			this.$api.getProducts().then(res => {
+				this.list = res.data.data
+			})
 		},
 		methods: {
 			add() {
@@ -76,6 +65,7 @@
 					uni.hideLoading();
 				})
 			},
+			// 我的投资
 			toMyinvests() {
 				uni.navigateTo({
 					url: '/pages/investment/myinvests/myinvests'

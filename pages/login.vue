@@ -11,20 +11,20 @@
 						<view class="icon">
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="邮箱" /></view>
+						<view class="text"><input v-model="form.email" type="text" placeholder="邮箱" /></view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="登录密码" /></view>
+						<view class="text"><input v-model="form.password" type="text" placeholder="登录密码" /></view>
 						<view class="show"><uni-icons type="eye" size="22"></uni-icons></view>
 					</view>
 					<view class="item noline ra">
 						<switch checked="true" @change="" color="#B73E31" />记住&自动登录
 					</view>
 					<view class="item noline">
-						<button class="btn a" type="default">登录</button>
+						<button class="btn a" type="default" @click="login">登录</button>
 					</view>
 					<view class="item noline">
 						<button class="txt a" type="default" @click="register">注册</button>
@@ -45,15 +45,34 @@
 		},
 		data() {
 			return {
-
+				form: {
+					email: '',
+					password: ''
+				}
 			}
 		},
 		methods: {
+			// 登录
+			login() {
+				this.$api.login(this.form).then(res => {
+					uni.setStorageSync('token', res.data.data.token)
+					uni.showToast({
+						title: '登录成功',
+						complete: function() {
+							uni.switchTab({
+								url: '/pages/home/index'
+							})
+						}
+					})
+				})
+			},
+			// 注册
 			register (){
 				uni.navigateTo({
 					url:'/pages/register'
 				})
 			},
+			// 忘记密码
 			forget (){
 				uni.navigateTo({
 					url: '/pages/forgot'

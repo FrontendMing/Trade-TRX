@@ -5,12 +5,12 @@ var fly=new Fly
 //设置超时
 fly.config.timeout = 30000;
 //设置请求基地址
-fly.config.baseURL = 'uniapp.dcloud.io'		// http请求地址
+fly.config.baseURL = '/api'		// http请求地址
 
 // 添加请求拦截器
 fly.interceptors.request.use((request) => {
 	// 在发送请求之前做些什么
-	let token = uni.getStorageSync('aliToken')
+	let token = uni.getStorageSync('token')
 	if (token) {
 		request.headers['token'] = token
 	}

@@ -43,7 +43,7 @@
 		},
 		onLoad() {
 			this.$api.getProducts().then(res => {
-				this.list = res.data.data
+				this.list = res.data
 			})
 		},
 		methods: {

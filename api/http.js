@@ -22,10 +22,10 @@ fly.interceptors.request.use((request) => {
 
 fly.interceptors.response.use((res) => {
 	// 对响应数据做些事
-	// if (!res.data) {
-	// return Promise.reject(res)
-	// }
-	return res
+	if (!res.data) {
+		return Promise.reject(res)
+	}
+	return res.data
 }, (error) => {
 	return Promise.reject(error)
 })

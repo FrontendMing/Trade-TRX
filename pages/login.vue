@@ -11,17 +11,22 @@
 						<view class="icon">
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.email" type="text" placeholder="邮箱" /></view>
+						<view class="text"><input v-model="form.email" type="text" placeholder="邮箱"/></view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.password" type="text" placeholder="登录密码" /></view>
-						<view class="show"><uni-icons type="eye" size="22"></uni-icons></view>
+						<view class="text">
+							<input v-if="inputType" v-model="form.password" type="password" placeholder="登录密码"/>
+							<input v-else v-model="form.password" type="text" placeholder="登录密码"/>
+						</view>
+						<view class="show">
+							<uni-icons type="eye" size="22" @click="inputType = !inputType"></uni-icons>
+						</view>
 					</view>
 					<view class="item noline ra">
-						<switch checked="true" @change="" color="#B73E31" />记住&自动登录
+						<switch checked="true" @change="" color="#B73E31"/>记住&自动登录
 					</view>
 					<view class="item noline">
 						<button class="btn a" type="default" @click="login">登录</button>
@@ -41,10 +46,12 @@
 	import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue'
 	export default {
 		components: {
-			HeaderBar, uniIcons
+			HeaderBar,
+			uniIcons,
 		},
 		data() {
 			return {
+				inputType: true,
 				form: {
 					email: '',
 					password: ''
@@ -59,9 +66,11 @@
 					uni.showToast({
 						title: '登录成功',
 						complete: function() {
-							uni.switchTab({
-								url: '/pages/home/index'
-							})
+							setTimeout(() => {
+								uni.switchTab({
+									url: '/pages/home/index'
+								})
+							}, 1500);
 						}
 					})
 				})

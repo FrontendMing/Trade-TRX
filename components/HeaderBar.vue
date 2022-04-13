@@ -31,9 +31,9 @@
 
 <script>
 const LANG_TYPE = {
-	'zh-Hans': 1,
-	'zh-Hant': 2,
-	'en': 3
+	'zh-Hans': 'zh_cn',
+	'zh-Hant': 'zh_hk',
+	'en': 'en'
 }
 export default {
 	props: {

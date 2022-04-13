@@ -36,6 +36,6 @@ export function getPlatformData() {
 }
 
 // 查询平台通知接口
-export function getPlatformNotices() {
-	return fly.get('/platform/notices').then(res => res)
+export function getPlatformNotices(params) {
+	return fly.get('/platform/notices', params).then(res => res)
 }

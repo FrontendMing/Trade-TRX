@@ -62,7 +62,7 @@
 			// 登录
 			login() {
 				this.$api.login(this.form).then(res => {
-					uni.setStorageSync('token', res.data.data.token)
+					uni.setStorageSync('token', res.data.token)
 					uni.showToast({
 						title: '登录成功',
 						complete: function() {

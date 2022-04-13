@@ -30,6 +30,11 @@
 </template>
 
 <script>
+const LANG_TYPE = {
+	'zh-Hans': 1,
+	'zh-Hant': 2,
+	'en': 3
+}
 export default {
 	props: {
 		tabName: {
@@ -71,6 +76,13 @@ export default {
 			let _style = `height: ${this.customBarH}px;`
 			return _style
 		}
+	},
+	mounted() {
+		this.$api.getPlatformNotices({
+			lang: LANG_TYPE[this.localeCode],
+		}).then(res => {
+			console.log(res)
+		})
 	},
 	methods: {
 		changeLanguage() {

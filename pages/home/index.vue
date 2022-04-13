@@ -43,10 +43,15 @@
 				<view class="data">
 					<h2>平台数据展示</h2>
 					<ul>
-						<li v-for="(item,index) in platformData">
-							<image :src="item.img" mode="widthFix"></image>
-							<p class="tit">{{item.itm}}</p>
-							<p class="val">{{item.vle}}</p>
+						<li>
+							<image src="/static/image/icon_3.png" mode="widthFix"></image>
+							<p class="tit">累计利润</p>
+							<p class="val">{{platformData.assets}}</p>
+						</li>
+						<li>
+							<image src="/static/image/icon_4.png" mode="widthFix"></image>
+							<p class="tit">会员数量</p>
+							<p class="val">{{platformData.members}}</p>
 						</li>
 					</ul>
 				</view>
@@ -74,6 +79,15 @@
 	export default {
 		components: {
 			HeaderBar
+		},
+		data() {
+			return {
+				// 平台数据
+				platformData: {
+					assets: 0,
+					members: 0,
+				}
+			}
 		},
 		computed: {
 			tabs: () => [
@@ -114,18 +128,6 @@
 					balance: 0
 				}
 			],
-			platformData: () => [
-				{
-					img: '/static/image/icon_3.png',
-					itm: '累计利润',
-					vle: 0
-				},
-				{
-					img: '/static/image/icon_4.png',
-					itm: '会员数量',
-					vle: 0
-				}
-			],
 			partner: () => [
 				{
 					url: '/static/image/icon_10.jpeg'
@@ -148,8 +150,9 @@
 			],
 		},
 		onLoad() {
-			this.$api.test().then(res => {
-				console.log('接口请求示例：', res)
+			// 获取平台数据
+			this.$api.getPlatformData().then(res => {
+				this.platformData = Object.assign(this.platformData, (res?.data || {}))
 			})
 		},
 		methods: {

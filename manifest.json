@@ -74,16 +74,16 @@
             "mode" : "history"
         },
         "title" : "TRX",
-        "devServer": {
-            "port": 8888,
+        "devServer" : {
+            "port" : 8888,
             "disableHostCheck" : true,
-            "proxy": {
-                "^/api": {
-                    "target": "http://175.178.60.142:8081",
-                    "changeOrigin": true,
-                    "secure": false,
-                    "pathRewrite": {
-                        "^/api": "/api"
+            "proxy" : {
+                "^/api" : {
+                    "target" : "http://175.178.60.142:8081",
+                    "changeOrigin" : true,
+                    "secure" : false,
+                    "pathRewrite" : {
+                        "^/api" : "/api"
                     }
                 }
             }

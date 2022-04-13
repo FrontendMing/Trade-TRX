@@ -17,15 +17,25 @@
 						<view class="icon">
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.loginPass" type="text" placeholder="登录密码" /></view>
-						<view class="show"><uni-icons type="eye" size="22"></uni-icons></view>
+						<view class="text">
+							<input v-if="loginPassType" v-model="form.loginPass" type="password" placeholder="登录密码"/>
+							<input v-else v-model="form.loginPass" type="text" placeholder="登录密码"/>
+						</view>
+						<view class="show">
+							<uni-icons type="eye" size="22" @click="loginPassType = !loginPassType"></uni-icons>
+						</view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.safePass" type="text" placeholder="安全密码" /></view>
-						<view class="show"><uni-icons type="eye" size="22"></uni-icons></view>
+						<view class="text">
+							<input v-if="safePassType" v-model="form.safePass" type="password" placeholder="登录密码"/>
+							<input v-else v-model="form.safePass" type="text" placeholder="登录密码"/>
+						</view>
+						<view class="show">
+							<uni-icons type="eye" size="22" @click="safePassType = !safePassType"></uni-icons>
+						</view>
 					</view>
 					<view class="item">
 						<view class="icon">
@@ -54,12 +64,18 @@
 		},
 		data() {
 			return {
+				loginPassType: true,
+				safePassType: true,
 				form: {
 					email: '',
 					loginPass: '',
 					safePass: '',
+					inviteCode: '',
 				}
 			}
+		},
+		onLoad(option) {
+			this.form.inviteCode = option.code
 		},
 		methods: {
 			register() {

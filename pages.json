@@ -75,9 +75,8 @@
                 "enablePullDownRefresh": false
             }
             
-        }
-        
-        ,{
+        },
+        {
             "path" : "pages/topup/topup",
             "style" :                                                                                    
             {
@@ -85,17 +84,25 @@
                 "enablePullDownRefresh": false
             }
             
-        }
-        ,{
+        },
+		{
             "path" : "pages/team/team",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
-        }
-        ,{
+        },
+		{
+		    "path" : "pages/share",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
             "path" : "pages/login",
             "style" :                                                                                    
             {
@@ -103,8 +110,8 @@
                 "enablePullDownRefresh": false
             }
             
-        }
-		,{
+        },
+		{
 		    "path" : "pages/register",
 		    "style" :                                                                                    
 		    {
@@ -112,8 +119,8 @@
 		        "enablePullDownRefresh": false
 		    }
 		    
-		}
-        ,{
+		},
+		{
             "path" : "pages/forgot",
             "style" :                                                                                    
             {
@@ -121,8 +128,8 @@
                 "enablePullDownRefresh": false
             }
             
-        }
-        ,{
+        },
+		{
             "path" : "pages/modify",
             "style" :                                                                                    
             {

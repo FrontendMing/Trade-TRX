@@ -35,7 +35,7 @@
 				</view>
 				<view class="service">
 					<ul>
-						<li v-for="(item,index) in serviceData" :key="index">
+						<li v-for="(item, index) in serviceData" :key="index" @click="handleJump(item)">
 							<image :src="item.img" mode="widthFix"></image>
 							<p>{{item.name}}</p>
 						</li>
@@ -54,29 +54,42 @@
 		},
 		data() {
 			return {
-				serviceData: [{
+				serviceData: [
+					{
+						type: 'team',
 						name: '团队',
-						img: '/static/image/tab_7.png'
+						img: '/static/image/tab_7.png',
+						link: '/pages/team/team',
 					},
 					{
+						type: 'team',
 						name: '账务记录',
-						img: '/static/image/tab_8.png'
+						img: '/static/image/tab_8.png',
+						link: '/pages/investment/myinvests/myinvests',
 					},
 					{
+						type: 'team',
 						name: '转账',
-						img: '/static/image/tab_9.png'
+						img: '/static/image/tab_9.png',
+						link: '/pages/topup/topup',
 					},
 					{
+						type: 'invite',
 						name: '邀请',
-						img: '/static/image/tab_10.png'
+						img: '/static/image/tab_10.png',
+						link: '/pages/invite/index',
 					},
 					{
+						type: 'vipLevel',
 						name: 'VIP等级',
-						img: '/static/image/tab_17.png'
+						img: '/static/image/tab_17.png',
+						link: '/pages/invite/rules/index',
 					},
 					{
+						type: 'logout',
 						name: '登出',
-						img: '/static/image/tab_12.png'
+						img: '/static/image/tab_12.png',
+						link: null
 					},
 				]
 			}
@@ -86,6 +99,28 @@
 				uni.navigateTo({
 					url: '/pages/topup/topup'
 				})
+			},
+			handleJump({ type, link, }) {
+				// 登出
+				if (type === 'logout') {
+					this.$api.logout().then(res => {
+						uni.clearStorageSync()
+						uni.navigateTo({
+							url: '/pages/login',
+						})
+					})
+				}
+				// 邀请
+				else if (type === 'invite') {
+					uni.switchTab({
+						url: link,
+					})
+				}
+				else {
+					uni.navigateTo({
+						url: link,
+					})
+				}
 			}
 		}
 	}

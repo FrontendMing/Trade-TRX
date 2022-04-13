@@ -7,7 +7,7 @@
 					<img src="/static/img/logo.07a51f2d.png" alt="">
 				</view>
 				<view>
-					<text style="font-size: small;">{{$t('invite.invite-code')}}：</text>
+					<text style="font-size: small;">{{$t('invite.invite-code')}}：{{inviteCode}}</text>
 				</view>
 				<view class="qrcode">
 					<h3>{{$t('invite.invite-your-contacts')}}</h3>
@@ -39,9 +39,16 @@ export default {
 	},
     data() {
 		return {
-			shareUrl: 'https://uniapp-trx.netlify.app'
+			inviteCode: '',
+			shareUrl: ''
 		}
     },
+	onLoad() {
+		this.$api.getUserInviteCode().then(res => {
+			this.inviteCode = res.data
+			this.shareUrl = `https://uniapp-trx.netlify.app/pages/share?code=${this.inviteCode}`
+		})
+	},
     methods: {
 		goToInviteRules() {
 			uni.navigateTo({

@@ -36,107 +36,87 @@
 		},
 		{
             "path" : "pages/mine/index",
-            "style" :
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
         },
 		{
             "path" : "pages/notice/index",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
         },
 		{
             "path" : "pages/notice/detail/index",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
         }
         ,{
-            "path" : "pages/investment/myinvests/myinvests",
-            "style" :                                                                                    
-            {
+            "path" : "pages/investment/myinvests/index",
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         }
         ,{
-            "path" : "pages/trade/tradeList/tradeList",
-            "style" :                                                                                    
-            {
+            "path" : "pages/trade/tradeList/index",
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         },
         {
-            "path" : "pages/topup/topup",
-            "style" :                                                                                    
-            {
+            "path" : "pages/topup/index",
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         },
 		{
-            "path" : "pages/team/team",
-            "style" :                                                                                    
-            {
+            "path" : "pages/team/index",
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
         },
 		{
 		    "path" : "pages/share",
-		    "style" :                                                                                    
-		    {
+		    "style" : {
 		        "navigationBarTitleText": "",
 		        "enablePullDownRefresh": false
 		    }
-		    
 		},
 		{
             "path" : "pages/login",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         },
 		{
 		    "path" : "pages/register",
-		    "style" :                                                                                    
-		    {
+		    "style" : {
 		        "navigationBarTitleText": "",
 		        "enablePullDownRefresh": false
 		    }
-		    
 		},
 		{
             "path" : "pages/forgot",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         },
 		{
             "path" : "pages/modify",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
         }
     ],
 	"tabBar": {

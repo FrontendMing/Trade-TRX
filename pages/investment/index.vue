@@ -68,12 +68,12 @@
 			// 我的投资
 			toMyinvests() {
 				uni.navigateTo({
-					url: '/pages/investment/myinvests/myinvests'
+					url: '/pages/investment/myinvests/index'
 				})
 			},
 			topUp() {
 				uni.navigateTo({
-					url: '/pages/topup/topup'
+					url: '/pages/topup/index'
 				})
 			}
 		}
@@ -88,13 +88,13 @@
 		margin-bottom: 15px;
 		padding: 8px;
 	}
-	
+
 	.invest {
 	  display: block;
 	  background: #fff;
 	  padding: 8px 16px 16px 16px;
 	}
-	
+
 	.invest .toptab {
 	  background: #fffcf5;
 	  border-bottom: 2px solid #b73e31;
@@ -105,12 +105,12 @@
 	  border-radius: 8px;
 	  overflow: hidden;
 	}
-	
+
 	.invest .toptab > span.cur {
 	  background: #b73e31;
 	  color: #fff;
 	}
-	
+
 	.invest .toptab > span {
 	  flex: 1;
 	  font-weight: 500;
@@ -119,13 +119,13 @@
 	  color: #666;
 	  cursor: pointer;
 	}
-	
+
 	.invest .intsbox {
 	  display: block;
 	  padding-top: 16px;
 	  box-sizing: border-box;
 	}
-	
+
 	.invest .itembox {
 	  height: 110px;
 	  cursor: pointer;
@@ -139,36 +139,36 @@
 	  position: relative;
 	  box-sizing: border-box;
 	}
-	
+
 	.invest .itembox .thumb {
 	  width: 55%;
 	  box-sizing: border-box;
 	}
-	
+
 	.invest .itembox .intro {
 	  width: 42%;
 	  color: #eee;
 	  box-sizing: border-box;
 	}
-	
+
 	.invest .itembox .thumb > uni-image {
 	  width: 100%;
 	  height: 94px;
 	  display: block;
 	  border-radius: 8px;
 	}
-	
+
 	.invest .itembox .intro > p {
 	  height: 29px;
 	  line-height: 29px;
 	  font-weight: 500;
 	  font-size: 13px;
 	}
-	
+
 	.invest .itembox .intro > p:first-child {
 	  font-size: 15px;
 	}
-	
+
 	.invest .itembox .intro > p > span {
 	  margin: 0 2px 0 5px;
 	  zoom: 1.1;

@@ -32,7 +32,7 @@ export default {
     methods: {
 		toTradeList() {
 			uni.navigateTo({
-				url: '/pages/trade/tradeList/tradeList'
+				url: '/pages/trade/tradeList/index'
 			})
 		}
     }

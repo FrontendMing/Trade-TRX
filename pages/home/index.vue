@@ -19,7 +19,7 @@
 			</view>
 			<view class="tabs">
 				<ul>
-					<li v-for="(item,index) in tabs">
+					<li v-for="(item, index) in tabs" :key="index" @click="handleClick(item)">
 						<image :src="item.imgurl" mode="widthFix"></image>
 						<p>{{item.name}}</p>
 					</li>
@@ -38,7 +38,7 @@
 					<h2>加入成为波声百万富翁</h2>
 					<p>使用云挖矿和Defi技术，确保所有用户获得最大的TRX收益。</p>
 					<image src="/static/image/work_bg.png" mode="widthFix"></image>
-					<button>详情</button>
+					<button @click="goToTrade">详情</button>
 				</view>
 				<view class="data">
 					<h2>平台数据展示</h2>
@@ -94,24 +94,32 @@
 				{
 					name: '充值',
 					imgurl: '/static/image/tab_1.png',
+					url: '/pages/topup/index'
 				},
 				{
 					name: '提款',
 					imgurl: '/static/image/tab_2.png',
+					url: '/pages/topup/index'
 				},
 				{
+					type: 'invite',
 					name: '邀请',
 					imgurl: '/static/image/tab_3.png',
+					url: '/pages/invite/index'
 				},
 				{
 					name: '团队',
 					imgurl: '/static/image/tab_4.png',
+					url: '/pages/team/index'
 				},
 				{
+					type: 'app',
 					name: 'APP',
 					imgurl: '/static/image/tab_5.png',
+					url: ''
 				},
 				{
+					type: 'logout',
 					name: '登出',
 					imgurl: '/static/image/tab_6.png',
 				}
@@ -150,13 +158,43 @@
 			],
 		},
 		onLoad() {
-			// 获取平台数据
-			this.$api.getPlatformData().then(res => {
-				this.platformData = Object.assign(this.platformData, (res?.data || {}))
-			})
+
 		},
 		methods: {
-			
+			// 获取平台数据
+			getPlatformData() {
+				this.$api.getPlatformData().then(res => {
+					this.platformData = Object.assign(this.platformData, (res?.data || {}))
+				})
+			},
+			handleClick({ type, url, }) {
+				// 登出
+				if (type === 'logout') {
+					this.$api.logout().then(res => {
+						uni.clearStorageSync()
+						uni.navigateTo({
+							url: '/pages/login',
+						})
+					})
+				}
+				// 邀请
+				else if (type === 'invite') {
+					uni.switchTab({ url, })
+				}
+				// 跳 app
+				else if (type === 'app') {
+
+				}
+				else {
+					uni.navigateTo({ url, })
+				}
+			},
+			// 跳转 交易
+			goToTrade() {
+				uni.switchTab({
+					url: '/pages/trade/index'
+				})
+			}
 		}
 	}
 </script>

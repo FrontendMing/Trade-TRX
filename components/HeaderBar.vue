@@ -40,6 +40,10 @@ export default {
 		tabName: {
 			type: String,
 			required: true,
+		},
+		refreshNotice: {
+			type: Boolean,
+			default: true,
 		}
 	},
 	data() {
@@ -77,14 +81,18 @@ export default {
 			return _style
 		}
 	},
-	mounted() {
-		this.$api.getPlatformNotices({
-			lang: LANG_TYPE[this.localeCode],
-		}).then(res => {
-			console.log(res)
-		})
+	created() {
+		this.refreshNotice && this.getNoticeData()
 	},
 	methods: {
+		// 获取 通知信息
+		getNoticeData() {
+			this.$api.getPlatformNotices({
+				lang: LANG_TYPE[this.localeCode],
+			}).then(res => {
+				console.log(res)
+			})
+		},
 		changeLanguage() {
 			this.$refs.popup.open();
 		},

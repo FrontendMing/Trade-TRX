@@ -25,6 +25,17 @@ fly.interceptors.response.use((res) => {
 	if (!res.data) {
 		return Promise.reject(res)
 	}
+	if (res.data.code === 500) {
+		uni.showToast({
+			title: res.data.msg,
+			icon: 'none'
+		})
+		setTimeout(() => {
+			uni.redirectTo({
+				url: '/pages/login'
+			})
+		}, 1500)
+	}
 	return res.data
 }, (error) => {
 	return Promise.reject(error)

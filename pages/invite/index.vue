@@ -66,7 +66,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .qrcode {
 	display: flex;
 	width: 100%;
@@ -92,18 +92,17 @@ export default {
 	background-size: 100% 100%;
 	position: relative;
 	height: 200px;
-}
-.cpyurl>image {
-	position: absolute;
-	top: -10px;
-	right: 10px;
-}
-.cpyurl>h3 {
-	padding: 44px 0 0 34px;
-
-}
-.cpyurl>p {
-	padding: 12px 0 0 34px;
+	&>image {
+		position: absolute;
+		top: -10px;
+		right: 10px;
+	}
+	&>h3 {
+		padding: 44px 0 0 34px;
+	}
+	>p {
+		padding: 12px 0 0 34px;
+	}
 }
 .slink {
 	background: #fff;
@@ -113,28 +112,35 @@ export default {
 	display: flex;
 	align-items: center;
 	position: relative;
-}
-.slink>input {
-	width: 100%;
-	text-indent: 12px;
-	outline: 0;
-	border: 0;
-	font-size: 12px;
-	color: #2a2a2a;
-}
-.slink>button {
-	padding: 0;
-	position: absolute;
-	right: 7px;
-	top: 7px;
-	height: 31px;
-	line-height: 31px;
-	font-size: 12px;
-	font-weight: 700;
-	border-radius: 8px;
-	border: 0;
-	color: #fff;
-	background: linear-gradient(1turn,#741e15,#b73e31);
-	width: 81px;
+	/deep/ .uni-input-wrapper{
+		width: 60%;
+		box-sizing: border-box;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	>input {
+		width: 100%;
+		text-indent: 12px;
+		outline: 0;
+		border: 0;
+		font-size: 12px;
+		color: #2a2a2a;
+	}
+	&>button {
+		padding: 0;
+		position: absolute;
+		right: 7px;
+		top: 7px;
+		height: 31px;
+		line-height: 31px;
+		font-size: 12px;
+		font-weight: 700;
+		border-radius: 8px;
+		border: 0;
+		color: #fff;
+		background: linear-gradient(1turn,#741e15,#b73e31);
+		width: 81px;
+	}
 }
 </style>

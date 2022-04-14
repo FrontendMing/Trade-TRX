@@ -1,11 +1,6 @@
 <template>
 	<view class="">
 		<header-bar :tabName="$t('index.investment')"></header-bar>
-		<!-- <view class="container">
-			<view>{{$t('schema.name')}}</view>
-			<input class="input" v-model="name" />
-			<button type="primary" @click="add">{{$t('schema.add')}}</button>
-		</view> -->
 		<view class="invest">
 			<view class="toptab">
 				<span class="cur">投资产品</span>
@@ -37,34 +32,37 @@
 		},
 		data() {
 			return {
-				name: "",
 				list: []
 			}
 		},
 		onLoad() {
-			this.$api.getProducts().then(res => {
-				this.list = res.data
-			})
+			this.getProducts()
 		},
 		methods: {
-			add() {
-				uni.showLoading();
-				let db = uniCloud.database()
-				db.collection(collection).add({
-					name: this.name
-				}).then((res) => {
-					uni.showToast({
-						title: this.$t('schema.add-success')
-					})
-				}).catch((err) => {
-					uni.showModal({
-						content: err.message,
-						showCancel: false
-					})
-				}).finally(() => {
-					uni.hideLoading();
+			// 产品列表
+			getProducts() {
+				this.$api.getProducts().then(res => {
+					this.list = res.data || []
 				})
 			},
+			// add() {
+			// 	uni.showLoading();
+			// 	let db = uniCloud.database()
+			// 	db.collection(collection).add({
+			// 		name: this.name
+			// 	}).then((res) => {
+			// 		uni.showToast({
+			// 			title: this.$t('schema.add-success')
+			// 		})
+			// 	}).catch((err) => {
+			// 		uni.showModal({
+			// 			content: err.message,
+			// 			showCancel: false
+			// 		})
+			// 	}).finally(() => {
+			// 		uni.hideLoading();
+			// 	})
+			// },
 			// 我的投资
 			toMyinvests() {
 				uni.navigateTo({

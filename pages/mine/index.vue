@@ -7,11 +7,11 @@
 					<image src="/static/image/mine_logo.png" mode="widthFix"></image>
 				</view>
 				<view class="level">
-					<label for="">VIP100</label>
+					<label for="">{{userInfo.levelName}}</label>
 				</view>
 				<view class="balance">
 					<span>总资产余额:</span>
-					<strong>999999</strong>
+					<strong>{{userInfo.basicAmount + userInfo.commAmount}}</strong>
 					<em>TRX</em>
 				</view>
 				<view class="rock">
@@ -28,9 +28,9 @@
 					<view class="word">
 						<h2>TRX充值数量</h2>
 						<p>基础账户</p>
-						<h3><strong>0</strong><label for="">TRX</label></h3>
+						<h3><strong>{{userInfo.basicAmount}}</strong><label for="">TRX</label></h3>
 						<p>佣金账户</p>
-						<h3><strong>0</strong><label for="">TRX</label></h3>
+						<h3><strong>{{userInfo.commAmount}}</strong><label for="">TRX</label></h3>
 						<p>充值任意数量的TRX即可激活账户并开通提现功能。</p>
 					</view>
 					<image src="/static/image/mine_bg.png" mode="widthFix"></image>
@@ -56,45 +56,48 @@
 		},
 		data() {
 			return {
-				serviceData: [
-					{
-						type: 'team',
-						name: '团队',
-						img: '/static/image/tab_7.png',
-						url: '/pages/team/index',
-					},
-					{
-						type: 'team',
-						name: '账务记录',
-						img: '/static/image/tab_8.png',
-						url: '/pages/investment/myinvests/index',
-					},
-					{
-						type: 'team',
-						name: '转账',
-						img: '/static/image/tab_9.png',
-						url: '/pages/topup/index',
-					},
-					{
-						type: 'invite',
-						name: '邀请',
-						img: '/static/image/tab_10.png',
-						url: '/pages/invite/index',
-					},
-					{
-						type: 'vipLevel',
-						name: 'VIP等级',
-						img: '/static/image/tab_17.png',
-						url: '/pages/invite/rules/index',
-					},
-					{
-						type: 'logout',
-						name: '登出',
-						img: '/static/image/tab_12.png',
-						url: null
-					},
-				]
+				userInfo: {},
 			}
+		},
+		computed: {
+			serviceData: () => [
+				{
+					type: 'team',
+					name: '团队',
+					img: '/static/image/tab_7.png',
+					url: '/pages/team/index',
+				},
+				{
+					type: 'team',
+					name: '账务记录',
+					img: '/static/image/tab_8.png',
+					url: '/pages/investment/myinvests/index',
+				},
+				{
+					type: 'team',
+					name: '转账',
+					img: '/static/image/tab_9.png',
+					url: '/pages/topup/index',
+				},
+				{
+					type: 'invite',
+					name: '邀请',
+					img: '/static/image/tab_10.png',
+					url: '/pages/invite/index',
+				},
+				{
+					type: 'vipLevel',
+					name: 'VIP等级',
+					img: '/static/image/tab_17.png',
+					url: '/pages/invite/rules/index',
+				},
+				{
+					type: 'logout',
+					name: '登出',
+					img: '/static/image/tab_12.png',
+					url: null
+				},
+			]
 		},
 		onLoad() {
 			this.getUserInfo()
@@ -103,7 +106,7 @@
 			// 获取用户信息
 			getUserInfo() {
 				this.$api.getUserInfo().then(res => {
-					console.log(res)
+					this.userInfo = Object.assign({}, res?.data || {})
 				})
 			},
 			// 充值

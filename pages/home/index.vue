@@ -158,9 +158,15 @@
 			],
 		},
 		onLoad() {
-
+			this.getPlatformData()
 		},
 		methods: {
+			// 获取用户信息
+			getUserInfo() {
+				this.$api.getUserInfo().then(res => {
+					console.log(res)
+				})
+			},
 			// 获取平台数据
 			getPlatformData() {
 				this.$api.getPlatformData().then(res => {

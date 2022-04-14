@@ -1,9 +1,5 @@
 import fly from './http'
 
-// 测试
-export function test() {
-	return fly.get('/userId').then(res => 1)
-}
 
 // 登录
 export function login(params){
@@ -93,12 +89,12 @@ export function collectProfit(params) {
 	return fly.post('/profit/collect', params).then(res => res)
 }
 
-// 获取利润收益更多数据
-export function getProfitDetails(params) {
-	return fly.post('/profit/details', params).then(res => res)
-}
-
 // 获取利润收益快表数据
 export function getProfitFast(params) {
 	return fly.post('/profit/fast', params).then(res => res)
+}
+
+// 获取利润收益更多数据
+export function getProfitDetails(params) {
+	return fly.post('/profit/details', params).then(res => res)
 }

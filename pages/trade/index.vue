@@ -2,15 +2,15 @@
 <view>
 	<header-bar :tabName="$t('index.trade')"></header-bar>
 	<view class="container">
-		<view class="rate">
-			+5.00%
+		<view class="rate">+5.00%</view>
+		<view class="level">{{userInfo.levelName}}</view>
+		<view class="wkbg">
+			<image mode="aspectFit" src="/static/image/pool_bg.png"/>
 		</view>
-		<view class="level">VIP1</view>
-		<view class="wkbg"><image mode="aspectFit" src="/static/image/pool_bg.png"></image></view>
 		<view class="status">云挖矿正在运行</view>
 		<view class="trading">
 			<view class="tit">交易利润
-			<span @click="toTradeList"><text>查看全部</text>></span>
+				<span @click="toTradeList"><text>查看全部</text>></span>
 			</view>
 			<view class="box">99999</view>
 		</view>
@@ -26,10 +26,26 @@ export default {
 	},
     data() {
 		return {
-			title: this.$t('')
+			userInfo: {},
 		}
     },
+	onLoad() {
+		this.getUserInfo()
+		this.getProfitFast()
+	},
     methods: {
+		// 获取用户信息
+		getUserInfo() {
+			this.$api.getUserInfo().then(res => {
+				this.userInfo = Object.assign({}, res?.data || {})
+			})
+		},
+		// 获取利润收益快表数据
+		getProfitFast() {
+			this.$api.getProfitFast().then(res => {
+				console.log(res)
+			})
+		},
 		toTradeList() {
 			uni.navigateTo({
 				url: '/pages/trade/tradeList/index'

@@ -1,21 +1,21 @@
 <template>
-<view>
-	<header-bar :tabName="$t('index.trade')"></header-bar>
-	<view class="container">
-		<view class="rate">+5.00%</view>
-		<view class="level">{{userInfo.levelName}}</view>
-		<view class="wkbg">
-			<image mode="aspectFit" src="/static/image/pool_bg.png"/>
-		</view>
-		<view class="status">云挖矿正在运行</view>
-		<view class="trading">
-			<view class="tit">交易利润
-				<span @click="toTradeList"><text>查看全部</text>></span>
+	<view>
+		<header-bar :tabName="$t('index.trade')"></header-bar>
+		<view class="container">
+			<view class="rate">+5.00%</view>
+			<view class="level">{{userInfo.levelName}}</view>
+			<view class="wkbg">
+				<image mode="aspectFit" src="/static/image/pool_bg.png"/>
 			</view>
-			<view class="box">99999</view>
+			<view class="status">云挖矿正在运行</view>
+			<view class="trading">
+				<view class="tit">交易利润
+					<span @click="toTradeList"><text>查看全部</text>></span>
+				</view>
+				<view class="box" v-for="(item, index) in list" :key="index">{{item}}</view>
+			</view>
 		</view>
 	</view>
-</view>
 </template>
 
 <script>
@@ -27,6 +27,7 @@ export default {
     data() {
 		return {
 			userInfo: {},
+			list: [],
 		}
     },
 	onLoad() {
@@ -43,7 +44,7 @@ export default {
 		// 获取利润收益快表数据
 		getProfitFast() {
 			this.$api.getProfitFast().then(res => {
-				console.log(res)
+				this.list = res?.data || []
 			})
 		},
 		toTradeList() {

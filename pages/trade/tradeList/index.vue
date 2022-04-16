@@ -8,9 +8,9 @@
 					<view class="box">
 						<dl>
 							<dt><span>日期</span><span>金额</span></dt>
-							<dd>
-								<view>8:02 AM 04/07/2022 <p>量化交易收入</p></view>
-								<view>40.00 TRX <p><span>已收取</span></p></view>
+							<dd v-for="(item,index) in list" :key="index">
+								<view>{{item.date}} <p>量化交易收入</p></view>
+								<view>{{item.amount}} TRX <p><span>已收取</span></p></view>
 							</dd>
 						</dl>
 						<view class="more">
@@ -31,7 +31,7 @@
 		},
 		data() {
 			return {
-
+				list: [],
 			}
 		},
 		onLoad() {
@@ -41,7 +41,7 @@
 			// 获取利润收益快表数据
 			getProfitDetails() {
 				this.$api.getProfitDetails().then(res => {
-					console.log(res.data)
+					this.list = res?.data || []
 				})
 			},
 		}

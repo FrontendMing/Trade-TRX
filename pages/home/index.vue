@@ -5,7 +5,7 @@
 			<view class="banner">
 				<p>总资产余额</p>
 				<view>
-					0
+					{{(userInfo.basicAmount || 0) + (userInfo.commAmount || 0)}}
 					<label for="">TRX</label>
 				</view>
 				<image src="/static/image/icon_9.png" mode="widthFix"></image>
@@ -27,11 +27,17 @@
 			</view>
 			<view class="home">
 				<view class="amount">
-					<view class="item" v-for="(item, index) in amount" :key="index">
-						<image :src="item.url" mode="widthFix"></image>
-						<p class="name">{{item.name}}</p>
+					<view class="item">
+						<image src="/static/image/icon_1.png" mode="widthFix"></image>
+						<p class="name">钱包</p>
 						<p class="small">账户</p>
-						<em>{{item.balance}}<i>TRX ≈ ${{item.balance}}</i></em>
+						<em>{{userInfo.basicAmount || 0}}<i>TRX ≈ $0</i></em>
+					</view>
+					<view class="item">
+						<image src="/static/image/icon_2.png" mode="widthFix"></image>
+						<p class="name">佣金</p>
+						<p class="small">账户</p>
+						<em>{{userInfo.commAmount || 0}}<i>TRX ≈ $0</i></em>
 					</view>
 				</view>
 				<view class="join">
@@ -82,6 +88,7 @@
 		},
 		data() {
 			return {
+				userInfo: {},
 				// 平台数据
 				platformData: {
 					assets: 0,
@@ -124,18 +131,6 @@
 					imgurl: '/static/image/tab_6.png',
 				}
 			],
-			amount: () => [
-				{
-					name: '钱包',
-					url: '/static/image/icon_1.png',
-					balance: 0
-				},
-				{
-					name: '佣金',
-					url: '/static/image/icon_2.png',
-					balance: 0
-				}
-			],
 			partner: () => [
 				{
 					url: '/static/image/icon_10.jpeg'
@@ -158,13 +153,14 @@
 			],
 		},
 		onLoad() {
+			this.getUserInfo()
 			this.getPlatformData()
 		},
 		methods: {
 			// 获取用户信息
 			getUserInfo() {
 				this.$api.getUserInfo().then(res => {
-					console.log(res)
+					this.userInfo = res?.data || {}
 				})
 			},
 			// 获取平台数据

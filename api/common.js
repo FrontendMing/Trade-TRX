@@ -57,12 +57,12 @@ export function rechargeCommission(params) {
  */
 // 查询代理关系
 export function getRelations(params) {
-	return fly.post('/relations', params).then(res => res)
+	return fly.get('/relations', params).then(res => res)
 }
 
 // 查询代理人数
 export function getRelationsCount(params) {
-	return fly.post('/relations/count', params).then(res => res)
+	return fly.get('/relations/count', params).then(res => res)
 }
 
 
@@ -91,10 +91,10 @@ export function collectProfit(params) {
 
 // 获取利润收益快表数据
 export function getProfitFast(params) {
-	return fly.post('/profit/fast', params).then(res => res)
+	return fly.get('/profit/fast', params).then(res => res)
 }
 
 // 获取利润收益更多数据
 export function getProfitDetails(params) {
-	return fly.post('/profit/details', params).then(res => res)
+	return fly.get('/profit/details', params).then(res => res)
 }

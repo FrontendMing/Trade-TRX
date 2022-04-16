@@ -3,11 +3,11 @@
 		<header-back :name="$t('invest.myinvest')"></header-back>
 		<view class="invested">
 			<view class="tab">
-				<span class="cur">进行中</span>
-				<span>已结算</span>
+				<span :class="{cur: currentTab === 1}" @click="switchTab(1)">进行中</span>
+				<span :class="{cur: currentTab === 2}" @click="switchTab(2)">已结算</span>
 			</view>
 			<view class="box">
-				<view class="more">数据列表</view>
+				<view v-if="!data.length" class="more">没有数据</view>
 			</view>
 		</view>
 	</view>
@@ -21,11 +21,26 @@
 		},
 		data() {
 			return {
-				
+				currentTab: 1,
+				data: [], // 渲染到页面的数据
+				underWayList: [], // 进行中
+				finishList: [], // 已结算
 			}
 		},
+		onLoad() {
+			this.getUserInvestDetail()
+		},
 		methods: {
-			
+			getUserInvestDetail() {
+				this.$api.getUserInvestDetail().then(res => {
+					this.underWayList = res?.data?.underWayList || []
+					this.finishList = res?.data?.finishList || []
+				})
+			},
+			switchTab(tab) {
+				this.currentTab = tab;
+				this.data = tab === 1 ? this.underWayList : this.finishList
+			}
 		}
 	}
 </script>

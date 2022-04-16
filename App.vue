@@ -35,11 +35,9 @@ export default {
 
 <style>
 @import "@/static/style/uniicons.css";
-
 .container {
     padding: 15px;
 }
-
 button {
     margin-bottom: 15px;
 }

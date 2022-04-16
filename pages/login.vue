@@ -26,7 +26,7 @@
 						</view>
 					</view>
 					<view class="item noline ra">
-						<switch checked="true" @change="" color="#B73E31"/>记住&自动登录
+						<switch :checked="remember" @change="e => remember = e.target.value" color="#B73E31"/>记住&自动登录
 					</view>
 					<view class="item noline">
 						<button class="btn a" type="default" @click="login">登录</button>
@@ -44,6 +44,7 @@
 <script>
 	import HeaderBar from '@/components/HeaderBar.vue'
 	import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue'
+	import { validateEmail, validatepwd, } from '@/utils/validate.js'
 	export default {
 		components: {
 			HeaderBar,
@@ -52,6 +53,7 @@
 		data() {
 			return {
 				inputType: true,
+				remember: uni.getStorageSync('remeber') || false,
 				form: {
 					email: '',
 					password: ''
@@ -61,7 +63,22 @@
 		methods: {
 			// 登录
 			login() {
+				const emailBool = validateEmail(this.form.email)
+				if (!emailBool) {
+					return uni.showToast({
+						title: '请输入正确的邮箱',
+						icon: 'error'
+					})
+				}
+				const pwdBool = validatepwd(this.form.password)
+				if (!pwdBool) {
+					return uni.showToast({
+						title: '密码为6-20位的大小写字母或数字',
+						icon: 'error'
+					})
+				}
 				this.$api.login(this.form).then(res => {
+					uni.setStorageSync('remeber', this.remember)
 					uni.setStorageSync('token', res.data.token)
 					uni.showToast({
 						title: '登录成功',

@@ -118,6 +118,15 @@
                 "enablePullDownRefresh": false
             }
         }
+        ,{
+            "path" : "pages/investment/details/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#7A7E83",

@@ -22,5 +22,10 @@
 	"invite.invite-your-friends": "或朋友並賺取獎勵",
 	"invite.invite-rule": "邀請規則",
 	"invite.invite-copy-link": "複製鏈接",
-	"invite.vip-level": "VIP等級"
+	"invite.vip-level": "VIP等級",
+	
+	"invest.investmentDetail": "投資產品詳情",
+	"invest.myinvest": "我的投資",
+	
+	"trade.tradelist": "交易清單"
 }

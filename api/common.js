@@ -26,6 +26,11 @@ export function getProducts() {
 	return fly.get('/products').then(res => res)
 }
 
+// 产品详情
+export function getProductDetails(productId) {
+	return fly.get(`/products/${productId}`).then(res => res)
+}
+
 // 查询平台数据
 export function getPlatformData() {
 	return fly.get('/platform/data').then(res => res)
@@ -86,6 +91,7 @@ export function refundCommission(params) {
  */
 // 收取挖矿利润
 export function collectProfit(params) {
+	debugger
 	return fly.post('/profit/collect', params).then(res => res)
 }
 

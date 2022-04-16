@@ -7,7 +7,7 @@
 				title="列表左侧带略缩图"
 				note="列表描述信息"
 				:show-extra-icon="true"
-				:extra-icon="{color: '#4cd964',size: '22',type: 'sound'}"
+				:extra-icon="{color: '#a4c7ec',size: '22',type: 'sound'}"
 				link
 				@click="goToNoticeDetail(item)"
 			></uni-list-item>
@@ -84,7 +84,7 @@ export default {
 			setTimeout(() => {
 				this.loadingText = '';
 				// if(res.data == null){
-					this.noticeList = 20;
+					this.noticeList = 5;
 					uni.hideNavigationBarLoading();
 					this.loadingText = this.$t('system.load-finish');
 					return false;

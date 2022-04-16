@@ -27,7 +27,7 @@
 						</dt>
 						<dd v-for="(item,index) in list" :key="index">
 							<span>{{item.email}}</span>
-							<span>{{item.joinTime}}</span>
+							<span>{{unixTimeToDate(item.joinTime)}}</span>
 						</dd>
 					</dl>
 					<view v-if="!list.length" class="more">没有数据</view>
@@ -39,6 +39,7 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { unixTimeToDate, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
@@ -59,6 +60,7 @@
 			this.getRelationsCount()
 		},
 		methods: {
+			unixTimeToDate,
 			getRelations(level) {
 				this.$api.getRelations({ proxyLevel: level, }).then(res => {
 					this.list = res?.data || []

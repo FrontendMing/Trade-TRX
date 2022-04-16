@@ -11,7 +11,9 @@
 						<view class="icon">
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.email" type="text" placeholder="邮箱地址" /></view>
+						<view class="text">
+							<input v-model="form.email" type="text" placeholder="邮箱地址" />
+						</view>
 					</view>
 					<view class="item">
 						<view class="icon">
@@ -19,7 +21,7 @@
 						</view>
 						<view class="text">
 							<input v-if="loginPassType" v-model="form.loginPass" type="password" placeholder="登录密码"/>
-							<input v-else v-model="form.loginPass" type="text" placeholder="登录密码"/>
+							<input v-else v-model="form.loginPass" type="text" maxlength="20" placeholder="登录密码"/>
 						</view>
 						<view class="show">
 							<uni-icons type="eye" size="22" @click="loginPassType = !loginPassType"></uni-icons>
@@ -30,8 +32,8 @@
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-if="safePassType" v-model="form.safePass" type="password" placeholder="登录密码"/>
-							<input v-else v-model="form.safePass" type="text" placeholder="登录密码"/>
+							<input v-if="safePassType" v-model="form.safePass" type="password" placeholder="安全密码"/>
+							<input v-else v-model="form.safePass" type="text" maxlength="20" placeholder="安全密码"/>
 						</view>
 						<view class="show">
 							<uni-icons type="eye" size="22" @click="safePassType = !safePassType"></uni-icons>
@@ -41,7 +43,9 @@
 						<view class="icon">
 							<uni-icons type="mail-open" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.inviteCode" type="text" placeholder="邀请码" /></view>
+						<view class="text">
+							<input v-model="form.inviteCode" type="text" maxlength="6" placeholder="邀请码"/>
+						</view>
 					</view>
 					<view class="item noline">
 						<button class="btn a" type="default" @click="register">注册</button>
@@ -58,6 +62,7 @@
 <script>
 	import HeaderBar from '@/components/HeaderBar.vue'
 	import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue'
+	import { validateEmail, validatepwd, } from '@/utils/validate.js'
 	export default {
 		components: {
 			HeaderBar, uniIcons
@@ -79,6 +84,33 @@
 		},
 		methods: {
 			register() {
+				const emailBool = validateEmail(this.form.email)
+				if (!emailBool) {
+					return uni.showToast({
+						title: '请输入正确的邮箱',
+						icon: 'error'
+					})
+				}
+				const loginPwdBool = validatepwd(this.form.loginPass)
+				if (!loginPwdBool) {
+					return uni.showToast({
+						title: '登录密码为6-20位的大小写字母或数字',
+						icon: 'error'
+					})
+				}
+				const safePwdBool = validatepwd(this.form.safePass)
+				if (!safePwdBool) {
+					return uni.showToast({
+						title: '安全密码为6-20位的大小写字母或数字',
+						icon: 'error'
+					})
+				}
+				if (this.form.inviteCode === '') {
+					return uni.showToast({
+						title: '请输入正确的邀请码',
+						icon: 'error'
+					})
+				}
 				this.$api.register(this.form).then(res => {
 					console.log(res)
 				})

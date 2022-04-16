@@ -9,10 +9,12 @@
 				<view class="header-info">
 					<button plain size="mini" @click="changeLanguage">{{languageName}}</button>
 					<view class="header-info-icon" @click="toNotice">
-						<uni-icons type="notification-filled" size="26"></uni-icons>
+						<uni-icons type="notification-filled" color="#fff" size="18"></uni-icons>
+						<span class="tip-circle"></span>
 					</view>
 					<view class="header-info-icon">
-						<uni-icons type="headphones" size="26"></uni-icons>
+						<uni-icons type="headphones" color="#fff" size="18"></uni-icons>
+						<span class="tip-circle"></span>
 					</view>
 				</view>
 			</view>
@@ -138,9 +140,35 @@ export default {
 		button{
 			border-radius: 15px;
 			margin-bottom: 0;
+			color: #b73e31;
+			border: 1px solid #b73e31;
 		}
 		&-icon{
-			margin-left: 10px;
+			margin-left: 9px;
+			height: 24px;
+			width: 24px;
+			border: 1px solid #b73e31;
+			text-align: center;
+			line-height: 24px;
+			border-radius: 12px;
+			background: #b73e31;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			&:last-of-type{
+				border-color: #f97600;
+				background: #f97600;
+			}
+			.tip-circle{
+				position: absolute;
+				top: -3px;
+				right: -3px;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: red;
+			}
 		}
 	}
 }

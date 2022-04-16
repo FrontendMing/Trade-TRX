@@ -9,8 +9,16 @@
 						<dl>
 							<dt><span>日期</span><span>金额</span></dt>
 							<dd v-for="(item,index) in list" :key="index">
-								<view>{{item.date}} <p>量化交易收入</p></view>
-								<view>{{item.amount}} TRX <p><span>已收取</span></p></view>
+								<view>{{item.createdAt}}
+									<p>量化交易收入</p>
+								</view>
+								<view>{{item.amount}} TRX
+									<p>
+										<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">未收取</span>
+										<span v-if="item.status === 1 && !item.isExpired">已收取</span>
+										<span v-if="item.isExpired">已过期</span>
+									</p>
+								</view>
 							</dd>
 						</dl>
 						<view class="more">
@@ -38,17 +46,30 @@
 			this.getProfitDetails()
 		},
 		methods: {
-			// 获取利润收益快表数据
+			// 获取利润收益详情数据
 			getProfitDetails() {
 				this.$api.getProfitDetails().then(res => {
 					this.list = res?.data || []
+				})
+			},
+			// 收取 利润
+			getProfit(id) {
+				this.$api.collectProfit(id).then(res => {
+					if (res.code === 0) {
+						const target = this.list.find(it => it.id === id)
+						target && (target.status = 1)
+						uni.showToast({
+							title: '收取成功',
+							icon: 'success'
+						})
+					}
 				})
 			},
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 .earnbox .inbox {
 	background: #f0f3f7;
 	padding: 16px;
@@ -110,26 +131,26 @@
 	font-weight: 500;
 	display: flex;
 	flex-direction: column;
+	&>p{
+		text-align: right;
+		padding-top: 3px;
+		span {
+			background: linear-gradient(1turn,#909399,#c0c4cc);
+			color: #fff;
+			padding: 6px 12px;
+			display: inline-block;
+			font-size: 12px;
+			border-radius: 12px;
+			&.no-get{
+				background: #b73e31;
+			}
+		}
+	}
 }
-
-.earnbox .inlist dd>uni-view:last-child>p {
-	text-align: right;
-	padding-top: 3px;
-}
-
 .earnbox .inlist .more {
 	text-align: center;
 	padding: 12px 0;
 	color: #999;
 	font-size: 14px;
-}
-
-.earnbox .inlist dd>uni-view:last-child>p>span {
-	background: linear-gradient(1turn,#909399,#c0c4cc);
-	color: #fff;
-	padding: 6px 12px;
-	display: inline-block;
-	font-size: 12px;
-	border-radius: 12px;
 }
 </style>

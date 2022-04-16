@@ -25,7 +25,7 @@ fly.interceptors.response.use((res) => {
 	if (!res.data) {
 		return Promise.reject(res)
 	}
-	if (res.data.code === 607) {
+	if ([606, 607].includes(res.data.code)) {
 		uni.showToast({
 			title: res.data.msg,
 			icon: 'none'

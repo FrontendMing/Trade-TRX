@@ -8,7 +8,7 @@
 				<span @click="toMyinvests">我的投资</span>
 			</view>
 			<view class="intsbox">
-				<view class="itembox" v-for="item in list" :key="item.id">
+				<view class="itembox" v-for="item in list" :key="item.id" @click="goToProductDetail(item.id)">
 					<view class="thumb">
 						<image src="/static/image/invests.jpeg" mode="scaleToFill"></image>
 					</view>
@@ -63,6 +63,12 @@
 			// 		uni.hideLoading();
 			// 	})
 			// },
+			// 产品详情
+			goToProductDetail(id) {
+				uni.navigateTo({
+					url: `/pages/investment/details/index?id=${id}`
+				})
+			},
 			// 我的投资
 			toMyinvests() {
 				uni.navigateTo({

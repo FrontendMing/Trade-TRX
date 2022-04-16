@@ -8,14 +8,16 @@
 						<view class="icon">
 							<uni-icons type="email" size="20"></uni-icons>
 						</view>
-						<view class="text"><input type="text" placeholder="邮箱地址"></view>
+						<view class="text">
+							<input type="text" placeholder="邮箱地址"/>
+						</view>
 					</view>
 					<view class="item">
 						<view class="icon">
 							<uni-icons type="chatbubble" size="20"></uni-icons>
 						</view>
 						<view class="text">
-							<input type="text" placeholder="邮件验证码">
+							<input type="text" placeholder="邮件验证码"/>
 							<view class="send"><span>发送</span></view>
 						</view>
 					</view>

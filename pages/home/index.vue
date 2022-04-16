@@ -70,7 +70,7 @@
 				<view class="glob">
 					<h2>全球合作伙伴</h2>
 					<ul>
-						<li v-for="(item,index) in partner">
+						<li v-for="(item,index) in partner" :key="index">
 							<image :src="item.url" mode="widthFix"></image>
 						</li>
 					</ul>

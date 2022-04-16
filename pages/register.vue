@@ -83,7 +83,7 @@
 			this.form.inviteCode = option.code
 		},
 		methods: {
-			register() {
+			async register() {
 				const emailBool = validateEmail(this.form.email)
 				if (!emailBool) {
 					return uni.showToast({
@@ -111,9 +111,8 @@
 						icon: 'error'
 					})
 				}
-				this.$api.register(this.form).then(res => {
-					console.log(res)
-				})
+				const { data, } = await this.$api.register(this.form)
+				console.log(data)
 			},
 			login (){
 				uni.navigateTo({
@@ -124,7 +123,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .passport .container {
 	position: relative;
 	z-index: 2;

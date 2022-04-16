@@ -61,15 +61,13 @@
 		},
 		methods: {
 			unixTimeToDate,
-			getRelations(level) {
-				this.$api.getRelations({ proxyLevel: level, }).then(res => {
-					this.list = res?.data || []
-				})
+			async getRelations(level) {
+				const { data, } = await this.$api.getRelations({ proxyLevel: level, })
+				this.list = data || []
 			},
-			getRelationsCount() {
-				this.$api.getRelationsCount().then(res => {
-					this.levelData = Object.assign(this.levelData, res?.data || {})
-				})
+			async getRelationsCount() {
+				const { data, } = await this.$api.getRelationsCount()
+				this.levelData = Object.assign(this.levelData, data || {})
 			},
 			switchTab(tab) {
 				this.currentTab = tab
@@ -79,7 +77,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.earnbox .inbox {
 	    background: #f0f3f7;
 	    padding: 16px;

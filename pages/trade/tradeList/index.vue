@@ -47,29 +47,25 @@
 		},
 		methods: {
 			// 获取利润收益详情数据
-			getProfitDetails() {
-				this.$api.getProfitDetails().then(res => {
-					this.list = res?.data || []
-				})
+			async getProfitDetails() {
+				const { data, } = await this.$api.getProfitDetails()
+				this.list = data || []
 			},
 			// 收取 利润
-			getProfit(id) {
-				this.$api.collectProfit(id).then(res => {
-					if (res.code === 0) {
-						const target = this.list.find(it => it.id === id)
-						target && (target.status = 1)
-						uni.showToast({
-							title: '收取成功',
-							icon: 'success'
-						})
-					}
+			async getProfit(id) {
+				await this.$api.collectProfit(id)
+				const target = this.list.find(it => it.id === id)
+				target && (target.status = 1)
+				uni.showToast({
+					title: '收取成功',
+					icon: 'success'
 				})
 			},
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .earnbox .inbox {
 	background: #f0f3f7;
 	padding: 16px;

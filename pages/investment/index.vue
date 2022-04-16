@@ -40,10 +40,9 @@
 		},
 		methods: {
 			// 产品列表
-			getProducts() {
-				this.$api.getProducts().then(res => {
-					this.list = res.data || []
-				})
+			async getProducts() {
+				const { data, } = await this.$api.getProducts()
+				this.list = data || []
 			},
 			// add() {
 			// 	uni.showLoading();
@@ -84,7 +83,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.input {
 		border: 1px solid #ebebeb;
 		border-radius: 3px;

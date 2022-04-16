@@ -2,34 +2,33 @@
 	<view>
 		<header-back :name="$t('notice.detail')"></header-back>
 		<uni-card
-			:title="noticeTitle"
-			:sub-title="noticeTime"
+			:title="notice.title"
+			:sub-title="unixTimeToDate(notice.publishTime)"
 		>
-			<text>
-				这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。
-			</text>
+			<text>{{notice.content}}</text>
 		</uni-card>
 	</view>
 </template>
 
 <script>
 import HeaderBack from '@/components/HeaderBack.vue'
+import { unixTimeToDate, } from '@/utils/index.js'
 export default {
 	components: {
 		HeaderBack,
 	},
 	data() {
 		return {
-			noticeTitle: '通知标题',
-			noticeTime: '2022-03-30 09:30:27'
+			notice: {}
 		}
 	},
+	onLoad(option) {
+		const index = option.index
+		const noticeList = uni.getStorageSync('noticeList') || []
+		this.notice = noticeList[index]
+	},
 	methods: {
-
-	}
+		unixTimeToDate,
+	},
 }
 </script>
-
-<style>
-
-</style>

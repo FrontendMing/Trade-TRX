@@ -19,15 +19,10 @@
 			this.getProductDetail(option.id)
 		},
 		methods: {
-			getProductDetail(id) {
-				this.$api.getProductDetails(id).then(res => {
-					console.log(res.data)
-				})
+			async getProductDetail(id) {
+				const { data, } = await this.$api.getProductDetails(id)
+				console.log(data)
 			}
 		}
 	}
 </script>
-
-<style>
-
-</style>

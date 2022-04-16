@@ -11,7 +11,9 @@
 						<view class="icon">
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
-						<view class="text"><input v-model="form.email" type="text" placeholder="邮箱"/></view>
+						<view class="text">
+							<input v-model="form.email" type="text" placeholder="邮箱"/>
+						</view>
 					</view>
 					<view class="item">
 						<view class="icon">
@@ -61,35 +63,41 @@
 			}
 		},
 		methods: {
-			// 登录
-			login() {
+			verifyForm() {
 				const emailBool = validateEmail(this.form.email)
 				if (!emailBool) {
-					return uni.showToast({
+					uni.showToast({
 						title: '请输入正确的邮箱',
 						icon: 'error'
 					})
+					return false
 				}
 				const pwdBool = validatepwd(this.form.password)
 				if (!pwdBool) {
-					return uni.showToast({
+					uni.showToast({
 						title: '密码为6-20位的大小写字母或数字',
 						icon: 'error'
 					})
+					return false
 				}
-				this.$api.login(this.form).then(res => {
-					uni.setStorageSync('remeber', this.remember)
-					uni.setStorageSync('token', res.data.token)
-					uni.showToast({
-						title: '登录成功',
-						complete: function() {
-							setTimeout(() => {
-								uni.switchTab({
-									url: '/pages/home/index'
-								})
-							}, 1500);
-						}
-					})
+				return true
+			},
+			// 登录
+			async login() {
+				if (!this.verifyForm()) return
+
+				const { data, } = await this.$api.login(this.form)
+				uni.setStorageSync('remeber', this.remember)
+				uni.setStorageSync('token', data?.token)
+				uni.showToast({
+					title: '登录成功',
+					complete: function() {
+						setTimeout(() => {
+							uni.switchTab({
+								url: '/pages/home/index'
+							})
+						}, 1500);
+					}
 				})
 			},
 			// 注册
@@ -108,7 +116,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .passport .container {
 	position: relative;
 	z-index: 2;
@@ -119,7 +127,6 @@
 	width: 100%;
 	padding: 0;
 }
-
 .banner {
 	position: absolute;
 	width: 100%;
@@ -127,11 +134,9 @@
 	text-align: center;
 	top: 75px;
 }
-
 .banner image {
 	width: 70%;
 }
-
 .content {
 	margin-top: 225px;
 	background: #fff;
@@ -144,11 +149,9 @@
 	background-position: 100% 100%;
 	background-size: 45%;
 }
-
 .container .items {
 	padding: 48px;
 }
-
 .bottomlink {
 	position: absolute;
 	bottom: 32px;
@@ -157,7 +160,6 @@
 	font-size: 14px;
 	color: #b73e31;
 }
-
 .passport .item {
 	display: flex;
 	height: 40px;
@@ -167,29 +169,23 @@
 	margin-bottom: 20px;
 	position: relative;
 }
-
 .passport .item .icon {
 	width: 30px;
 }
-
 .passport .item .icon>uni-text {
 	font-size: 19px;
 	color: #333;
 }
-
 .uc-email::before {
 	content: "\e68b";
 }
-
 .passport .item .text {
 	width: 100%;
 	position: relative;
 }
-
 .passport .item .text>uni-input {
 	font-size: 16px;
 }
-
 .passport .item .show {
 	position: absolute;
 	right: 0;
@@ -200,40 +196,32 @@
 	z-index: 8;
 	background: #fff;
 }
-
 .passport .item .show>uni-text {
 	font-size: 19px;
 	color: #666;
 }
-
 .uc-lock::before {
 	content: "\e6c0";
 }
-
 .uc-eye_close::before {
 	content: "\e66f";
 }
-
 .uc-eye_open::before {
 	content: "\e681";
 }
-
 .passport .item.ra {
 	font-size: 14px;
 	font-weight: 500;
 	color: #666;
 }
-
 .passport .item.noline {
 	border-bottom: 0;
 }
-
 .passport .item uni-switch {
 	-webkit-transform: scale(.7);
 	transform: scale(.7);
 	margin-left: -8px;
 }
-
 .passport .item uni-button.btn {
 	border: 0;
 	background: linear-gradient(1turn,#741e15,#b73e31);
@@ -241,7 +229,6 @@
 	box-shadow: 1px 1px 3px rgba(0,0,0,.25);
 	border: 1px solid #b73e31;
 }
-
 .passport .item uni-button {
 	width: 100%;
 	height: 44px;
@@ -252,16 +239,13 @@
 	font-weight: 700;
 	border: none;
 }
-
 .passport .item uni-button::after {
 	border: 0;
 }
-
 .passport .item uni-button.txt {
 	background: none;
 	font-size: 18px;
 }
-
 uni-button::after {
 	content: " ";
 	width: 200%;
@@ -277,7 +261,6 @@ uni-button::after {
 	box-sizing: border-box;
 	border-radius: 10px;
 }
-
 .passport {
 	background: linear-gradient(270deg,#741e15,#b73e31);
 	min-height: 100vh;

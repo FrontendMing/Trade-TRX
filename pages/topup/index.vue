@@ -39,7 +39,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.deposit .choose {
 	    display: flex;
 	    padding: 16px;

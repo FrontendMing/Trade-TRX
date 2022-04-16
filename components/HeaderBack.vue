@@ -1,7 +1,7 @@
 <template>
 	<view :style="style">
 		<view class="header-back" :style="{'height': customBarH + 'px', 'padding-top': statusBarH + 'px'}">
-			<uni-icons class="icon" type="back" size="30" @click="goBack"></uni-icons>
+			<uni-icons v-if="hasBack" class="icon" type="back" size="30" @click="goBack"></uni-icons>
 			<text>{{name}}</text>
 		</view>
 	</view>
@@ -10,6 +10,10 @@
 <script>
 export default {
 	props: {
+		hasBack: {
+			type: Boolean,
+			default: true,
+		},
 		name: {
 			type: String,
 			required: true,
@@ -35,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header-back{
 	display: flex;
 	align-items: center;

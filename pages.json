@@ -117,41 +117,35 @@
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-        }
-        ,{
+        },
+		{
+		    "path" : "pages/reset",
+		    "style" : {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
             "path" : "pages/investment/details/index",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             
         },
-				{
-					"path" : "pages/home/withdraw/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
+			{
+				"path" : "pages/home/withdraw/index",
+				"style" : {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
 				}
+			}
         ,{
             "path" : "pages/earn/index",
-            "style" :                                                                                    
-            {
+            "style" : {
                 "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
-            
-        }
-        ,{
-            "path" : "pages/vip",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
         }
     ],
 	"tabBar": {

@@ -52,10 +52,9 @@
 			}
 		},
 		methods: {
-			getUserInfo() {
-				this.$api.getUserInfo().then(res => {
-					this.userInfo = Object.assign({}, res?.data || {})
-				})
+			async getUserInfo() {
+				const { data, } = await this.$api.getUserInfo()
+				this.userInfo = Object.assign({}, data || {})
 			}
 		},
 		onLoad() {
@@ -63,7 +62,3 @@
 		}
 	}
 </script>
-
-<style>
-
-</style>

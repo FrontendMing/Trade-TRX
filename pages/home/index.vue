@@ -106,7 +106,7 @@
 				{
 					name: '提款',
 					imgurl: '/static/image/tab_2.png',
-					url: '/pages/topup/index'
+					url: '/pages/home/withdraw/index'
 				},
 				{
 					type: 'invite',
@@ -158,25 +158,22 @@
 		},
 		methods: {
 			// 获取用户信息
-			getUserInfo() {
-				this.$api.getUserInfo().then(res => {
-					this.userInfo = res?.data || {}
-				})
+			async getUserInfo() {
+				const { data, } = await this.$api.getUserInfo()
+				this.userInfo = data || {}
 			},
 			// 获取平台数据
-			getPlatformData() {
-				this.$api.getPlatformData().then(res => {
-					this.platformData = Object.assign(this.platformData, (res?.data || {}))
-				})
+			async getPlatformData() {
+				const { data, } = await this.$api.getPlatformData()
+				this.platformData = Object.assign(this.platformData, (data || {}))
 			},
-			handleClick({ type, url, }) {
+			async handleClick({ type, url, }) {
 				// 登出
 				if (type === 'logout') {
-					this.$api.logout().then(res => {
-						uni.clearStorageSync()
-						uni.navigateTo({
-							url: '/pages/login',
-						})
+					await this.$api.logout()
+					uni.clearStorageSync()
+					uni.navigateTo({
+						url: '/pages/login',
 					})
 				}
 				// 邀请
@@ -201,7 +198,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.locale-setting {
 		font-size: 16px;
 		font-weight: bold;

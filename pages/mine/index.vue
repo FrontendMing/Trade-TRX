@@ -11,7 +11,7 @@
 				</view>
 				<view class="balance">
 					<span>总资产余额:</span>
-					<strong>{{userInfo.basicAmount + userInfo.commAmount}}</strong>
+					<strong>{{(userInfo.basicAmount || 0) + (userInfo.commAmount || 0)}}</strong>
 					<em>TRX</em>
 				</view>
 				<view class="rock">
@@ -28,9 +28,9 @@
 					<view class="word">
 						<h2>TRX充值数量</h2>
 						<p>基础账户</p>
-						<h3><strong>{{userInfo.basicAmount}}</strong><label for="">TRX</label></h3>
+						<h3><strong>{{userInfo.basicAmount || 0}}</strong><label for="">TRX</label></h3>
 						<p>佣金账户</p>
-						<h3><strong>{{userInfo.commAmount}}</strong><label for="">TRX</label></h3>
+						<h3><strong>{{userInfo.commAmount || 0}}</strong><label for="">TRX</label></h3>
 						<p>充值任意数量的TRX即可激活账户并开通提现功能。</p>
 					</view>
 					<image src="/static/image/mine_bg.png" mode="widthFix"></image>
@@ -62,19 +62,16 @@
 		computed: {
 			serviceData: () => [
 				{
-					type: 'team',
 					name: '团队',
 					img: '/static/image/tab_7.png',
 					url: '/pages/team/index',
 				},
 				{
-					type: 'team',
 					name: '账务记录',
 					img: '/static/image/tab_8.png',
-					url: '/pages/investment/myinvests/index',
+					url: '/pages/earn/index',
 				},
 				{
-					type: 'team',
 					name: '转账',
 					img: '/static/image/tab_9.png',
 					url: '/pages/topup/index',
@@ -86,7 +83,6 @@
 					url: '/pages/invite/index',
 				},
 				{
-					type: 'vipLevel',
 					name: 'VIP等级',
 					img: '/static/image/tab_17.png',
 					url: '/pages/invite/rules/index',
@@ -97,6 +93,21 @@
 					img: '/static/image/tab_12.png',
 					url: null
 				},
+				{
+					name: '修改登录密码',
+					img: '/static/image/tab_14.png',
+					url: '/pages/modify?type=login',
+				},
+				{
+					name: '修改安全密码',
+					img: '/static/image/tab_15.png',
+					url: '/pages/modify?type=safe',
+				},
+				{
+					name: '设置谷歌验证器',
+					img: '/static/image/tab_16.png',
+					url: '/pages/modify?type=google',
+				},
 			]
 		},
 		onLoad() {
@@ -104,10 +115,9 @@
 		},
 		methods: {
 			// 获取用户信息
-			getUserInfo() {
-				this.$api.getUserInfo().then(res => {
-					this.userInfo = Object.assign({}, res?.data || {})
-				})
+			async getUserInfo() {
+				const { data, } = await this.$api.getUserInfo()
+				this.userInfo = Object.assign({}, data || {})
 			},
 			// 充值
 			topUp() {
@@ -118,17 +128,16 @@
 			// 提款
 			withdraw() {
 				uni.navigateTo({
-					url: '/pages/topup/index'
+					url: '/pages/home/withdraw/index'
 				})
 			},
-			handleJump({ type, url, }) {
+			async handleJump({ type, url, }) {
 				// 登出
 				if (type === 'logout') {
-					this.$api.logout().then(res => {
-						uni.clearStorageSync()
-						uni.navigateTo({
-							url: '/pages/login',
-						})
+					await this.$api.logout()
+					uni.clearStorageSync()
+					uni.navigateTo({
+						url: '/pages/login',
 					})
 				}
 				// 邀请
@@ -143,7 +152,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .container {
 	background: #fff url(/static/image/mine_banner.png) no-repeat top;
 	background-size: 100%;

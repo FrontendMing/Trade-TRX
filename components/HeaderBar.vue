@@ -32,11 +32,6 @@
 </template>
 
 <script>
-const LANG_TYPE = {
-	'zh-Hans': 'zh_cn',
-	'zh-Hant': 'zh_hk',
-	'en': 'en'
-}
 export default {
 	props: {
 		tabName: {
@@ -84,17 +79,9 @@ export default {
 		}
 	},
 	created() {
-		this.refreshNotice && this.getNoticeData()
+		// this.refreshNotice && this.getNoticeData()
 	},
 	methods: {
-		// 获取 通知信息
-		getNoticeData() {
-			this.$api.getPlatformNotices({
-				lang: LANG_TYPE[this.localeCode],
-			}).then(res => {
-				console.log(res)
-			})
-		},
 		changeLanguage() {
 			this.$refs.popup.open();
 		},
@@ -112,7 +99,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header{
 	display: flex;
 	align-items: center;

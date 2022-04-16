@@ -3,8 +3,8 @@
 		<header-back :name="$t('invest.myinvest')"></header-back>
 		<view class="invested">
 			<view class="tab">
-				<span :class="{cur: currentTab === 1}" @click="switchTab(1)">进行中</span>
-				<span :class="{cur: currentTab === 2}" @click="switchTab(2)">已结算</span>
+				<span :class="{'cur': currentTab === 1}" @click="switchTab(1)">进行中</span>
+				<span :class="{'cur': currentTab === 2}" @click="switchTab(2)">已结算</span>
 			</view>
 			<view class="box">
 				<view v-if="!data.length" class="more">没有数据</view>
@@ -31,11 +31,10 @@
 			this.getUserInvestDetail()
 		},
 		methods: {
-			getUserInvestDetail() {
-				this.$api.getUserInvestDetail().then(res => {
-					this.underWayList = res?.data?.underWayList || []
-					this.finishList = res?.data?.finishList || []
-				})
+			async getUserInvestDetail() {
+				const { data, } = await this.$api.getUserInvestDetail(id)
+				this.underWayList = data?.underWayList || []
+				this.finishList = data?.finishList || []
 			},
 			switchTab(tab) {
 				this.currentTab = tab;
@@ -45,7 +44,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 .invested {
     display: block;
     background: #fff;

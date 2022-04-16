@@ -15,13 +15,13 @@
 									<span>日期</span>
 									<span>金额</span>
 								</dt>
-								<dd>
+								<dd v-for="(item, index) in tradeList" :key="index">
 									<view>
-										5:00 PM 04/15/2022
-										<p>量化交易收入</p>
+										{{unixTimeToDate(item.tradeTime)}}
+										<p>{{item.description}}</p>
 									</view>
 									<view>
-										44.10 TRX
+										{{item.amount}} TRX
 										<p class="sc">完成</p>
 									</view>
 								</dd>
@@ -39,25 +39,30 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { unixTimeToDate, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
 		},
 		data() {
 			return {
-
+				tradeList: [],
 			}
 		},
-		methods: {
-
-		},
 		onLoad() {
-			this.$api.getVipLevel()
-		}
+			this.getTradeDetail()
+		},
+		methods: {
+			unixTimeToDate,
+			async getTradeDetail() {
+				const { data, } = await this.$api.getTradeDetail()
+				this.tradeList = data || []
+			}
+		},
 	}
 </script>
 
-<style>
+<style scoped>
 	.dapp {
 		position: relative;
 		max-width: 720px;

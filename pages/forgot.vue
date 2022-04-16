@@ -9,20 +9,11 @@
 							<uni-icons type="email" size="20"></uni-icons>
 						</view>
 						<view class="text">
-							<input type="text" placeholder="邮箱地址"/>
-						</view>
-					</view>
-					<view class="item">
-						<view class="icon">
-							<uni-icons type="chatbubble" size="20"></uni-icons>
-						</view>
-						<view class="text">
-							<input type="text" placeholder="邮件验证码"/>
-							<view class="send"><span>发送</span></view>
+							<input type="text" v-model="email" placeholder="邮箱地址"/>
 						</view>
 					</view>
 					<view class="item noline">
-						<button class="btn a" >提交</button>
+						<button class="btn a" @click="submit">提交</button>
 					</view>
 				</view>
 			</view>
@@ -33,6 +24,7 @@
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
 	import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue'
+	import { validateEmail, } from '@/utils/validate.js'
 	export default {
 		components: {
 			HeaderBack,
@@ -40,34 +32,52 @@
 		},
 		data() {
 			return {
-
+				email: '',
 			}
 		},
 		methods: {
-
+			async submit() {
+				const emailBool = validateEmail(this.form.email)
+				if (!emailBool) {
+					uni.showToast({
+						title: '请输入正确的邮箱',
+						icon: 'error'
+					})
+					return false
+				}
+				const { data, } = await this.$api.sendEmailReset({ email: this.email, })
+				uni.showToast({
+					title: '发送成功，请通过邮箱中的链接重置密码',
+					icon: 'success',
+					complete: function() {
+						setTimeout(() => {
+							uni.navigateTo({
+								url: '/pages/login'
+							})
+						}, 1500);
+					}
+				})
+			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 .dapp {
 	position: relative;
 	max-width: 720px;
 	margin: auto;
 	background-color: #fff;
 }
-
 .reset {
 	display: block;
 	padding-top: 44px;
 }
-
 .reset .items {
 	background: #f0f3f7;
 	padding: 33px 44px 8px 44px;
 	border-radius: 22px 22px 0 0;
 }
-
 .reset .item {
 	display: flex;
 	height: 55px;
@@ -77,16 +87,13 @@
 	margin-bottom: 27px;
 	position: relative;
 }
-
 .reset .item .icon {
 	width: 41px;
 }
-
 .reset .item .text {
 	width: 100%;
 	position: relative;
 }
-
 .reset .item .text .send {
 	position: absolute;
 	top: 0;
@@ -95,7 +102,6 @@
 	display: flex;
 	align-items: center;
 }
-
 .reset .item .text .send>span {
 	display: inline-block;
 	height: 38px;
@@ -107,11 +113,9 @@
 	color: #fff;
 	font-weight: 500;
 }
-
 .reset .item.noline {
 	border-bottom: 0;
 }
-
 .reset .item uni-button.btn {
 	border: 0;
 	background: linear-gradient(1turn,#741e15,#b73e31);
@@ -119,7 +123,6 @@
 	box-shadow: 1px 2px 4px rgba(0,0,0,.25);
 	border: 1px solid #b73e31;
 }
-
 .reset .item uni-button {
     width: 100%;
     height: 61px;

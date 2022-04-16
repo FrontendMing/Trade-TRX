@@ -90,9 +90,8 @@ export function refundCommission(params) {
  * 利润接口
  */
 // 收取挖矿利润
-export function collectProfit(params) {
-	debugger
-	return fly.post('/profit/collect', params).then(res => res)
+export function collectProfit(id) {
+	return fly.post(`/profit/collect?profitId=${id}`).then(res => res)
 }
 
 // 获取利润收益快表数据

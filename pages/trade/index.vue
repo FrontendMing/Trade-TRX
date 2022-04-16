@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<header-bar :tabName="$t('index.trade')"></header-bar>
-		<view class="container">
+		<view class="container trade">
 			<view class="rate">+5.00%</view>
 			<view class="level">{{userInfo.levelName}}</view>
 			<view class="wkbg">
@@ -12,7 +12,22 @@
 				<view class="tit">交易利润
 					<span @click="toTradeList"><text>查看全部</text>></span>
 				</view>
-				<view class="box" v-for="(item, index) in list" :key="index">{{item}}</view>
+				<view class="box">
+					<view v-for="(item,index) in list" :key="index" class="trade-list">
+						<view class="trade-list-image">
+							<image src="/static/image/icon_8.png" mode="widthFix"/>
+						</view>
+						<view class="trade-list-left">
+							<p><strong>{{item.amount}}</strong><span>TRX</span></p>
+							<p>量化交易收入</p>
+						</view>
+						<view class="trade-list-right">
+							<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">未收取</span>
+							<span v-if="item.status === 1 && !item.isExpired">已收取</span>
+							<span v-if="item.isExpired">已过期</span>
+						</view>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -36,27 +51,38 @@ export default {
 	},
     methods: {
 		// 获取用户信息
-		getUserInfo() {
-			this.$api.getUserInfo().then(res => {
-				this.userInfo = Object.assign({}, res?.data || {})
-			})
+		async getUserInfo() {
+			const { data, } = await this.$api.getUserInfo()
+			this.userInfo = Object.assign({}, data || {})
 		},
 		// 获取利润收益快表数据
-		getProfitFast() {
-			this.$api.getProfitFast().then(res => {
-				this.list = res?.data || []
-			})
+		async getProfitFast() {
+			const { data, } = await this.$api.getProfitFast()
+			this.list = data || []
 		},
 		toTradeList() {
 			uni.navigateTo({
 				url: '/pages/trade/tradeList/index'
 			})
-		}
+		},
+		// 收取 利润
+		async getProfit(id) {
+			await this.$api.collectProfit(id)
+			const target = this.list.find(it => it.id === id)
+			target && (target.status = 1)
+			uni.showToast({
+				title: '收取成功',
+				icon: 'success'
+			})
+		},
     }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.trade{
+	padding: 15px 0 0 0;
+}
 .rate {
 	font-size: 21px;
 	text-align: center;
@@ -100,5 +126,65 @@ export default {
 	padding: 33px 16px;
 	overflow: hidden;
 	padding-left: 33px;
+}
+.trade-list {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 33px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 64px;
+	border-radius: 15px;
+	padding-left: 23px;
+	position: relative;
+	&:nth-of-type(odd) {
+		background: #fff4f3;
+	}
+	&-image{
+		width: 52px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		image{
+			width: 100%;
+		}
+	}
+	&-left {
+		padding-left: 54px;
+		font-size: 14px;
+		font-weight: 500;
+		display: flex;
+		flex-direction: column;
+		&>p{
+			font-size: 12px;
+			color: #999;
+			padding-top: 6px;
+			strong{
+				color: #b73e31;
+				margin-right: 6px;
+			}
+			span{
+				font-weight: bold;
+				font-size: 13px;
+				color: #2a2a2a;
+			}
+		}
+	}
+	&-right {
+		padding-right: 16px;
+		span {
+			background: linear-gradient(1turn,#909399,#c0c4cc);
+			color: #fff;
+			padding: 6px 12px;
+			display: inline-block;
+			font-size: 12px;
+			border-radius: 12px;
+			&.no-get{
+				background: #b73e31;
+			}
+		}
+	}
 }
 </style>

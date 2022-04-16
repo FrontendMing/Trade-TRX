@@ -43,11 +43,10 @@ export default {
 			shareUrl: ''
 		}
     },
-	onLoad() {
-		this.$api.getUserInviteCode().then(res => {
-			this.inviteCode = res.data
-			this.shareUrl = `https://uniapp-trx.netlify.app/pages/share?code=${this.inviteCode}`
-		})
+	async onLoad() {
+		const { data, } = await this.$api.getUserInviteCode()
+		this.inviteCode = data
+		this.shareUrl = `https://uniapp-trx.netlify.app/pages/share?code=${this.inviteCode}`
 	},
     methods: {
 		goToInviteRules() {
@@ -55,18 +54,18 @@ export default {
 				url: '/pages/invite/rules/index'
 			})
 		},
-		copyLink() {
-			copyText(this.shareUrl).then(() => {
-				uni.showToast({
-					title:"Copied!"
-				})
+		async copyLink() {
+			await copyText(this.shareUrl)
+			uni.showToast({
+				title:"Copied!",
+				icon: 'success'
 			})
 		}
     }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .qrcode {
 	display: flex;
 	width: 100%;

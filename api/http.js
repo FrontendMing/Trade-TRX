@@ -35,6 +35,14 @@ fly.interceptors.response.use((res) => {
 				url: '/pages/login'
 			})
 		}, 1500)
+		return Promise.reject(res.data)
+	}
+	if (res.data.code !== 0) {
+		uni.showToast({
+			title: res.data.msg,
+			icon: 'error'
+		})
+		return Promise.reject(res.data)
 	}
 	return res.data
 }, (error) => {

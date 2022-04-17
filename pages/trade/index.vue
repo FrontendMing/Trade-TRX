@@ -2,7 +2,7 @@
 	<view>
 		<header-bar :tabName="$t('index.trade')"></header-bar>
 		<view class="container trade">
-			<view class="rate">+5.00%</view>
+			<view class="rate">+{{floatNum(userInfo.earnings, 2)}}%</view>
 			<view class="level">{{userInfo.levelName}}</view>
 			<view class="wkbg">
 				<image mode="aspectFit" src="/static/image/pool_bg.png"/>
@@ -18,7 +18,7 @@
 							<image src="/static/image/icon_8.png" mode="widthFix"/>
 						</view>
 						<view class="trade-list-left">
-							<p><strong>{{item.amount}}</strong><span>TRX</span></p>
+							<p><strong>{{floatNum(item.amount)}}</strong><span>TRX</span></p>
 							<p>量化交易收入</p>
 						</view>
 						<view class="trade-list-right">
@@ -35,6 +35,7 @@
 
 <script>
 import HeaderBar from '@/components/HeaderBar.vue'
+import { floatNum, } from '@/utils/index.js'
 export default {
 	components: {
 		HeaderBar,
@@ -50,6 +51,7 @@ export default {
 		this.getProfitFast()
 	},
     methods: {
+		floatNum,
 		// 获取用户信息
 		async getUserInfo() {
 			const { data, } = await this.$api.getUserInfo()

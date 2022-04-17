@@ -1,14 +1,23 @@
+// 处理数字，默认保留4位小数，不需要四舍五入
+export const floatNum = (number, n = 4) => {
+	let num = number || 0
+	num = (parseInt(num) * Math.pow(10, n)) / Math.pow(10, 2 * n)
+	num = String(num).replace(/^(.*\..{n}).*$/,"$1")
+	num = Number(num).toFixed(n) //补足位数
+	return num
+}
+
 // 复制文本
 export const copyText = (content) => {
     return new Promise(resolve => {
-        let el = document.createElement('input');
-        el.setAttribute('value', content);
-        document.body.appendChild(el);
-        el.select();
+        let el = document.createElement('input')
+        el.setAttribute('value', content)
+        document.body.appendChild(el)
+        el.select()
         if (document.execCommand('copy')) {
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            resolve();
+            document.execCommand('copy')
+            document.body.removeChild(el)
+            resolve()
         }
     });
 }

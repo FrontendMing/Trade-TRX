@@ -5,7 +5,7 @@
 			<view class="banner">
 				<p>总资产余额</p>
 				<view>
-					{{(userInfo.basicAmount || 0) + (userInfo.commAmount || 0)}}
+					{{floatNum((userInfo.basicAmount || 0) + (userInfo.commAmount || 0))}}
 					<label for="">TRX</label>
 				</view>
 				<image src="/static/image/icon_9.png" mode="widthFix"></image>
@@ -31,13 +31,13 @@
 						<image src="/static/image/icon_1.png" mode="widthFix"></image>
 						<p class="name">钱包</p>
 						<p class="small">账户</p>
-						<em>{{userInfo.basicAmount || 0}}<i>TRX ≈ $0</i></em>
+						<em>{{floatNum(userInfo.basicAmount)}}<i>TRX ≈ $0</i></em>
 					</view>
 					<view class="item">
 						<image src="/static/image/icon_2.png" mode="widthFix"></image>
 						<p class="name">佣金</p>
 						<p class="small">账户</p>
-						<em>{{userInfo.commAmount || 0}}<i>TRX ≈ $0</i></em>
+						<em>{{floatNum(userInfo.commAmount)}}<i>TRX ≈ $0</i></em>
 					</view>
 				</view>
 				<view class="join">
@@ -52,7 +52,7 @@
 						<li>
 							<image src="/static/image/icon_3.png" mode="widthFix"></image>
 							<p class="tit">累计利润</p>
-							<p class="val">{{platformData.assets}}</p>
+							<p class="val">{{floatNum(platformData.assets)}}</p>
 						</li>
 						<li>
 							<image src="/static/image/icon_4.png" mode="widthFix"></image>
@@ -82,6 +82,7 @@
 
 <script>
 	import HeaderBar from '@/components/HeaderBar.vue'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBar
@@ -157,6 +158,7 @@
 			this.getPlatformData()
 		},
 		methods: {
+			floatNum,
 			// 获取用户信息
 			async getUserInfo() {
 				const { data, } = await this.$api.getUserInfo()

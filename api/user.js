@@ -44,3 +44,8 @@ export function modifySafePassword(){
 export function sendEmailCode(){
 	return fly.get('/user/send/code').then(res => res)
 }
+
+// 发送忘记密码邮箱url
+export function sendEmailReset(params){
+	return fly.get('/user/send/reset', params).then(res => res)
+}

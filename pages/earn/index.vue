@@ -21,7 +21,7 @@
 										<p>{{item.description}}</p>
 									</view>
 									<view>
-										{{item.amount}} TRX
+										{{floatNum(item.amount)}} TRX
 										<p class="sc">完成</p>
 									</view>
 								</dd>
@@ -39,7 +39,7 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
-	import { unixTimeToDate, } from '@/utils/index.js'
+	import { floatNum, unixTimeToDate, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
@@ -53,6 +53,7 @@
 			this.getTradeDetail()
 		},
 		methods: {
+			floatNum,
 			unixTimeToDate,
 			async getTradeDetail() {
 				const { data, } = await this.$api.getTradeDetail()

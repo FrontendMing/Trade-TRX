@@ -11,7 +11,7 @@
 				</view>
 				<view class="balance">
 					<span>总资产余额:</span>
-					<strong>{{(userInfo.basicAmount || 0) + (userInfo.commAmount || 0)}}</strong>
+					<strong>{{floatNum((userInfo.basicAmount || 0) + (userInfo.commAmount || 0))}}</strong>
 					<em>TRX</em>
 				</view>
 				<view class="rock">
@@ -28,9 +28,9 @@
 					<view class="word">
 						<h2>TRX充值数量</h2>
 						<p>基础账户</p>
-						<h3><strong>{{userInfo.basicAmount || 0}}</strong><label for="">TRX</label></h3>
+						<h3><strong>{{floatNum(userInfo.basicAmount)}}</strong><label for="">TRX</label></h3>
 						<p>佣金账户</p>
-						<h3><strong>{{userInfo.commAmount || 0}}</strong><label for="">TRX</label></h3>
+						<h3><strong>{{floatNum(userInfo.commAmount )}}</strong><label for="">TRX</label></h3>
 						<p>充值任意数量的TRX即可激活账户并开通提现功能。</p>
 					</view>
 					<image src="/static/image/mine_bg.png" mode="widthFix"></image>
@@ -50,6 +50,7 @@
 
 <script>
 	import HeaderBar from '@/components/HeaderBar.vue'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBar,
@@ -74,7 +75,7 @@
 				{
 					name: '转账',
 					img: '/static/image/tab_9.png',
-					url: '/pages/topup/index',
+					url: '/pages/mine/switch/index?tab=1',
 				},
 				{
 					type: 'invite',
@@ -114,6 +115,7 @@
 			this.getUserInfo()
 		},
 		methods: {
+			floatNum,
 			// 获取用户信息
 			async getUserInfo() {
 				const { data, } = await this.$api.getUserInfo()

@@ -12,7 +12,7 @@
 								<view>{{item.createdAt}}
 									<p>量化交易收入</p>
 								</view>
-								<view>{{item.amount}} TRX
+								<view>{{floatNum(item.amount)}} TRX
 									<p>
 										<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">未收取</span>
 										<span v-if="item.status === 1 && !item.isExpired">已收取</span>
@@ -33,6 +33,7 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
@@ -46,6 +47,7 @@
 			this.getProfitDetails()
 		},
 		methods: {
+			floatNum,
 			// 获取利润收益详情数据
 			async getProfitDetails() {
 				const { data, } = await this.$api.getProfitDetails()

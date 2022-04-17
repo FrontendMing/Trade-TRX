@@ -14,8 +14,8 @@
 					</view>
 					<view class="intro">
 						<p>周期：<span>{{item.cycle}}</span>日</p>
-						<p>每日收益率：<span>{{item.interestRate || 0}}</span>%</p>
-						<p>起投金额：<span>{{item.minAmount}}</span></p>
+						<p>每日收益率：<span>{{floatNum(item.interestRate, 2)}}</span>%</p>
+						<p>起投金额：<span>{{floatNum(item.minAmount)}}</span></p>
 					</view>
 				</view>
 			</view>
@@ -26,6 +26,7 @@
 <script>
 	const collection = "hello";
 	import HeaderBar from '@/components/HeaderBar.vue'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBar
@@ -39,6 +40,7 @@
 			this.getProducts()
 		},
 		methods: {
+			floatNum,
 			// 产品列表
 			async getProducts() {
 				const { data, } = await this.$api.getProducts()

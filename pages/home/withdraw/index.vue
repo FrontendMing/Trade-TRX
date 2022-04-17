@@ -13,7 +13,7 @@
 						<label for="">TRX</label>
 					</view>
 					<view class="switch">
-						<span class="p" >{{$t("转到佣金账户")}}</span>
+						<span class="p" @click="goToSwitch">{{$t("转到佣金账户")}}</span>
 					</view>
 					<view class="account_type">
 						<select name="" id="">
@@ -51,15 +51,20 @@
 				userInfo: {}
 			}
 		},
+		onLoad() {
+			this.getUserInfo()
+		},
 		methods: {
 			async getUserInfo() {
 				const { data, } = await this.$api.getUserInfo()
 				this.userInfo = Object.assign({}, data || {})
+			},
+			goToSwitch() {
+				uni.navigateTo({
+					url: '/pages/mine/switch/index?tab=2'
+				})
 			}
 		},
-		onLoad() {
-			this.getUserInfo()
-		}
 	}
 </script>
 

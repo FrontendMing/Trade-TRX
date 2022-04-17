@@ -14,7 +14,7 @@
 								{{userInfo.basicRecharge}}<label>TRX</label>
 							</p>
 						</view>
-						<view class="upvips">立即升级</view>
+						<view class="upvips" @click="goToTopup">立即升级</view>
 					</view>
 				</view>
 				<view class="vptabs">
@@ -34,9 +34,9 @@
 								<ul>
 									<li v-for="(item, index) in basicList" :key="index">
 										<span>{{item.name}}</span>
-										<span>{{item.small}} ~ 3{{item.big}}</span>
-										<span>{{item.earnings}}%</span>
-										<span>{{item.money}}%</span>
+										<span>{{floatNum(item.small)}} ~ {{floatNum(item.big)}}</span>
+										<span>{{floatNum(item.earnings, 2)}}%</span>
+										<span>{{floatNum(item.money, 2)}}%</span>
 									</li>
 								</ul>
 							</view>
@@ -52,17 +52,17 @@
 										<span>{{item.name}}</span>
 										<span>
 											<p v-for="([key, value], idx) in item.rbonus" :key="idx">
-												{{value && `${key} : ${value / 10000}`}}<uni-label v-if="value" class="uni-label-pointer">TRX</uni-label>
+												{{value && `${key} : ${floatNum(value)}`}}<uni-label v-if="value" class="uni-label-pointer">TRX</uni-label>
 											</p>
 										</span>
 										<span>
 											<p v-for="([key, value], idx) in item.cbonus" :key="idx">
-												{{value && `${key} : ${(value / 100).toFixed(2)}`}}<uni-label v-if="value" class="uni-label-pointer">%</uni-label>
+												{{value && `${key} : ${floatNum(value, 2)}`}}<uni-label v-if="value" class="uni-label-pointer">%</uni-label>
 											</p>
 										</span>
 										<span>
 											<p v-for="([key, value], idx) in item.bonus" :key="idx">
-												{{value && `${key} : ${(value / 100).toFixed(2)}`}}<uni-label v-if="value" class="uni-label-pointer">%</uni-label>
+												{{value && `${key} : ${floatNum(value, 2)}`}}<uni-label v-if="value" class="uni-label-pointer">%</uni-label>
 											</p>
 										</span>
 									</li>
@@ -81,6 +81,7 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
@@ -93,14 +94,12 @@
 				bounsList: [],
 			}
 		},
-		methods: {
-
-		},
 		onLoad() {
 			this.getUserInfo()
 			this.getVipLevel()
 		},
 		methods: {
+			floatNum,
 			switchTab(tab) {
 				this.currentTab = tab
 			},
@@ -112,10 +111,11 @@
 			// 获取 vip level
 			async getVipLevel() {
 				const { data, } = await this.$api.getVipLevel()
-				(data || []).forEach(({ bonus, cbonus, rbonus, small, big, name, ...rest }) => {
+				data.forEach(({ bonus, cbonus, rbonus, small, big, name, ...rest }) => {
+					
 					this.basicList.push({
-						small: (small / 10000).toFixed(4),
-						big: (big / 10000).toFixed(4),
+						small,
+						big,
 						name,
 						...rest,
 					})
@@ -127,6 +127,12 @@
 					})
 				})
 			},
+			// 立即升级
+			goToTopup() {
+				uni.navigateTo({
+					url: '/pages/topup/index'
+				})
+			}
 		}
 	}
 </script>

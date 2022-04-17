@@ -5,14 +5,14 @@
 			<view class="withdraw">
 				<view class="inbox">
 					<view class="tantab">
-						<view class="cur">转到基础账户</view>
-						<view class="">转到佣金账户</view>
+						<view :class="{'cur' : currentTab === '1'}" @click="switchTab('1')">转到基础账户</view>
+						<view :class="{'cur' : currentTab === '2'}" @click="switchTab('2')">转到佣金账户</view>
 					</view>
-					<view class="account">
+					<view class="account" v-if="currentTab === '1'">
 						<view class="">佣金账户<p>0.00<label>TRX</label>
 							</p>
 							<view class="icon">
-								<text></text>
+								<uni-icons type="forward" color="#fff" size="24"></uni-icons>
 							</view>
 						</view>
 						<view>基础账户<p>926.10<label>TRX</label>
@@ -20,13 +20,13 @@
 						</view>
 					</view>
 
-					<view class="account">
+					<view class="account" v-if="currentTab === '2'">
 						<view class="s">基础账户<p>926.10<label>TRX</label>
 							</p>转账限额<p>0.00<label>
 									TRX</label>
 							</p>
 							<view class="icon">
-								<text></text>
+								<uni-icons type="forward" color="#fff" size="24"></uni-icons>
 							</view>
 						</view>
 						<view>佣金账户<p>0.00<label>TRX</label>
@@ -57,11 +57,16 @@
 		},
 		data() {
 			return {
-
+				currentTab: '1',
 			}
 		},
+		onLoad(option) {
+			this.currentTab = option.tab || '1'
+		},
 		methods: {
-
+			switchTab(tab) {
+				this.currentTab = tab
+			}
 		}
 	}
 </script>

@@ -6,7 +6,7 @@
 				<view class="thumb">
 					<view class="act">
 						<view class="tit">佣金账户余额</view>
-						<view class="val"></view>
+						<view class="val">{{floatNum(userInfo.commAmount)}}</view>
 					</view>
 					<view class="img">
 						<image src="" mode=""></image>
@@ -15,43 +15,44 @@
 				<view class="infos">
 					<view class="inf">
 						<view class="tit">起投金额</view>
-						<view class="val"></view>
+						<view class="val">{{floatNum(productData.minAmount)}}</view>
 					</view>
 					<view class="inf">
 						<view class="tit">最大投资金额</view>
-						<view class="val"></view>
+						<view class="val">{{floatNum(productData.maxAmount)}}</view>
 					</view>
 					<view class="inf">
 						<view class="tit">周期</view>
-						<view class="val"> 日</view>
+						<view class="val">{{productData.cycle || 0}} 日</view>
 					</view>
 					<view class="inf">
 						<view class="tit">每日收益率</view>
-						<view class="val"> %</view>
+						<view class="val">{{floatNum(productData.interestRate, 2)}} %</view>
 					</view>
 				</view>
 				<view class="submit">
 					<view class="input">
-						<input type="text" value="" placeholder="投资金额" /><span>最大</span>
+						<input type="number" v-model="form.amount" placeholder="投资金额" />
+						<span @click="getNum">最大</span>
 					</view>
 					<view class="input">
-						<input type="text" placeholder="安全密码">
+						<input type="text" v-model="form.password" placeholder="安全密码">
 					</view>
 					<!---->
-					<view class="earning"> + ( * NaN * ) = 0</view>
+					<view class="earning">{{form.amount}} + ({{form.amount}} * {{floatNum(productData.interestRate)}} * {{productData.cycle || 0}}) = {{calcAmount}}</view>
 					<view class="button">
-						<uni-button class="">立即投资</uni-button>
+						<uni-button @click="submit">立即投资</uni-button>
 					</view>
 					<!---->
 				</view>
 				<view class="content">
 					<view class="tit">项目规则</view>
-					<view class="col"><span>项目规模金额:</span><span> TRX</span></view>
+					<view class="col"><span>项目规模金额:</span><span>{{floatNum(productData.maxAmount)}} TRX</span></view>
 					<view class="col"><span>还款方式:</span><span>到期归还本息（节假日正常）</span></view>
-					<view class="col"><span>起投金额:</span><span> TRX</span></view>
-					<view class="col"><span>每日收益率:</span><span> %</span></view>
-					<view class="col"><span>投资周期:</span><span> 天，24小时内自动结算</span></view>
-					<view class="col"><span>预计收益:</span><span> * % * 日 = 总收入 0 TRX + 本金 TRX = 总本金和收益 0 TRX</span></view>
+					<view class="col"><span>起投金额:</span><span>{{floatNum(productData.minAmount)}} TRX</span></view>
+					<view class="col"><span>每日收益率:</span><span>{{floatNum(productData.interestRate, 2)}} %</span></view>
+					<view class="col"><span>投资周期:</span><span>{{productData.cycle || 0}} 天，24小时内自动结算</span></view>
+					<view class="col"><span>预计收益:</span><span>{{form.amount}} * {{floatNum(productData.interestRate, 2)}}% * {{productData.cycle || 0}}日 = 总收入 {{profit}} TRX + 本金{{form.amount}} TRX = 总本金和收益 {{calcAmount}} TRX</span></view>
 				</view>
 			</view>
 		</view>
@@ -60,25 +61,90 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { validatepwd, } from '@/utils/validate.js'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
 		},
 		data() {
 			return {
-
+				userInfo: {},
+				productData: {},
+				form: {
+					amount: 0,
+					password: '',
+					productId: '',
+				}
 			}
 		},
+		computed: {
+			profit({ form, productData, }) {
+				return form.amount * floatNum(productData.interestRate) * (productData.cycle || 0)
+			},
+			calcAmount({ form, productData, profit}) {
+				return Number(form.amount) + profit
+			},
+		},
 		onLoad(option) {
+			this.form.productId = option.id
+			this.getUserInfo()
 			this.getProductDetail(option.id)
 		},
 		methods: {
+			floatNum,
+			// 获取用户信息
+			async getUserInfo() {
+				const { data, } = await this.$api.getUserInfo()
+				this.userInfo = Object.assign({}, data || {})
+			},
+			// 投资产品详情
 			async getProductDetail(id) {
-				const {
-					data,
-				} = await this.$api.getProductDetails(id)
-				console.log(data)
-			}
+				const { data, } = await this.$api.getProductDetails(id)
+				this.productData = Object.assign({}, data || {})
+				this.form.amount = this.floatNum(this.productData.minAmount)
+			},
+			getNum() {
+				const num = Math.min(this.userInfo.commAmount, this.productData.minAmount)
+				this.form.amount = this.floatNum(num)
+			},
+			verifyForm() {
+				// 校验提款金额
+				if (this.form.amount < this.floatNum(this.productData.minAmount)){
+					uni.showToast({
+						title: '投资金额不能小于起投金额',
+						icon: 'error'
+					})
+					return false
+				}
+				// 校验安全密码
+				const safePassBool = validatepwd(this.form.safePass)
+				if (!safePassBool) {
+					uni.showToast({
+						title: '安全密码输入有误',
+						icon: 'error'
+					})
+					return false
+				}
+				return true
+			},
+			async submit() {
+				if (!this.verifyForm()) return
+				
+				await this.$api.getTradeInvest({
+					...this.form,
+					amount: this.form.amount * Math.pow(10, 4),
+				})
+				uni.showToast({
+					title: '投资成功',
+					icon: 'success',
+					complete: function(){
+						setTimeout(() => {
+							uni.navigateBack()
+						}, 1500)
+					}
+				})
+			},
 		}
 	}
 </script>

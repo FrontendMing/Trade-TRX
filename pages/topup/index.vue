@@ -2,21 +2,21 @@
 	<view>
 		<header-back :name="$t('充值')"></header-back>
 		<view class="deposit">
-			<view class="choose">
-				<view class="base">
+			<view v-if="!currentTab" class="choose">
+				<view class="base" @click="switchTab(1)">
 					<view class="icon">
 						<image src="/static/image/base.png" mode="widthFix"></image>
 					</view>
 					<view class="name">转到基础账户</view>
 				</view>
-				<view class="pomo">
+				<view class="pomo" @click="switchTab(2)">
 					<view class="icon">
 						<image src="/static/image/pomo.png" mode="widthFix"></image>
 					</view>
 					<view class="name">转到佣金账户</view>
 				</view>
 			</view>
-			<view class="notes">
+			<view v-if="!currentTab" class="notes">
 				<view class="tit">投资分为两种模式</view>
 				<view class="txt">1：每天按照协调世界时（UTC）（24:00后）充值到基本账户并获得收益。</view>
 				<view class="txt">2：充值到佣金账户，可按不同周期收取收益，到期返还本金和收益。</view>
@@ -24,17 +24,17 @@
 				</view>
 			</view>
 			<!-- 二维码页 -->
-			<view>
+			<view v-if="currentTab">
 				<view class="qrcode">
 					<view class="img">
-						<canvas></canvas>
+						<uqrcode ref="uQRCode" :text="userInfo.walletAddress" :size="138"/>
 					</view>
 					<p>地址</p>
 				</view>
 				<view class="address">
 					<view class="sadd">
-						<input type="text" value="" />
-						<view class="btn">复制地址</view>
+						<input type="text" :value="userInfo.walletAddress" disabled/>
+						<view class="btn" @click="copyText">复制地址</view>
 					</view>
 					<view class="stip">
 						<p>请不要为其他非TRX资产充值。 充值后约5~10分钟会到账。</p>
@@ -42,7 +42,7 @@
 					</view>
 				</view>
 				<view class="realpush">
-					<button class="">充值完成</button>
+					<button @click="submit">充值完成</button>
 				</view>
 			</view>
 		</view>
@@ -51,17 +51,56 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import uqrcode from '@/components/uqrcode/uqrcode.vue'
+	import { copyText, } from '@/utils/index.js'
 	export default {
 		components: {
-			HeaderBack
+			HeaderBack,
+			uqrcode,
 		},
 		data() {
 			return {
-
+				userInfo: {},
+				currentTab: null,
 			}
 		},
+		onLoad() {
+			this.getUserInfo()
+		},
 		methods: {
-
+			// 获取用户信息
+			async getUserInfo() {
+				const { data, } = await this.$api.getUserInfo()
+				this.userInfo = data || {}
+			},
+			async copyText() {
+				await copyText(this.userInfo.walletAddress)
+				uni.showToast({
+					title:"Copied!",
+					icon: 'success'
+				})
+			},
+			switchTab(tab) {
+				this.currentTab = tab
+			},
+			async submit() {
+				if (this.currentTab === 1) {
+					await this.$api.rechargeBasic()
+				} else {
+					await this.$api.rechargeCommission()
+				}
+				uni.showToast({
+					title: '提交成功',
+					icon: 'success',
+					complete: function() {
+						setTimeout(() => {
+							uni.switchTab({
+								url: '/pages/home/index'
+							})
+						}, 1500)
+					}
+				})
+			}
 		}
 	}
 </script>

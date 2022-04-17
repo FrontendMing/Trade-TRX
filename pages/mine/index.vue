@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-bar :tabName="$t('index.mine')"></header-bar>
+		<header-bar :tabName="userInfo.email || ''"></header-bar>
 		<view class="container">
 			<view class="mine">
 				<view class="logo">

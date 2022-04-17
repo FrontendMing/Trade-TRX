@@ -32,7 +32,7 @@
 		},
 		methods: {
 			async getUserInvestDetail() {
-				const { data, } = await this.$api.getUserInvestDetail(id)
+				const { data, } = await this.$api.getUserInvestDetail()
 				this.underWayList = data?.underWayList || []
 				this.finishList = data?.finishList || []
 			},

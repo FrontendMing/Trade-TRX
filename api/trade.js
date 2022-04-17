@@ -17,5 +17,5 @@ export function getTradeDetail(params){
 
 // 佣金投资 接口
 export function getTradeInvest(params) {
-	return fly.get('/trade/invest', params).then(res => res)
+	return fly.post('/trade/invest', params).then(res => res)
 }

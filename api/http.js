@@ -5,7 +5,7 @@ var fly=new Fly
 //设置超时
 fly.config.timeout = 30000;
 //设置请求基地址
-fly.config.baseURL = '/api'		// http请求地址
+fly.config.baseURL = process.env.NODE_ENV === 'development' ? '/api' : 'http://175.178.60.142:8081/api'		// http请求地址
 
 // 添加请求拦截器
 fly.interceptors.request.use((request) => {

@@ -43,7 +43,7 @@
 				const newPwdBool = validatepwd(this.form.newPass)
 				if (!newPwdBool) {
 					uni.showToast({
-						title: '新密码为6-20位的大小写字母或数字',
+						title: '新密码为6-32位的大小写字母或数字',
 						icon: 'error'
 					})
 					return false

@@ -4,6 +4,7 @@
 		<uni-list>
 			<uni-list-item
 				v-for="(item, index) in noticeList"
+				:key="index"
 				:title="item.title"
 				:note="unixTimeToDate(item.publishTime)"
 				:show-extra-icon="true"

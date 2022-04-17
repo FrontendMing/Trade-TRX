@@ -120,6 +120,14 @@ export default {
 			height: 40px;
 			margin-right: 5px;
 		}
+		text {
+			font-size: 18px;
+			font-weight: bold;
+			max-width: 140px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
 	}
 	&-info{
 		display: flex;
@@ -129,6 +137,8 @@ export default {
 			margin-bottom: 0;
 			color: #b73e31;
 			border: 1px solid #b73e31;
+			padding: 0 0.5em;
+			line-height: 2;
 		}
 		&-icon{
 			margin-left: 9px;

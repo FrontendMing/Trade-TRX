@@ -9,39 +9,38 @@
 						<view :class="{'cur' : currentTab === '2'}" @click="switchTab('2')">转到佣金账户</view>
 					</view>
 					<view class="account" v-if="currentTab === '1'">
-						<view class="">佣金账户<p>0.00<label>TRX</label>
+						<view class="">佣金账户<p>{{floatNum(commissionData.commAmount)}}<label>TRX</label>
 							</p>
 							<view class="icon">
 								<uni-icons type="forward" color="#fff" size="24"></uni-icons>
 							</view>
 						</view>
-						<view>基础账户<p>926.10<label>TRX</label>
+						<view>基础账户<p>{{floatNum(basicData.basicAmount)}}<label>TRX</label>
 							</p>
 						</view>
 					</view>
 
 					<view class="account" v-if="currentTab === '2'">
-						<view class="s">基础账户<p>926.10<label>TRX</label>
-							</p>转账限额<p>0.00<label>
-									TRX</label>
+						<view class="s">基础账户<p>{{floatNum(basicData.basicAmount)}}<label>TRX</label>
+							</p>转账限额<p>{{floatNum(basicData.surplusAmount)}}<label>TRX</label>
 							</p>
 							<view class="icon">
 								<uni-icons type="forward" color="#fff" size="24"></uni-icons>
 							</view>
 						</view>
-						<view>佣金账户<p>0.00<label>TRX</label>
-							</p>
+						<view>佣金账户
+							<p>{{floatNum(commissionData.commAmount)}}<label>TRX</label></p>
 						</view>
 					</view>
 					<view class="number">
-						<input type="text" value="转换数量" />
-						<view class="max"><span>全部</span></view>
+						<input type="number" v-model="amount" placeholder="转换数量"/>
+						<view class="max" @click="getNum">全部</view>
 					</view>
 					<view class="security">
-						<input type="password" placeholder="输入您的安全密码">
+						<input type="password" v-model="password" maxlength="32" placeholder="输入您的安全密码">
 					</view>
 					<view class="button">
-						<button class="">确认</button>
+						<button @click="submit">确认</button>
 					</view>
 				</view>
 			</view>
@@ -51,6 +50,8 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { validatepwd, } from '@/utils/validate.js'
+	import { floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
@@ -58,14 +59,85 @@
 		data() {
 			return {
 				currentTab: '1',
+				amount: this.floatNum(0),
+				password: '',
+				basicData: {
+					basicAmount: 0,
+					limitAmount: 0,
+					surplusAmount: 0,
+				},
+				commissionData: {
+					commAmount: 0,
+					fixedAmount: 0,
+					limitAmount: 0,
+				},
 			}
 		},
 		onLoad(option) {
 			this.currentTab = option.tab || '1'
+			this.getUserBasic()
+			this.getUserCommission()
 		},
 		methods: {
+			floatNum,
+			// 基础账户信息
+			async getUserBasic() {
+				const { data, } = await this.$api.getUserBasic()
+				this.basicData = Object.assign(this.basicData, data || {})
+			},
+			// 佣金账户信息
+			async getUserCommission() {
+				const { data, } = await this.$api.getUserCommission()
+				this.commissionData = Object.assign(this.commissionData, data || {})
+			},
 			switchTab(tab) {
 				this.currentTab = tab
+				this.amount = this.floatNum(0)
+			},
+			// 全部
+			getNum() {
+				if (this.currentTab === '1') {
+					this.amount = this.floatNum(this.commissionData.commAmount)
+				} else {
+					const num = Math.min(this.basicData.basicAmount, this.basicData.surplusAmount)
+					this.amount = this.floatNum(num)
+				}
+			},
+			async submit() {
+				if (this.amount === 0.0000) {
+					uni.showToast({
+						title: '请输入转账资金',
+						icon: 'error'
+					})
+					return false
+				}
+				const passwordBool = validatepwd(this.password)
+				if (!passwordBool) {
+					uni.showToast({
+						title: '安全密码输入有误',
+						icon: 'error'
+					})
+					return false
+				}
+				if (this.currentTab === '1') {
+					await this.$api.comm2basic({
+						amount: this.amount * Math.pow(10, 4),
+						password: this.password,
+					})
+				} else {
+					await this.$api.basic2comm({
+						amount: this.amount * Math.pow(10, 4),
+						password: this.password,
+					})
+				}
+				uni.showToast({
+					title: '转账成功',
+					icon: 'success',
+					complete: () => {
+						this.getUserBasic()
+						this.getUserCommission()
+					}
+				})
 			}
 		}
 	}

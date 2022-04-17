@@ -5,20 +5,20 @@
 			<view class="modify">
 				<view class="inbox">
 					<view v-if="type !== 'google'" class="security">
-						<input type="password" maxlength="20" v-model="form.oldPass" :placeholder="oldPwdPlaceholder">
+						<input type="password" maxlength="32" v-model="form.oldPass" :placeholder="oldPwdPlaceholder">
 					</view>
 					<view v-if="type !== 'google'" class="security">
-						<input type="password" maxlength="20" v-model="form.newPass" :placeholder="newPwdPlaceholder">
+						<input type="password" maxlength="32" v-model="form.newPass" :placeholder="newPwdPlaceholder">
 					</view>
 					<view v-if="type !== 'google'" class="security">
-						<input type="password" maxlength="20" v-model="againPass" placeholder="确认新密码">
+						<input type="password" maxlength="32" v-model="againPass" placeholder="确认新密码">
 					</view>
 					<view v-if="type === 'google'" class="emailcode">
 						<input type="text" value="sadhfsa42321dfsjdiori24" disabled>
 						<view class="send" @click="copyGoogleText">复制</view>
 					</view>
 					<view v-if="type === 'google'" class="security">
-						<input type="password" maxlength="20" v-model="googleCode" :placeholder="$t('谷歌验证码')">
+						<input type="password" maxlength="32" v-model="googleCode" :placeholder="$t('谷歌验证码')">
 					</view>
 					<view class="emailcode">
 						<input type="number" maxlength="6" v-model="form.code" placeholder="邮件验证码">

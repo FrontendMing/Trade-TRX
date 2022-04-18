@@ -9,12 +9,12 @@
 						<dl>
 							<dt><span>日期</span><span>金额</span></dt>
 							<dd v-for="(item,index) in list" :key="index">
-								<view>{{item.createdAt}}
+								<view>{{unixTimeToDate(item.createTime)}}
 									<p>量化交易收入</p>
 								</view>
 								<view>{{floatNum(item.amount)}} TRX
 									<p>
-										<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">未收取</span>
+										<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">收取</span>
 										<span v-if="item.status === 1 && !item.isExpired">已收取</span>
 										<span v-if="item.isExpired">已过期</span>
 									</p>
@@ -33,7 +33,7 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
-	import { floatNum, } from '@/utils/index.js'
+	import { floatNum, unixTimeToDate, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack
@@ -48,6 +48,7 @@
 		},
 		methods: {
 			floatNum,
+			unixTimeToDate,
 			// 获取利润收益详情数据
 			async getProfitDetails() {
 				const { data, } = await this.$api.getProfitDetails()

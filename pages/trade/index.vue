@@ -22,7 +22,7 @@
 							<p>量化交易收入</p>
 						</view>
 						<view class="trade-list-right">
-							<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">未收取</span>
+							<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">收取</span>
 							<span v-if="item.status === 1 && !item.isExpired">已收取</span>
 							<span v-if="item.isExpired">已过期</span>
 						</view>

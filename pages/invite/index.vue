@@ -43,7 +43,7 @@ export default {
 			shareUrl: ''
 		}
     },
-	async onLoad() {
+	async onShow() {
 		const { data, } = await this.$api.getUserInviteCode()
 		this.inviteCode = data
 		this.shareUrl = `https://uniapp-trx.netlify.app/pages/share?code=${this.inviteCode}`

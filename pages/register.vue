@@ -111,8 +111,18 @@
 						icon: 'error'
 					})
 				}
-				const { data, } = await this.$api.register(this.form)
-				console.log(data)
+				await this.$api.register(this.form)
+				uni.showToast({
+					title: '注册成功',
+					icon: 'success',
+					complete:function(){
+						setTimeout(() => {
+							uni.redirectTo({
+								url:'/pages/login'
+							})
+						}, 1500)
+					}
+				})
 			},
 			login (){
 				uni.navigateTo({

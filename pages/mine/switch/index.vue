@@ -75,6 +75,8 @@
 		},
 		onLoad(option) {
 			this.currentTab = option.tab || '1'
+		},
+		onShow() {
 			this.getUserBasic()
 			this.getUserCommission()
 		},
@@ -150,19 +152,19 @@
 	  margin: auto;
 	  background-color: #fff;
 	}
-	
+
 	.withdraw {
 	  display: block;
 	  padding-top: 32px;
 	}
-	
+
 	.withdraw .inbox {
 	  background: #f0f3f7;
 	  padding: 16px;
 	  border-radius: 16px;
 	  text-align: center;
 	}
-	
+
 	.withdraw .tantab {
 	  display: flex;
 	  height: 36px;
@@ -173,7 +175,7 @@
 	  border-radius: 8px;
 	  overflow: hidden;
 	}
-	
+
 	.withdraw .tantab > uni-view {
 	  width: 100%;
 	  text-align: center;
@@ -184,20 +186,20 @@
 	  cursor: pointer;
 	  white-space: nowrap;
 	}
-	
+
 	.withdraw .tantab > uni-view.cur {
 	  font-size: 13px;
 	  background: #b73e31;
 	  color: #fff;
 	}
-	
+
 	.withdraw .account {
 	  display: flex;
 	  justify-content: space-between;
 	  align-items: center;
 	  margin-bottom: 12px;
 	}
-	
+
 	.withdraw .account > uni-view {
 	  background: #fff;
 	  width: 48%;
@@ -207,24 +209,24 @@
 	  font-size: 13px;
 	  position: relative;
 	}
-	
+
 	.withdraw .account > uni-view > p {
 	  padding-top: 16px;
 	  font-size: 16px;
 	  font-weight: 500;
 	  color: #b73e31;
 	}
-	
+
 	.withdraw .account > uni-view.s > p {
 	  padding: 3px 0;
 	}
-	
+
 	.withdraw .account > uni-view > p > uni-label {
 	  color: #2a2a2a;
 	  font-size: 13px;
 	  margin-left: 6px;
 	}
-	
+
 	.withdraw .account > uni-view:first-child > .icon {
 	  position: absolute;
 	  width: 33px;
@@ -239,13 +241,13 @@
 	  line-height: 33px;
 	  box-shadow: 1px 1px 5px hsla(0,0%,39.2%,.5);
 	}
-	
+
 	.withdraw .account > uni-view:first-child > .icon > uni-text {
 	  font-size: 18px;
 	  color: #fff;
 	  font-weight: 700;
 	}
-	
+
 	.withdraw .number {
 	  height: 33px;
 	  display: flex;
@@ -256,7 +258,7 @@
 	  border: 1px solid #ced4da;
 	  position: relative;
 	}
-	
+
 	.withdraw .number > uni-input {
 	  width: 100%;
 	  font-size: 14px;
@@ -265,7 +267,7 @@
 	  text-align: left;
 	  text-indent: 12px;
 	}
-	
+
 	.withdraw .number .max {
 	  position: absolute;
 	  right: 0;
@@ -282,7 +284,7 @@
 	  display: block;
 	  box-sizing: border-box;
 	}
-	
+
 	.withdraw .security {
 	  height: 33px;
 	  display: flex;
@@ -293,7 +295,7 @@
 	  border: 1px solid #ced4da;
 	  margin: 12px 0;
 	}
-	
+
 	.withdraw .security > uni-input {
 	  width: 100%;
 	  font-size: 14px;
@@ -302,7 +304,7 @@
 	  text-align: left;
 	  text-indent: 12px;
 	}
-	
+
 	.withdraw .button > uni-button {
 	  height: 42px;
 	  border-radius: 42px;
@@ -313,7 +315,7 @@
 	  transition: opacity .2s ease 0s;
 	  cursor: pointer;
 	}
-	
+
 	.withdraw .number .max span {
 		box-sizing: border-box;
 	}

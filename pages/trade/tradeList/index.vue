@@ -43,7 +43,7 @@
 				list: [],
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getProfitDetails()
 		},
 		methods: {

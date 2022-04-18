@@ -41,7 +41,7 @@
 							<span class="pp" @click="goToSwitch(1)">{{$t("转到基础账户")}}</span>
 						</view>
 					</view>
-					
+
 					<view class="account_type">
 						<select v-model="currentTab">
 							<option value="base">{{$t("基础账户")}}</option>
@@ -95,7 +95,7 @@
 				},
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getUserBasic()
 			this.getUserCommission()
 		},
@@ -184,33 +184,33 @@
 	  margin: auto;
 	  background-color: #fff;
 	}
-	
-	
+
+
 	.withdraw {
 	  display: block;
 	  padding-top: 32px;
 	}
-	
+
 	.withdraw .inbox {
 	  background: #f0f3f7;
 	  padding: 16px;
 	  border-radius: 16px;
 	  text-align: center;
 	}
-	
+
 	.withdraw .account_name {
 	  font-size: 16px;
 	  font-weight: 500;
 	  margin-bottom: 8px;
 	  color: #fb796b;
 	}
-	
+
 	.withdraw .time_service {
 	  color: red;
 	  font-size: 14px;
 	  font-weight: 500;
 	}
-	
+
 	.withdraw .balance {
 	  background: #fff;
 	  color: #b73e31;
@@ -220,28 +220,28 @@
 	  margin: 8px 0;
 	  border-radius: 16px;
 	}
-	
+
 	.withdraw .limit {
 	  font-size: 13px;
 	  color: #555;
 	}
-	
+
 	.withdraw .switch {
 	  display: block;
 	  text-align: center;
 	  margin-top: 8px;
 	}
-	
+
 	.withdraw .limit strong {
 	  margin: 0 4px;
 	  color: #b73e31;
 	  font-size: 15px;
 	}
-	
+
 	.withdraw .limit > uni-label {
 	  color: #777;
 	}
-	
+
 	.withdraw .switch > span {
 	  display: inline-block;
 	  padding: 8px 18px;
@@ -257,11 +257,11 @@
 		  background: linear-gradient(270deg,#741e15,#b73e31);
 	  }
 	}
-	
+
 	.withdraw .account_type {
 	  margin: 24px 0 12px 0;
 	}
-	
+
 	.withdraw .account_type select {
 	  background: #fff;
 	  border: 1px solid #ced4da;
@@ -273,7 +273,7 @@
 	  font-size: 14px;
 	  font-weight: 500;
 	}
-	
+
 	.withdraw .number {
 	  height: 33px;
 	  display: flex;
@@ -283,7 +283,7 @@
 	  border-radius: 16px;
 	  border: 1px solid #ced4da;
 	}
-	
+
 	.withdraw .number > uni-input {
 	  width: 100%;
 	  font-size: 14px;
@@ -292,7 +292,7 @@
 	  text-align: left;
 	  text-indent: 12px;
 	}
-	
+
 	.withdraw .received {
 	  color: red;
 	  text-align: left;
@@ -300,7 +300,7 @@
 	  padding: 4px 0 0 0;
 	  font-size: 13px;
 	}
-	
+
 	.withdraw .address {
 	  height: 64px;
 	  width: 100%;
@@ -311,7 +311,7 @@
 	  margin-top: 12px;
 	  overflow: hidden;
 	}
-	
+
 	.withdraw .address > uni-textarea {
 	  width: 100%;
 	  font-size: 14px;
@@ -320,7 +320,7 @@
 	  text-align: left;
 	  padding: 6px 12px 6px 12px;
 	}
-	
+
 	.withdraw .security {
 	  height: 33px;
 	  display: flex;
@@ -331,7 +331,7 @@
 	  border: 1px solid #ced4da;
 	  margin: 12px 0;
 	}
-	
+
 	.withdraw .security > uni-input {
 	  width: 100%;
 	  font-size: 14px;
@@ -340,7 +340,7 @@
 	  text-align: left;
 	  text-indent: 12px;
 	}
-	
+
 	.withdraw .button > uni-button {
 	  height: 42px;
 	  border-radius: 42px;
@@ -351,7 +351,7 @@
 	  transition: opacity .2s ease 0s;
 	  cursor: pointer;
 	}
-	
+
 	.withdraw .switch > span.p {
 	  background: linear-gradient(270deg,#f8504e,#fc8b62);
 	}

@@ -27,7 +27,7 @@
 				finishList: [], // 已结算
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getUserInvestDetail()
 		},
 		methods: {

@@ -62,6 +62,13 @@
 				}
 			}
 		},
+		onShow() {
+			if (this.remember) {
+				this.form.email = uni.getStorageSync('userEmail') || '';
+				this.form.password = uni.getStorageSync('userPassword') || '';
+				this.login()
+			}
+		},
 		methods: {
 			verifyForm() {
 				const emailBool = validateEmail(this.form.email)
@@ -88,6 +95,8 @@
 
 				const { data, } = await this.$api.login(this.form)
 				uni.setStorageSync('remeber', this.remember)
+				uni.setStorageSync('userEmail', this.form.email)
+				uni.setStorageSync('userPassword', this.form.password)
 				uni.setStorageSync('token', data?.token)
 				uni.showToast({
 					title: '登录成功',

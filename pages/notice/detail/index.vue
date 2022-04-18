@@ -19,13 +19,16 @@ export default {
 	},
 	data() {
 		return {
+			index: 0,
 			notice: {}
 		}
 	},
 	onLoad(option) {
-		const index = option.index
+		this.index = option.index
+	},
+	onShow() {
 		const noticeList = uni.getStorageSync('noticeList') || []
-		this.notice = noticeList[index]
+		this.notice = noticeList[this.index]
 	},
 	methods: {
 		unixTimeToDate,

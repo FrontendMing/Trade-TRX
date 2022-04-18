@@ -88,8 +88,10 @@
 		},
 		onLoad(option) {
 			this.form.productId = option.id
+		},
+		onShow() {
 			this.getUserInfo()
-			this.getProductDetail(option.id)
+			this.getProductDetail(this.form.productId)
 		},
 		methods: {
 			floatNum,
@@ -130,7 +132,7 @@
 			},
 			async submit() {
 				if (!this.verifyForm()) return
-				
+
 				await this.$api.getTradeInvest({
 					...this.form,
 					amount: this.form.amount * Math.pow(10, 4),
@@ -156,12 +158,12 @@
 		margin: auto;
 		background-color: #fff;
 	}
-	
+
 	.dapp .product {
 	  display: block;
 	  padding: 16px;
 	}
-	
+
 	.dapp .product .thumb {
 	  display: block;
 	  height: 80px;
@@ -169,13 +171,13 @@
 	  border-radius: 8px;
 	  position: relative;
 	}
-	
+
 	.dapp .product .thumb .act {
 	  padding: 25px 0 0 14px;
 	  color: #fff;
 	  font-size: 13px;
 	}
-	
+
 	.dapp .product .thumb .img {
 	  position: absolute;
 	  right: 0;
@@ -184,13 +186,13 @@
 	  width: 77px;
 	  bottom: 15px;
 	}
-	
+
 	.dapp .product .thumb .act .val {
 	  font-size: 18px;
 	  font-weight: 500;
 	  padding-top: 6px;
 	}
-	
+
 	.dapp .product .thumb .img {
 	  position: absolute;
 	  right: 0;
@@ -199,11 +201,11 @@
 	  width: 77px;
 	  bottom: 15px;
 	}
-	
+
 	.dapp .product .infos {
 	  padding: 14px;
 	}
-	
+
 	.dapp .product .infos .inf {
 	  display: flex;
 	  justify-content: space-between;
@@ -211,23 +213,23 @@
 	  font-size: 13px;
 	  border-bottom: 1px solid hsla(0,0%,78.4%,.35);
 	}
-	
+
 	.dapp .product .infos .tit {
 	  color: #666;
 	}
-	
+
 	.dapp .product .infos .val {
 	  font-weight: 500;
 	  font-size: 14px;
 	}
-	
+
 	.dapp .product .submit {
 	  background: #fffcf5;
 	  border-radius: 8px;
 	  padding: 16px;
 	  position: relative;
 	}
-	
+
 	.dapp .product .submit .input {
 	  position: relative;
 	  height: 33px;
@@ -237,7 +239,7 @@
 	  border-radius: 16px;
 	  overflow: hidden;
 	}
-	
+
 	.dapp .product .submit .input uni-input {
 	  width: 100%;
 	  height: 33px;
@@ -245,7 +247,7 @@
 	  font-size: 16px;
 	  background: #fff;
 	}
-	
+
 	.dapp .product .submit .input span {
 	  position: absolute;
 	  right: -1px;
@@ -259,18 +261,18 @@
 	  color: #fff;
 	  border-radius: 0 16px 16px 0;
 	}
-	
+
 	.dapp .product .submit .earning {
 	  text-align: right;
 	  color: red;
 	  font-size: 13px;
 	}
-	
+
 	.dapp .product .submit .button {
 	  display: block;
 	  margin-top: 16px;
 	}
-	
+
 	.dapp .product .submit .button > uni-button {
 	  height: 42px;
 	  border-radius: 42px;
@@ -281,12 +283,12 @@
 	  transition: opacity .2s ease 0s;
 	  cursor: pointer;
 	}
-	
+
 	.dapp .product .content {
 	  padding: 16px 0;
 	  font-size: 13px;
 	}
-	
+
 	.dapp .product .content .tit {
 	  height: 33px;
 	  line-height: 33px;
@@ -295,7 +297,7 @@
 	  font-size: 16px;
 	  color: #b73e31;
 	}
-	
+
 	.dapp .product .content .col {
 	  display: flex;
 	  justify-content: space-between;
@@ -303,7 +305,7 @@
 	  border-bottom: 1px solid #f0f0f0;
 	  line-height: 1.25;
 	}
-	
+
 	.dapp .product .content .col > span:first-child {
 	  min-width: 50%;
 	}

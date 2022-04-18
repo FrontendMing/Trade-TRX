@@ -111,7 +111,7 @@
 				},
 			]
 		},
-		onLoad() {
+		onShow() {
 			this.getUserInfo()
 		},
 		methods: {

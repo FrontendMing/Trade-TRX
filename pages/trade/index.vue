@@ -46,7 +46,7 @@ export default {
 			list: [],
 		}
     },
-	onLoad() {
+	onShow() {
 		this.getUserInfo()
 		this.getProfitFast()
 	},

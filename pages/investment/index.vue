@@ -36,7 +36,7 @@
 				list: []
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getProducts()
 		},
 		methods: {

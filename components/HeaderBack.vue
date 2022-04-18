@@ -45,7 +45,8 @@ export default {
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
-	width: 100vw;
+	width: 100%;
+	max-width: 750px;
 	background-color: #f8f8f8;
 	position: fixed;
 	z-index: 1;

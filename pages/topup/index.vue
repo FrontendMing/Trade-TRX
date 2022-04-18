@@ -64,7 +64,7 @@
 				currentTab: null,
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getUserInfo()
 		},
 		methods: {
@@ -169,7 +169,7 @@
 	padding: 5px;
 	border: 1px solid #ebf1ff;
 	border-radius: 3px;
-}	
+}
 .deposit .qrcode p {
 	padding: 6px 0;
 	color: #b73e31;

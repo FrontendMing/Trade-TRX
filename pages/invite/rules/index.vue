@@ -94,7 +94,7 @@
 				bounsList: [],
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.getUserInfo()
 			this.getVipLevel()
 		},
@@ -112,7 +112,7 @@
 			async getVipLevel() {
 				const { data, } = await this.$api.getVipLevel()
 				data.forEach(({ bonus, cbonus, rbonus, small, big, name, ...rest }) => {
-					
+
 					this.basicList.push({
 						small,
 						big,

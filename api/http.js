@@ -25,11 +25,16 @@ fly.interceptors.response.use((res) => {
 	if (!res.data) {
 		return Promise.reject(res)
 	}
-	if ([606, 607].includes(res.data.code)) {
+	// 账号在别处登录、token不能为空、token失效
+	if ([603, 606, 607].includes(res.data.code)) {
 		uni.showToast({
 			title: res.data.msg,
 			icon: 'none'
 		})
+		// 账号在别处登录，清空登录信息
+		if (res.data.code === 603) {
+			uni.clearStorageSync()
+		}
 		setTimeout(() => {
 			uni.redirectTo({
 				url: '/pages/login'
@@ -50,4 +55,3 @@ fly.interceptors.response.use((res) => {
 })
 
 export default fly
-

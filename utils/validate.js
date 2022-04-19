@@ -5,5 +5,5 @@ export function validateEmail(s) {
 
 // 验证密码
 export function validatepwd(d) {
-    return /[0-9a-zA-Z]{6,20}$/.test(d);
+    return /[0-9a-zA-Z]{6,32}$/.test(d);
 }

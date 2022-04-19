@@ -68,113 +68,113 @@
 </template>
 
 <script>
-	import HeaderBack from '@/components/HeaderBack.vue'
-	import { validatepwd, } from '@/utils/validate.js'
-	import { floatNum, } from '@/utils/index.js'
-	export default {
-		components: {
-			HeaderBack
+import HeaderBack from '@/components/HeaderBack.vue'
+import { validatepwd, } from '@/utils/validate.js'
+import { floatNum, } from '@/utils/index.js'
+export default {
+	components: {
+		HeaderBack
+	},
+	data() {
+		return {
+			currentTab: 'base',
+			basicData: {
+				basicAmount: 0,
+				limitAmount: 0,
+				surplusAmount: 0,
+			},
+			commissionData: {
+				commAmount: 0,
+				fixedAmount: 0,
+				limitAmount: 0,
+			},
+			form: {
+				address: '',
+				amount: '',
+				safePass: ''
+			},
+		}
+	},
+	onShow() {
+		this.getUserBasic()
+		this.getUserCommission()
+	},
+	methods: {
+		floatNum,
+		// 基础账户信息
+		async getUserBasic() {
+			const { data, } = await this.$api.getUserBasic()
+			this.basicData = Object.assign(this.basicData, data || {})
 		},
-		data() {
-			return {
-				currentTab: 'base',
-				basicData: {
-					basicAmount: 0,
-					limitAmount: 0,
-					surplusAmount: 0,
-				},
-				commissionData: {
-					commAmount: 0,
-					fixedAmount: 0,
-					limitAmount: 0,
-				},
-				form: {
-					address: '',
-					amount: '',
-					safePass: ''
-				},
-			}
+		// 佣金账户信息
+		async getUserCommission() {
+			const { data, } = await this.$api.getUserCommission()
+			this.commissionData = Object.assign(this.commissionData, data || {})
 		},
-		onShow() {
-			this.getUserBasic()
-			this.getUserCommission()
+		goToSwitch(tab) {
+			uni.navigateTo({
+				url: `/pages/mine/switch/index?tab=${tab}`
+			})
 		},
-		methods: {
-			floatNum,
-			// 基础账户信息
-			async getUserBasic() {
-				const { data, } = await this.$api.getUserBasic()
-				this.basicData = Object.assign(this.basicData, data || {})
-			},
-			// 佣金账户信息
-			async getUserCommission() {
-				const { data, } = await this.$api.getUserCommission()
-				this.commissionData = Object.assign(this.commissionData, data || {})
-			},
-			goToSwitch(tab) {
-				uni.navigateTo({
-					url: `/pages/mine/switch/index?tab=${tab}`
-				})
-			},
-			verifyForm() {
-				// 校验提款金额
-				if (
-					this.form.amount < 0.1 || this.form.amount > 1000000 ||
-					this.form.amount > this.floatNum(this.basicData.limitAmount)
-				) {
-					uni.showToast({
-						title: '取款金额错误',
-						icon: 'error'
-					})
-					return false
-				}
-				// 校验地址
-				if (this.form.address.replace(/^\s*|\s*$/g, '') === '') {
-					uni.showToast({
-						title: '地址不能为空',
-						icon: 'error'
-					})
-					return false
-				}
-				// 校验安全密码
-				const safePassBool = validatepwd(this.form.safePass)
-				if (!safePassBool) {
-					uni.showToast({
-						title: '安全密码输入有误',
-						icon: 'error'
-					})
-					return false
-				}
-				return true
-			},
-			async submit() {
-				if (!this.verifyForm()) return
-
-				if (this.currentTab === 'base') {
-					await this.$api.refundBasic({
-						...this.form,
-						amount: this.form.amount * Math.pow(10, 4)
-					})
-				} else {
-					await this.$api.refundCommission({
-						...this.form,
-						amount: this.form.amount * Math.pow(10, 4)
-					})
-				}
+		verifyForm() {
+			// 校验提款金额
+			if (
+				this.form.amount < 0.1 || this.form.amount > 1000000 ||
+				this.form.amount > this.floatNum(this.basicData.limitAmount)
+			) {
 				uni.showToast({
-					title: '提款成功',
-					icon: 'success',
-					complete: () => {
-						setTimeout(() => {
-							uni.switchTab({
-								url: '/pages/home/index'
-							})
-						}, 1500)
-					}
+					title: '取款金额错误',
+					icon: 'error'
+				})
+				return false
+			}
+			// 校验地址
+			if (this.form.address.replace(/^\s*|\s*$/g, '') === '') {
+				uni.showToast({
+					title: '地址不能为空',
+					icon: 'error'
+				})
+				return false
+			}
+			// 校验安全密码
+			const safePassBool = validatepwd(this.form.safePass)
+			if (!safePassBool) {
+				uni.showToast({
+					title: '安全密码输入有误',
+					icon: 'error'
+				})
+				return false
+			}
+			return true
+		},
+		async submit() {
+			if (!this.verifyForm()) return
+
+			if (this.currentTab === 'base') {
+				await this.$api.refundBasic({
+					...this.form,
+					amount: this.form.amount * Math.pow(10, 4)
+				})
+			} else {
+				await this.$api.refundCommission({
+					...this.form,
+					amount: this.form.amount * Math.pow(10, 4)
 				})
 			}
-		},
-	}
+			uni.showToast({
+				title: '提款成功',
+				icon: 'success',
+				complete: () => {
+					setTimeout(() => {
+						uni.switchTab({
+							url: '/pages/home/index'
+						})
+					}, 1500)
+				}
+			})
+		}
+	},
+}
 </script>
 
 <style lang="scss" scoped>

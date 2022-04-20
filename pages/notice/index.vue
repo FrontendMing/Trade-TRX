@@ -12,7 +12,6 @@
 				link
 				@click="goToNoticeDetail(index)"
 			></uni-list-item>
-			<!-- <view class="loading">{{loadingText}}</view> -->
 		</uni-list>
 	</view>
 </template>
@@ -32,9 +31,6 @@ export default {
 	data() {
 		return {
 			noticeList:[],
-			loadingText: this.$t('system.loading'),
-			page: 1,
-			timer: null,
 		}
 	},
 	computed: {
@@ -44,15 +40,6 @@ export default {
 	},
 	onShow() {
 		this.getNoticeList();
-	},
-	onPullDownRefresh() {
-		this.getNoticeList();
-	},
-	onReachBottom() {
-		if(this.timer != null){
-			clearTimeout(this.timer);
-		}
-		this.timer = setTimeout(() => this.getMoreNotice(), 1000);
 	},
 	methods:{
 		unixTimeToDate,
@@ -64,59 +51,6 @@ export default {
 			this.noticeList = data || []
 			uni.setStorageSync('noticeList', this.noticeList)
 		},
-		// getMoreNotice(){
-		// 	if(this.loadingText !== '' && this.loadingText !== this.$t('system.load-more')){
-		// 		return false;
-		// 	}
-		// 	this.loadingText = this.$t('system.loading');
-		// 	uni.showNavigationBarLoading();
-		// 	uni.request({
-		// 		url: '',
-		// 		method: 'GET',
-		// 		success:(res) => {
-		// 			this.loadingText = '';
-		// 			if(res.data == null){
-		// 				uni.hideNavigationBarLoading();
-		// 				this.loadingText = this.$t('system.load-finish');
-		// 				return false;
-		// 			}
-		// 			this.page++;
-		// 			console.log(res);
-		// 			this.noticeList = this.noticeList.concat(res.data.split('--hcSplitor--'));
-		// 			this.loadingText = this.$t('system.load-more')
-		// 			uni.hideNavigationBarLoading();
-		// 		}
-		// 	});
-		// },
-		// getNoticeList() {
-		// 	this.page = 1;
-		// 	uni.showNavigationBarLoading();
-		// 	// uni.request({
-		// 	// 	url: 'https://demo.hcoder.net/index.php?user=hcoder&pwd=hcoder&m=list1&page=1',
-		// 	// 	method: 'GET',
-		// 	// 	success: (res) => {
-		// 	// 		this.page++;
-		// 	// 		this.noticeList = res.data.split('--hcSplitor--');
-		// 	// 		uni.hideNavigationBarLoading();
-		// 	// 		uni.stopPullDownRefresh();
-		// 	// 		this.loadingText = this.$t('system.load-more')
-		// 	// 	}
-		// 	// });
-		// 	setTimeout(() => {
-		// 		this.loadingText = '';
-		// 		// if(res.data == null){
-		// 			this.noticeList = 5;
-		// 			uni.hideNavigationBarLoading();
-		// 			this.loadingText = this.$t('system.load-finish');
-		// 			return false;
-		// 		// }
-		// 		// this.page++;
-		// 		// console.log(res);
-		// 		// this.noticeList = this.noticeList.concat(res.data.split('--hcSplitor--'));
-		// 		// this.loadingText = this.$t('system.load-more')
-		// 		// uni.hideNavigationBarLoading();
-		// 	}, 1000);
-		// },
 		goToNoticeDetail(index) {
 			uni.navigateTo({
 				url: `/pages/notice/detail/index?index=${index}`
@@ -125,10 +59,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-.loading{
-	text-align:center;
-	line-height:80px;
-}
-</style>

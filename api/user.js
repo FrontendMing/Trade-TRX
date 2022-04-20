@@ -16,8 +16,8 @@ export function getUserCommission(){
 }
 
 // 用户投资明细
-export function getUserInvestDetail(){
-	return fly.get('/user/invest/detail').then(res => res)
+export function getUserInvestDetail(params){
+	return fly.get('/user/invest/detail', params).then(res => res)
 }
 
 // 获取用户邀请码

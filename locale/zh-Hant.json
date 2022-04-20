@@ -11,8 +11,8 @@
 	"index.mine": "我的",
 
 	"system.loading": "加載中...",
-	"system.load-more": "加載更多",
-	"system.load-finish": "已加載全部",
+	"system.load-more": "上拉加載更多",
+	"system.load-finish": "沒有更多數據",
 
 	"notice.title": "通知",
 	"notice.detail": "通知詳情",
@@ -23,9 +23,9 @@
 	"invite.invite-rule": "邀請規則",
 	"invite.invite-copy-link": "複製鏈接",
 	"invite.vip-level": "VIP等級",
-	
+
 	"invest.investmentDetail": "投資產品詳情",
 	"invest.myinvest": "我的投資",
-	
+
 	"trade.tradelist": "交易清單"
 }

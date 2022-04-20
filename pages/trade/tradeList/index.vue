@@ -21,9 +21,7 @@
 								</view>
 							</dd>
 						</dl>
-						<view class="more">
-							<span>没有更多数据</span>
-						</view>
+						<view class="loading">{{loadingText}}</view>
 					</view>
 				</view>
 			</view>
@@ -41,6 +39,8 @@
 		data() {
 			return {
 				list: [],
+				loadingText: this.$t('system.loading'),
+				canFresh: false,
 			}
 		},
 		onShow() {
@@ -51,8 +51,40 @@
 			unixTimeToDate,
 			// 获取利润收益详情数据
 			async getProfitDetails() {
+				this.loadingText = this.$t('system.loading')
+				uni.showNavigationBarLoading()
 				const { data, } = await this.$api.getProfitDetails()
+				this.canFresh = data?.length === 10
+
+				if(data?.length < 10){
+					this.loadingText = this.$t('system.load-finish')
+				} else {
+					this.loadingText = this.$t('system.load-more')
+				}
 				this.list = data || []
+				uni.hideNavigationBarLoading();
+			},
+			// 加载分页数据
+			async getMoreProfitDetails(lastId) {
+				this.loadingText = this.$t('system.loading')
+				uni.showNavigationBarLoading()
+				const { data, } = await this.$api.getProfitDetails({ lastId, })
+				this.canFresh = data?.length === 10
+
+				if(data?.length < 10){
+					this.loadingText = this.$t('system.load-finish')
+				} else {
+					this.loadingText = this.$t('system.load-more')
+				}
+				this.list = this.list.concat(data)
+				uni.hideNavigationBarLoading();
+			},
+			// 上拉加载
+			onReachBottom() {
+				if (this.canFresh) {
+					const lastId = this.list[this.list.length - 1]?.id
+					lastId && this.getMoreProfitDetails(lastId)
+				}
 			},
 			// 收取 利润
 			async getProfit(id) {
@@ -145,11 +177,5 @@
 			}
 		}
 	}
-}
-.earnbox .inlist .more {
-	text-align: center;
-	padding: 12px 0;
-	color: #999;
-	font-size: 14px;
 }
 </style>

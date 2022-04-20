@@ -3,9 +3,9 @@
 		<header-bar :tabName="$t('index.investment')"></header-bar>
 		<view class="invest">
 			<view class="toptab">
-				<span class="cur">投资产品</span>
-				<span @click="topUp">充值</span>
-				<span @click="toMyinvests">我的投资</span>
+				<span class="cur">{{$t('invest.product')}}</span>
+				<span @click="topUp">{{$t('invest.topUp')}}</span>
+				<span @click="toMyinvests">{{$t('invest.myInvest')}}</span>
 			</view>
 			<view class="intsbox">
 				<view class="itembox" v-for="item in list" :key="item.id" @click="goToProductDetail(item.id)">
@@ -13,9 +13,9 @@
 						<image src="/static/image/invests.jpeg" mode="scaleToFill"></image>
 					</view>
 					<view class="intro">
-						<p>周期：<span>{{item.cycle}}</span>日</p>
-						<p>每日收益率：<span>{{floatNum(item.interestRate, 2)}}</span>%</p>
-						<p>起投金额：<span>{{floatNum(item.minAmount)}}</span></p>
+						<p>{{$t('invest.cycle')}}：<span>{{item.cycle}}</span>{{$t('invest.day')}}</p>
+						<p>{{$t('invest.dailyRevenue')}}：<span>{{floatNum(item.interestRate, 2)}}</span>%</p>
+						<p>{{$t('invest.miniInvest')}}：<span>{{floatNum(item.minAmount)}}</span></p>
 					</view>
 				</view>
 			</view>

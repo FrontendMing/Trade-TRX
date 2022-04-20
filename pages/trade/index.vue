@@ -7,10 +7,10 @@
 			<view class="wkbg">
 				<image mode="aspectFit" src="/static/image/pool_bg.png"/>
 			</view>
-			<view class="status">云挖矿正在运行</view>
+			<view class="status">{{$t('trade.miningWorking')}}</view>
 			<view class="trading">
-				<view class="tit">交易利润
-					<span @click="toTradeList"><text>查看全部</text>></span>
+				<view class="tit">{{$t('trade.tradingProfit')}}
+					<span @click="toTradeList"><text>{{$t('trade.viewAll')}}</text>></span>
 				</view>
 				<view class="box">
 					<view v-for="(item,index) in list" :key="index" class="trade-list">
@@ -19,12 +19,12 @@
 						</view>
 						<view class="trade-list-left">
 							<p><strong>{{floatNum(item.amount)}}</strong><span>TRX</span></p>
-							<p>量化交易收入</p>
+							<p>{{$t('trade.revenue')}}</p>
 						</view>
 						<view class="trade-list-right">
 							<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">收取</span>
-							<span v-if="item.status === 1 && !item.isExpired">已收取</span>
-							<span v-if="item.isExpired">已过期</span>
+							<span v-if="item.status === 1 && !item.isExpired">{{$t('trade.received')}}</span>
+							<span v-if="item.isExpired">{{$t('trade.expired')}}</span>
 						</view>
 					</view>
 				</view>

@@ -19,8 +19,8 @@
 			</view>
 			<view class="cpyurl">
 				<image src="/static/image/share_code.png" style="width:74px;height:74px;" mode="aspectFit"></image>
-				<h3>推荐并赚取奖励</h3>
-				<p>分享您的推荐链接并开始赚钱</p>
+				<h3>{{$t('invite.earnReward')}}</h3>
+				<p>{{$t('invite.sharelink')}}</p>
 				<view class="slink">
 					<input type="text" :value="shareUrl" disabled/>
 					<button type="default" size="mini" @click="copyLink">{{$t('invite.invite-copy-link')}}</button>

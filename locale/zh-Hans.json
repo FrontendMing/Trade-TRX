@@ -9,6 +9,20 @@
 	"index.investment": "投资",
 	"index.invite": "邀请",
 	"index.mine": "我的",
+	"index.totalBalance": "总资产余额",
+	"index.wallet": "钱包",
+	"index.promotion": "佣金",
+	"index.account": "账户",
+	"index.join": "加入成为波场百万富翁",
+	"index.useCloud": "使用云挖矿和Defi技术，确保所有用户获得最大的TRX收益。",
+	"index.details": "详情",
+	"index.dataDisplay": "平台数据展示",
+	"index.accumulatedProfit": "累计利润",
+	"index.memberShip": "会员数量",
+	"index.aboutUs": "关于我们",
+	"index.best": "我们是最佳平台",
+	"index.cloudMining": "云挖矿为比特币 Trx 和其他加密货币提供了一种具有潜在成本效益的挖矿方式。 同时，无论是量化交易还是DeFi技术，都可以让你用少量的资金轻松参与区块链交易，获得保险一样的稳定收益。",
+	"index.gloPartner": "全球合作伙伴",
 
 	"system.loading": "加载中...",
 	"system.load-more": "加载更多",
@@ -23,9 +37,34 @@
 	"invite.invite-rule": "邀请规则",
 	"invite.invite-copy-link": "复制链接",
 	"invite.vip-level": "VIP等级",
+	"invite.earnReward": "推荐并赚取奖励",
+	"invite.sharelink": "分享您的推荐链接并开始赚钱",
+	
 	
 	"invest.investmentDetail": "投资产品详情",
 	"invest.myinvest": "我的投资",
+	"invest.product": "投资产品",
+	"invest.topUp": "充值",
+	"invest.myInvest": "我的投资",
+	"invest.cycle": "周期",
+	"invest.dailyRevenue": "每日收益率",
+	"invest.miniInvest": "起投金额",
+	"invest.day": "日",
 	
-	"trade.tradelist": "交易清单"
+	"trade.tradelist": "交易清单",
+	"trade.tradingProfit": "交易利润",
+	"trade.viewAll": "查看全部",
+	"trade.revenue": "量化交易收入",
+	"trade.received": "已收取",
+	"trade.expired": "已过期",
+	"trade.miningWorking": "云挖矿正在运行",
+	
+	"mine.totalBalance": "总资产余额",
+	"mine.topUp": "充值",
+	"mine.withDraw": "提款",
+	"mine.depositQuantity": "TRX充值数量",
+	"mine.basicAccount": "基础账户",
+	"mine.promotionAccount": "佣金账户",
+	"mine.anyAmount": "充值任意数量的TRX即可激活账户并开通提现功能。"
+	
 }

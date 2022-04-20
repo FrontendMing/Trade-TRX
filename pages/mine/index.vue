@@ -10,28 +10,28 @@
 					<label for="">{{userInfo.levelName}}</label>
 				</view>
 				<view class="balance">
-					<span>总资产余额:</span>
+					<span>{{$t('mine.totalBalance')}}:</span>
 					<strong>{{floatNum((userInfo.basicAmount || 0) + (userInfo.commAmount || 0))}}</strong>
 					<em>TRX</em>
 				</view>
 				<view class="rock">
 					<view @click="topUp">
 						<image src="/static/image/icon_5.png" mode="aspectFit"/>
-						<span>充值</span>
+						<span>{{$t('mine.topUp')}}</span>
 					</view>
 					<view @click="withdraw">
 						<image src="/static/image/icon_6.png" mode="aspectFit"/>
-						<span>提款</span>
+						<span>{{$t('mine.withDraw')}}</span>
 					</view>
 				</view>
 				<view class="quantity">
 					<view class="word">
-						<h2>TRX充值数量</h2>
-						<p>基础账户</p>
+						<h2>{{$t('mine.depositQuantity')}}</h2>
+						<p>{{$t('mine.basicAccount')}}</p>
 						<h3><strong>{{floatNum(userInfo.basicAmount)}}</strong><label for="">TRX</label></h3>
-						<p>佣金账户</p>
+						<p>{{$t('mine.promotionAccount')}}</p>
 						<h3><strong>{{floatNum(userInfo.commAmount )}}</strong><label for="">TRX</label></h3>
-						<p>充值任意数量的TRX即可激活账户并开通提现功能。</p>
+						<p>{{$t('mine.anyAmount')}}</p>
 					</view>
 					<image src="/static/image/mine_bg.png" mode="widthFix"></image>
 				</view>

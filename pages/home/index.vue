@@ -3,7 +3,7 @@
 		<header-bar :tabName="$t('index.home')"></header-bar>
 		<view class="container">
 			<view class="banner">
-				<p>总资产余额</p>
+				<p>{{$t('index.totalBalance')}}</p>
 				<view>
 					{{floatNum((userInfo.basicAmount || 0) + (userInfo.commAmount || 0))}}
 					<label for="">TRX</label>
@@ -29,46 +29,46 @@
 				<view class="amount">
 					<view class="item">
 						<image src="/static/image/icon_1.png" mode="widthFix"></image>
-						<p class="name">钱包</p>
-						<p class="small">账户</p>
+						<p class="name">{{$t('index.wallet')}}</p>
+						<p class="small">{{$t('index.account')}}</p>
 						<em>{{floatNum(userInfo.basicAmount)}}<i>TRX ≈ $0</i></em>
 					</view>
 					<view class="item">
 						<image src="/static/image/icon_2.png" mode="widthFix"></image>
-						<p class="name">佣金</p>
-						<p class="small">账户</p>
+						<p class="name">{{$t('index.promotion')}}</p>
+						<p class="small">{{$t('index.account')}}</p>
 						<em>{{floatNum(userInfo.commAmount)}}<i>TRX ≈ $0</i></em>
 					</view>
 				</view>
 				<view class="join">
-					<h2>加入成为波声百万富翁</h2>
-					<p>使用云挖矿和Defi技术，确保所有用户获得最大的TRX收益。</p>
+					<h2>{{$t('index.join')}}</h2>
+					<p>{{$t('index.useCloud')}}</p>
 					<image src="/static/image/work_bg.png" mode="widthFix"></image>
-					<button @click="goToTrade">详情</button>
+					<button @click="goToTrade">{{$t('index.details')}}</button>
 				</view>
 				<view class="data">
-					<h2>平台数据展示</h2>
+					<h2>{{$t('index.dataDisplay')}}</h2>
 					<ul>
 						<li>
 							<image src="/static/image/icon_3.png" mode="widthFix"></image>
-							<p class="tit">累计利润</p>
+							<p class="tit">{{$t('index.accumulatedProfit')}}</p>
 							<p class="val">{{floatNum(platformData.assets)}}</p>
 						</li>
 						<li>
 							<image src="/static/image/icon_4.png" mode="widthFix"></image>
-							<p class="tit">会员数量</p>
+							<p class="tit">{{$t('index.memberShip')}}</p>
 							<p class="val">{{platformData.members}}</p>
 						</li>
 					</ul>
 				</view>
 				<view class="info">
-					<h2>关于我们</h2>
-					<h3>我们是最佳平台</h3>
-					<p>云挖矿为比特币 Trx 和其他加密货币提供了一种具有潜在成本效益的挖矿方式。 同时，无论是量化交易还是DeFi技术，都可以让你用少量的资金轻松参与区块链交易，获得保险一样的稳定收益。</p>
+					<h2>{{$t('index.aboutUs')}}</h2>
+					<h3>{{$t('index.best')}}</h3>
+					<p>{{$t('index.cloudMining')}}</p>
 					<image src="/static/image/about_bg.png" mode="widthFix"></image>
 				</view>
 				<view class="glob">
-					<h2>全球合作伙伴</h2>
+					<h2>{{$t('index.gloPartner')}}</h2>
 					<ul>
 						<li v-for="(item,index) in partner" :key="index">
 							<image :src="item.url" mode="widthFix"></image>

@@ -33,7 +33,7 @@
 						</view>
 					</view>
 					<view class="number">
-						<input type="number" v-model="amount" placeholder="转换数量"/>
+						<input type="digit" v-model="amount" placeholder="转换数量"/>
 						<view class="max" @click="getNum">全部</view>
 					</view>
 					<view class="security">

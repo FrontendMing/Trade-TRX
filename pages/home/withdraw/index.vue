@@ -49,14 +49,14 @@
 						</select>
 					</view>
 					<view class="number">
-						<input type="number" v-model="form.amount" placeholder="限额 0.1-1000000">
+						<input type="digit" v-model="form.amount" placeholder="限额 0.1-1000000">
 					</view>
 					<view class="received">手续费: 0, 到账 0</view>
 					<view class="address">
 						<textarea v-model="form.address" maxlength="300" placeholder="地址（以T开头）" />
 					</view>
 					<view class="security">
-						<input type="text" v-model="form.safePass" placeholder="请输入安全密码">
+						<input type="password" v-model="form.safePass" placeholder="请输入安全密码">
 					</view>
 					<view class="button">
 						<button @click="submit">确认</button>

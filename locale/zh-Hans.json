@@ -67,4 +67,9 @@
 	"mine.promotionAccount": "佣金账户",
 	"mine.anyAmount": "充值任意数量的TRX即可激活账户并开通提现功能。",
 	
+	"earn.financeRecords": "财务记录",
+	"earn.date": "日期",
+	"earn.amount": "金额",
+	"earn.complete": "完成",
+	"earn.nomore": "没有更多数据"
 }

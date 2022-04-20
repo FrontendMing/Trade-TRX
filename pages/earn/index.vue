@@ -1,32 +1,34 @@
 <template>
 	<view>
-		<header-back :name="$t('财务记录')"></header-back>
+		<header-back :name="$t('earn.financeRecords')"></header-back>
 		<view class="dapp">
 			<view class="earnbox">
 				<view class="inbox">
 					<view class="inlist">
 						<view class="tit">
-							财务记录
+							{{$t('earn.financeRecords')}}
 							<text></text>
 						</view>
 						<view class="box">
 							<dl>
 								<dt>
-									<span>日期</span>
-									<span>金额</span>
+									<span>{{$t('earn.date')}}</span>
+									<span>{{$t('earn.amount')}}</span>
 								</dt>
-								<dd v-for="(item, index) in list" :key="index">
+								<dd v-for="(item, index) in tradeList" :key="index">
 									<view>
 										{{unixTimeToDate(item.tradeTime)}}
 										<p>{{item.description}}</p>
 									</view>
 									<view>
 										{{floatNum(item.amount)}} TRX
-										<p class="sc">完成</p>
+										<p class="sc">{{$t('earn.complete')}}</p>
 									</view>
 								</dd>
 							</dl>
-							<view class="loading">{{loadingText}}</view>
+							<view class="more">
+								<span>{{$t('earn.nomore')}}</span>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -40,13 +42,11 @@ import HeaderBack from '@/components/HeaderBack.vue'
 import { floatNum, unixTimeToDate, } from '@/utils/index.js'
 export default {
 	components: {
-		HeaderBack,
+		HeaderBack
 	},
 	data() {
 		return {
-			list: [],
-			loadingText: this.$t('system.loading'),
-			canFresh: false,
+			tradeList: [],
 		}
 	},
 	onShow() {
@@ -56,41 +56,9 @@ export default {
 		floatNum,
 		unixTimeToDate,
 		async getTradeDetail() {
-			this.loadingText = this.$t('system.loading')
-			uni.showNavigationBarLoading()
 			const { data, } = await this.$api.getTradeDetail()
-			this.canFresh = data?.length === 10
-
-			if(data?.length < 10){
-				this.loadingText = this.$t('system.load-finish')
-			} else {
-				this.loadingText = this.$t('system.load-more')
-			}
-			this.list = data || []
-			uni.hideNavigationBarLoading();
-		},
-		// 加载分页数据
-		async getMoreTradeDetail(lastId) {
-			this.loadingText = this.$t('system.loading')
-			uni.showNavigationBarLoading()
-			const { data, } = await this.$api.getTradeDetail({ lastId, })
-			this.canFresh = data?.length === 10
-
-			if(data?.length < 10){
-				this.loadingText = this.$t('system.load-finish')
-			} else {
-				this.loadingText = this.$t('system.load-more')
-			}
-			this.list = this.list.concat(data)
-			uni.hideNavigationBarLoading();
-		},
-		// 上拉加载
-		onReachBottom() {
-			if (this.canFresh) {
-				const lastId = this.list[this.list.length - 1]?.id
-				lastId && this.getMoreTradeDetail(lastId)
-			}
-		},
+			this.tradeList = data || []
+		}
 	},
 }
 </script>
@@ -134,6 +102,13 @@ export default {
 	font-size: 18px;
 	color: #b73e31;
 }
+.earnbox .inlist .more {
+	text-align: center;
+	padding: 12px 0;
+	color: #999;
+	font-size: 14px;
+}
+
 .earnbox .inlist dt {
 	display: flex;
 	justify-content: space-between;

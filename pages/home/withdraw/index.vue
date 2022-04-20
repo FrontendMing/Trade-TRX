@@ -117,10 +117,12 @@ export default {
 			})
 		},
 		verifyForm() {
+			const amount = this.form.amount * Math.pow(10, 4)
 			// 校验提款金额
 			if (
-				this.form.amount < 0.1 || this.form.amount > 1000000 ||
-				this.form.amount > this.floatNum(this.basicData.limitAmount)
+				amount < Math.pow(10, 3) ||
+				amount > Math.pow(10, 10) ||
+				amount > this.basicData.limitAmount
 			) {
 				uni.showToast({
 					title: '取款金额错误',

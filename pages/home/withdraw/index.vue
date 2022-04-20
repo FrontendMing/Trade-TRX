@@ -5,61 +5,61 @@
 			<view class="withdraw">
 				<view class="inbox">
 					<view v-if="currentTab === 'base'">
-						<view class="account_name">{{$t("基础账户余额")}}</view>
-						<view class="time_service">{{$t("24小时提款")}}</view>
+						<view class="account_name">{{$t("withdraw.basbalance")}}</view>
+						<view class="time_service">{{$t("withdraw.24with")}}</view>
 						<view class="balance">{{floatNum(basicData.basicAmount)}}</view>
 						<view class="limit">
-							{{$t("每日提款限额")}}
+							{{$t("withdraw.dailylimit")}}
 							<strong>{{floatNum(basicData.limitAmount)}}</strong>
 							<label>TRX</label>
 						</view>
 						<view class="limit">
-							{{$t("今日剩余")}}
+							{{$t("withdraw.lefttoday")}}
 							<strong>{{floatNum(basicData.surplusAmount)}}</strong>
 							<label>TRX</label>
-							{{$t("可提款")}}
+							{{$t("withdraw.available")}}
 						</view>
 						<view class="switch">
-							<span class="p" @click="goToSwitch(2)">{{$t("转到佣金账户")}}</span>
+							<span class="p" @click="goToSwitch(2)">{{$t("withdraw.toproacc")}}</span>
 						</view>
 					</view>
 					<view v-if="currentTab === 'promotion'">
-						<view class="account_name">{{$t("佣金账户余额")}}</view>
-						<view class="time_service">{{$t("24小时提款")}}</view>
+						<view class="account_name">{{$t("withdraw.probalance")}}</view>
+						<view class="time_service">{{$t("withdraw.24with")}}</view>
 						<view class="balance">{{floatNum(commissionData.commAmount)}}</view>
 						<view class="limit">
-							{{$t("提款限额")}}
+							{{$t("widtdraw.withlimit")}}
 							<strong>{{floatNum(commissionData.limitAmount)}}</strong>
 							<label>TRX</label>
 						</view>
 						<view class="limit">
-							{{$t("固定投资金额")}}
+							{{$t("widtdraw.fixedamount")}}
 							<strong>{{floatNum(commissionData.fixedAmount)}}</strong>
 							<label>TRX</label>
 						</view>
 						<view class="switch">
-							<span class="pp" @click="goToSwitch(1)">{{$t("转到基础账户")}}</span>
+							<span class="pp" @click="goToSwitch(1)">{{$t("widtdraw.tobasacc")}}</span>
 						</view>
 					</view>
 
 					<view class="account_type">
 						<select v-model="currentTab">
-							<option value="base">{{$t("基础账户")}}</option>
-							<option value="promotion">{{$t("佣金账户")}}</option>
+							<option value="base">{{$t("widtdraw.basaccount")}}</option>
+							<option value="promotion">{{$t("widtdraw.proaccount")}}</option>
 						</select>
 					</view>
 					<view class="number">
-						<input type="digit" v-model="form.amount" placeholder="限额 0.1-1000000">
+						<input type="digit" v-model="form.amount" :placeholder="$t('widtdraw.limit')">
 					</view>
-					<view class="received">手续费: 0, 到账 0</view>
+					<view class="received">{{$t('widtdraw.warn')}}</view>
 					<view class="address">
-						<textarea v-model="form.address" maxlength="300" placeholder="地址（以T开头）" />
+						<textarea v-model="form.address" maxlength="300" :placeholder="$t('widtdraw.address')" />
 					</view>
 					<view class="security">
-						<input type="password" v-model="form.safePass" placeholder="请输入安全密码">
+						<input type="password" v-model="form.safePass" :placeholder="$t('widtdraw.safeword')">
 					</view>
 					<view class="button">
-						<button @click="submit">确认</button>
+						<button @click="submit">{{$t('widtdraw.confirm')}}</button>
 					</view>
 				</view>
 			</view>

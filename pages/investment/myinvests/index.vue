@@ -7,7 +7,46 @@
 				<span :class="{'cur': currentTab === 2}" @click="switchTab(2)">已结算</span>
 			</view>
 			<view class="box">
-				<view v-if="!data.length" class="more">没有数据</view>
+				<uni-card
+					class="box-list"
+					v-for="(item, index) in list"
+					:key="item.id || index"
+					:is-shadow="false"
+				>
+					<template v-slot:title>
+						<view class="box-list-title">
+							<span>订单号：{{item.orderNo}}</span>
+							<uni-icons type="link" size="30" color="#fff" @click="copyText(item.orderNo)"></uni-icons>
+						</view>
+					</template>
+					<uni-row class="box-list-row">
+						<uni-col :span="12">
+							<view class="sub-title">投资金额</view>
+							<view class="sub-content">{{item.amount}}</view>
+						</uni-col>
+						<uni-col :span="12">
+							<view class="sub-title">预计收益</view>
+							<view class="sub-content">{{item.pi}}</view>
+						</uni-col>
+						<uni-col :span="12">
+							<view class="sub-title">每日收益率</view>
+							<view class="sub-content">{{item.interest}}</view>
+						</uni-col>
+						<uni-col :span="12">
+							<view class="sub-title">周期</view>
+							<view class="sub-content">{{item.day}}</view>
+						</uni-col>
+						<uni-col :span="12">
+							<view class="sub-title">投资时间</view>
+							<view class="sub-content">{{item.createdAt}}</view>
+						</uni-col>
+						<uni-col :span="12">
+							<view class="sub-title">到期时间</view>
+							<view class="sub-content">{{unixTimeToDate(item.settlementDate)}}</view>
+						</uni-col>
+					</uni-row>
+				</uni-card>
+				<view class="loading">{{loadingText}}</view>
 			</view>
 		</view>
 	</view>
@@ -15,73 +54,146 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
+	import { unixTimeToDate, copyText, } from '@/utils/index.js'
 	export default {
 		components: {
-			HeaderBack
+			HeaderBack,
 		},
 		data() {
 			return {
 				currentTab: 1,
-				data: [], // 渲染到页面的数据
-				underWayList: [], // 进行中
-				finishList: [], // 已结算
+				list: [],
+				loadingText: this.$t('system.loading'),
+				canFresh: false,
 			}
 		},
 		onShow() {
 			this.getUserInvestDetail()
 		},
 		methods: {
-			async getUserInvestDetail() {
-				const { data, } = await this.$api.getUserInvestDetail()
-				this.underWayList = data?.underWayList || []
-				this.finishList = data?.finishList || []
-			},
+			unixTimeToDate,
 			switchTab(tab) {
 				this.currentTab = tab;
-				this.data = tab === 1 ? this.underWayList : this.finishList
-			}
+				this.list = []
+				this.getUserInvestDetail()
+			},
+			async getUserInvestDetail() {
+				this.loadingText = this.$t('system.loading')
+				uni.showNavigationBarLoading()
+				const { data, } = await this.$api.getUserInvestDetail({ status: this.currentTab - 1, })
+				this.canFresh = data?.details?.length === 10
+
+				if(data?.details?.length < 10){
+					this.loadingText = this.$t('system.load-finish')
+				} else {
+					this.loadingText = this.$t('system.load-more')
+				}
+				this.list = data?.details || []
+				uni.hideNavigationBarLoading();
+			},
+			// 加载分页数据
+			async getMoreUserInvestDetail(lastId) {
+				this.loadingText = this.$t('system.loading')
+				uni.showNavigationBarLoading()
+				const { data, } = await this.$api.getUserInvestDetail({
+					status: this.currentTab - 1,
+					lastId,
+				})
+				this.canFresh = data?.details?.length === 10
+				
+				if(data?.details?.length < 10){
+					this.loadingText = this.$t('system.load-finish')
+				} else {
+					this.loadingText = this.$t('system.load-more')
+				}
+				this.list = data?.details || []
+				uni.hideNavigationBarLoading();
+			},
+			// 上拉加载
+			onReachBottom() {
+				if (this.canFresh) {
+					const lastId = this.list[this.list.length - 1]?.id
+					lastId && this.getMoreUserInvestDetail(lastId)
+				}
+			},
+			// 复制 订单号
+			async copyText(orderNo) {
+				await copyText(orderNo)
+				uni.showToast({
+					title:"Copied!",
+					icon: 'success'
+				})
+			},
 		}
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .invested {
     display: block;
     background: #fff;
     padding: 16px;
 	box-sizing: border-box;
-}
-
-.invested .tab {
-    background: #fffcf5;
-    border-bottom: 2px solid #b73e31;
-    height: 35px;
-    line-height: 35px;
-    display: flex;
-    text-align: center;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.invested .tab>span {
-    flex: 1;
-    font-weight: 500;
-    font-size: 14px;
-    position: relative;
-    color: #666;
-    cursor: pointer;
-}
-
-.invested .tab>span.cur {
-    background: #b73e31;
-    color: #fff;
-}
-
-.invested .more {
-    text-align: center;
-    padding: 12px 0;
-    color: #999;
-    font-size: 14px;
-	box-sizing: border-box;
+	.tab {
+	    background: #fffcf5;
+	    border-bottom: 2px solid #b73e31;
+	    height: 35px;
+	    line-height: 35px;
+	    display: flex;
+	    text-align: center;
+	    border-radius: 8px;
+	    overflow: hidden;
+		& > span {
+		    flex: 1;
+		    font-weight: 500;
+		    font-size: 14px;
+		    position: relative;
+		    color: #666;
+		    cursor: pointer;
+			&.cur {
+				background: #b73e31;
+				color: #fff;
+			}
+		}
+	}
+	.box{
+		&-list{
+			margin: 15px 0!important;
+			padding: 0!important;
+			/deep/ .uni-card__content{
+				padding: 0!important;
+			}
+			&-title{
+				background: linear-gradient(270deg, #f8504e, #fc8b62);
+				color: #fff;
+				line-height: 26px;
+				font-size: 14px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 7px 15px;
+			}
+			&-row{
+				.uni-col{
+					border-top: 1px solid #EBEEF5;
+					&:first-of-type{
+						border-top: none;
+					}
+					&:nth-of-type(odd) {
+						border-right: 1px solid #EBEEF5;
+					}
+				}
+				.sub-title{
+					padding: 5px 10px 0;
+					border-top: 1px solid #EBEEF5;
+				}
+				.sub-content{
+					padding: 3px 10px 5px;
+					color: #444;
+					font-weight: 500;
+				}
+			}
+		}
+	}
 }
 </style>

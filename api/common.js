@@ -22,8 +22,8 @@ export function getVipLevel() {
 }
 
 // 产品列表
-export function getProducts() {
-	return fly.get('/products').then(res => res)
+export function getProducts(params) {
+	return fly.get('/products', params).then(res => res)
 }
 
 // 产品详情

@@ -38,6 +38,12 @@ export default {
 .container {
     padding: 15px;
 }
+.loading{
+	text-align: center;
+	padding: 12px 0;
+	color: #999;
+	font-size: 14px;
+}
 button {
     margin-bottom: 15px;
 }

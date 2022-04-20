@@ -110,7 +110,7 @@ export default {
 			this.form.amount = this.floatNum(this.userInfo.commAmount)
 		},
 		verifyForm() {
-			// 校验提款金额
+			// 校验投资金额
 			if (this.form.amount < this.floatNum(this.productData.minAmount)){
 				uni.showToast({
 					title: '投资金额不能小于起投金额',

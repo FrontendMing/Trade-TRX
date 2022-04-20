@@ -22,19 +22,19 @@
 					<uni-row class="box-list-row">
 						<uni-col :span="12">
 							<view class="sub-title">投资金额</view>
-							<view class="sub-content">{{item.amount}}</view>
+							<view class="sub-content">{{floatNum(item.amount)}}</view>
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">预计收益</view>
-							<view class="sub-content">{{item.pi}}</view>
+							<view class="sub-content">{{floatNum(item.pi - item.amount)}}</view>
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">每日收益率</view>
-							<view class="sub-content">{{item.interest}}</view>
+							<view class="sub-content">{{floatNum(item.interest, 2)}} %</view>
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">周期</view>
-							<view class="sub-content">{{item.day}}</view>
+							<view class="sub-content">{{item.day}} 天</view>
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">投资时间</view>
@@ -54,7 +54,7 @@
 
 <script>
 	import HeaderBack from '@/components/HeaderBack.vue'
-	import { unixTimeToDate, copyText, } from '@/utils/index.js'
+	import { unixTimeToDate, copyText, floatNum, } from '@/utils/index.js'
 	export default {
 		components: {
 			HeaderBack,
@@ -72,6 +72,7 @@
 		},
 		methods: {
 			unixTimeToDate,
+			floatNum,
 			switchTab(tab) {
 				this.currentTab = tab;
 				this.list = []

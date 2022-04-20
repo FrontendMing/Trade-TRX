@@ -38,7 +38,7 @@
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">投资时间</view>
-							<view class="sub-content">{{item.createdAt}}</view>
+							<view class="sub-content">{{unixTimeToDate(item.createdAt)}}</view>
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">到期时间</view>

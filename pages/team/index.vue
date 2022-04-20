@@ -53,6 +53,8 @@
 					level3Count: 0,
 				},
 				list: [],
+				loadingText: this.$t('system.loading'),
+				canFresh: false,
 			}
 		},
 		onShow() {
@@ -61,18 +63,54 @@
 		},
 		methods: {
 			unixTimeToDate,
-			async getRelations(level) {
-				const { data, } = await this.$api.getRelations({ proxyLevel: level, })
+			switchTab(tab) {
+				this.currentTab = tab
+				this.list = []
+				this.getRelations()
+			},
+			async getRelations() {
+				this.loadingText = this.$t('system.loading')
+				uni.showNavigationBarLoading()
+				const { data, } = await this.$api.getRelations({ proxyLevel: this.currentTab, })
+				this.canFresh = data?.length === 10
+
+				if(data?.length < 10){
+					this.loadingText = this.$t('system.load-finish')
+				} else {
+					this.loadingText = this.$t('system.load-more')
+				}
 				this.list = data || []
+				uni.hideNavigationBarLoading();
+			},
+			// 加载分页数据
+			async getMoreRelations(lastId) {
+				this.loadingText = this.$t('system.loading')
+				uni.showNavigationBarLoading()
+				const { data, } = await this.$api.getRelations({
+					proxyLevel: this.currentTab,
+					lastId,
+				})
+				this.canFresh = data?.length === 10
+			
+				if(data?.length < 10){
+					this.loadingText = this.$t('system.load-finish')
+				} else {
+					this.loadingText = this.$t('system.load-more')
+				}
+				this.list = this.list.concat(data)
+				uni.hideNavigationBarLoading();
+			},
+			// 上拉加载
+			onReachBottom() {
+				if (this.canFresh) {
+					const lastId = this.list[this.list.length - 1]?.id
+					lastId && this.getMoreRelations(lastId)
+				}
 			},
 			async getRelationsCount() {
 				const { data, } = await this.$api.getRelationsCount()
 				this.levelData = Object.assign(this.levelData, data || {})
 			},
-			switchTab(tab) {
-				this.currentTab = tab
-				this.getRelations(tab)
-			}
 		}
 	}
 </script>

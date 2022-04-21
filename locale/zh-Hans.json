@@ -3,6 +3,15 @@
 	"locale.zh-hans": "简体中文",
 	"locale.zh-hant": "繁体中文",
 	"locale.ja": "日语",
+	
+	"system.login": "登录",
+	"system.register": "注册",
+	"system.resetPassword": "重置密码",
+	"system.forgotPassword": "忘记密码",
+	"system.copy": "复制",
+	"system.send": "发送",
+	"system.confirm": "确认",
+	"system.submit": "提交",
 
 	"index.home": "首页",
 	"index.trade": "交易",

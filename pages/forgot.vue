@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back :name="$t('忘记密码')"></header-back>
+		<header-back :name="$t('system.forgotPassword')"></header-back>
 		<view class="dapp">
 			<view class="reset">
 				<view class="items">
@@ -13,7 +13,7 @@
 						</view>
 					</view>
 					<view class="item noline">
-						<button class="btn a" @click="submit">提交</button>
+						<button class="btn a" @click="submit">{{$t('system.submit')}}</button>
 					</view>
 				</view>
 			</view>

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back :name="$t('重置密码')" :hasBack="false"></header-back>
+		<header-back :name="$t('system.resetPassword')" :hasBack="false"></header-back>
 		<view class="dapp">
 			<view class="modify">
 				<view class="inbox">
@@ -11,7 +11,7 @@
 						<input type="password" maxlength="20" v-model="againPass" placeholder="确认新密码">
 					</view>
 					<view class="button">
-						<button @click="submitForm">确认</button>
+						<button @click="submitForm">{{$t('system.confirm')}}</button>
 					</view>
 				</view>
 			</view>

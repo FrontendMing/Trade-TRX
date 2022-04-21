@@ -15,17 +15,17 @@
 					</view>
 					<view v-if="type === 'google'" class="emailcode">
 						<input type="text" value="sadhfsa42321dfsjdiori24" disabled>
-						<view class="send" @click="copyGoogleText">复制</view>
+						<view class="send" @click="copyGoogleText">{{$t('system.copy')}}</view>
 					</view>
 					<view v-if="type === 'google'" class="security">
 						<input type="password" maxlength="32" v-model="googleCode" :placeholder="$t('谷歌验证码')">
 					</view>
 					<view class="emailcode">
 						<input type="number" maxlength="6" v-model="form.code" placeholder="邮件验证码">
-						<view class="send" @click="sendEmailCode">发送</view>
+						<view class="send" @click="sendEmailCode">{{$t('system.send')}}</view>
 					</view>
 					<view class="button">
-						<button @click="submitForm">确认</button>
+						<button @click="submitForm">{{$t('system.confirm')}}</button>
 					</view>
 				</view>
 			</view>

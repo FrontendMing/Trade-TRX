@@ -1,6 +1,6 @@
 <template>
 	<view class="passport">
-		<header-bar :tabName="$t('登录')"></header-bar>
+		<header-bar :tabName="$t('system.login')"></header-bar>
 		<view class="container">
 			<view class="banner">
 				<image src="/static/image/passport_bg.png"></image>
@@ -31,13 +31,13 @@
 						<switch :checked="remember" @change="e => remember = e.target.value" color="#B73E31"/>记住&自动登录
 					</view>
 					<view class="item noline">
-						<button class="btn a" type="default" @click="login">登录</button>
+						<button class="btn a" type="default" @click="login">{{$t('system.login')}}</button>
 					</view>
 					<view class="item noline">
-						<button class="txt a" type="default" @click="register">注册</button>
+						<button class="txt a" type="default" @click="register">{{$t('system.register')}}</button>
 					</view>
 				</view>
-				<view class="bottomlink" @click="forget">忘记密码</view>
+				<view class="bottomlink" @click="forget">{{$t('system.forgotPassword')}}</view>
 			</view>
 		</view>
 	</view>

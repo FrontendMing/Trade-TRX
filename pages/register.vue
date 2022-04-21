@@ -1,6 +1,6 @@
 <template>
 	<view class="passport">
-		<header-bar :tabName="$t('注册')"></header-bar>
+		<header-bar :tabName="$t('system.register')"></header-bar>
 		<view class="container">
 			<view class="banner">
 				<image src="/static/image/passport_bg.png"></image>
@@ -48,10 +48,10 @@
 						</view>
 					</view>
 					<view class="item noline">
-						<button class="btn a" type="default" @click="register">注册</button>
+						<button class="btn a" type="default" @click="register">{{$t('system.register')}}</button>
 					</view>
 					<view class="item noline">
-						<button class="txt a" type="default" @click="login">登录</button>
+						<button class="txt a" type="default" @click="login">{{$t('system.login')}}</button>
 					</view>
 				</view>
 			</view>

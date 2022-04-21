@@ -40,6 +40,24 @@
 <script>
 import HeaderBack from '@/components/HeaderBack.vue'
 import { floatNum, unixTimeToDate, } from '@/utils/index.js'
+
+const FINANCE_TYPE = {
+	0: '注册礼金',
+	1: '佣金充币',
+	2: '基础充币',
+	3: '佣金提币',
+	4: '基础提币',
+	5: '佣金分红',
+	6: '挖矿收益',
+	7: '佣金转到基础账户',
+	8: '基础转到佣金账户',
+	9: '佣金投资产品',
+	1: '0邀请注册返利',
+	11: '下线用户充值',
+	12: '下线用户挖矿收益',
+	13: '佣金提币拨回',
+	14: '基础提币拨回',
+}
 export default {
 	components: {
 		HeaderBack

@@ -157,7 +157,7 @@
 			margin-bottom: 0;
 		}
 		.thumb {
-			width: 55%;
+			width: 47%;
 			box-sizing: border-box;
 			& > uni-image {
 				width: 100%;
@@ -167,7 +167,7 @@
 			}
 		}
 		.intro {
-			width: 42%;
+			width: 50%;
 			color: #eee;
 			box-sizing: border-box;
 			& > p {

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view :style="style">
-			<view class="header" :style="{'height': customBarH + 'px', 'padding-top': statusBarH + 'px'}">
+			<view class="header" :style="{'height': customBarH + 10 + 'px', 'padding-top': statusBarH + 'px'}">
 				<view class="header-logo">
 					<image mode="heightFix" src="../static/image/logo.png"/>
 					<text>{{tabName}}</text>
@@ -70,7 +70,7 @@ export default {
 			return tar?.text || '';
 		},
 		style() {
-			let _style = `height: ${this.customBarH}px;`
+			let _style = `height: ${this.customBarH + 10}px;`
 			return _style
 		}
 	},

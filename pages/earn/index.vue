@@ -43,21 +43,22 @@ import HeaderBack from '@/components/HeaderBack.vue'
 import { floatNum, unixTimeToDate, } from '@/utils/index.js'
 
 const FINANCE_TYPE = {
-	0: '注册礼金',
-	1: '佣金充币',
-	2: '基础充币',
-	3: '佣金提币',
-	4: '基础提币',
-	5: '佣金分红',
-	6: '挖矿收益',
-	7: '佣金转到基础账户',
-	8: '基础转到佣金账户',
-	9: '佣金投资产品',
-	10: '邀请注册返利',
-	11: '下线用户充值',
-	12: '下线用户挖矿收益',
-	13: '佣金提币拨回',
-	14: '基础提币拨回',
+	0: '全部',
+	1: '注册礼金',
+	2: '佣金充币',
+	3: '基础充币',
+	4: '佣金提币',
+	5: '基础提币',
+	6: '佣金分红',
+	7: '挖矿收益',
+	8: '佣金转到基础账户',
+	9: '基础转到佣金账户',
+	10: '佣金投资产品',
+	11: '邀请注册返利',
+	12: '下线用户充值',
+	13: '下线用户挖矿收益',
+	14: '佣金提币拨回',
+	15: '基础提币拨回',
 }
 export default {
 	components: {
@@ -81,7 +82,9 @@ export default {
 		async getTradeDetail() {
 			this.loadingText = this.$t('system.loading')
 			uni.showNavigationBarLoading()
-			const { data, } = await this.$api.getTradeDetail({ tradeType: this.tradeType, })
+			const { data, } = await this.$api.getTradeDetail({
+				tradeType: this.tradeType ? this.tradeType - 1 : '',
+			})
 			this.canFresh = data?.length === 10
 
 			if(data?.length < 10){
@@ -98,7 +101,7 @@ export default {
 			uni.showNavigationBarLoading()
 			const { data, } = await this.$api.getTradeDetail({
 				lastId,
-				tradeType: this.tradeType,
+				tradeType: this.tradeType ? this.tradeType - 1 : '',
 			})
 			this.canFresh = data?.length === 10
 
@@ -119,7 +122,7 @@ export default {
 		},
 		bindPickerChange(e) {
 			this.list = []
-			this.tradeType = e.detail.value
+			this.tradeType = e.detail.value !== 0 ? e.detail.value : ''
 			this.getTradeDetail()
 		},
 	},

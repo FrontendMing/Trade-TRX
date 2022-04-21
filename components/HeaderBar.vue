@@ -38,10 +38,6 @@ export default {
 			type: String,
 			required: true,
 		},
-		refreshNotice: {
-			type: Boolean,
-			default: true,
-		}
 	},
 	data() {
 		return {
@@ -77,9 +73,6 @@ export default {
 			let _style = `height: ${this.customBarH}px;`
 			return _style
 		}
-	},
-	created() {
-		// this.refreshNotice && this.getNoticeData()
 	},
 	methods: {
 		changeLanguage() {
@@ -169,7 +162,6 @@ export default {
 		}
 	}
 }
-
 .popup-dialog{
 	width: 50vw;
 	height: 170px;

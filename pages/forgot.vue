@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back :name="$t('忘记密码')"></header-back>
+		<header-back :name="$t('forgot.forgetpass')"></header-back>
 		<view class="dapp">
 			<view class="reset">
 				<view class="items">
@@ -9,11 +9,11 @@
 							<uni-icons type="email" size="20"></uni-icons>
 						</view>
 						<view class="text">
-							<input type="text" v-model="email" placeholder="邮箱地址"/>
+							<input type="text" v-model="email" :placeholder="$t('forgot.mailaddr')"/>
 						</view>
 					</view>
 					<view class="item noline">
-						<button class="btn a" @click="submit">提交</button>
+						<button class="btn a" @click="submit">{{$t('forgot.submit')}}</button>
 					</view>
 				</view>
 			</view>

@@ -32,8 +32,8 @@
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-if="safePassType" v-model="form.safePass" type="password" placeholder="安全密码"/>
-							<input v-else v-model="form.safePass" type="text" maxlength="32" placeholder="安全密码"/>
+							<input v-if="safePassType" v-model="form.safePass" type="password" :placeholder="$t('regi.safepass')"/>
+							<input v-else v-model="form.safePass" type="text" maxlength="32" :placeholder="$t('regi.safepass')"/>
 						</view>
 						<view class="show">
 							<uni-icons type="eye" size="22" @click="safePassType = !safePassType"></uni-icons>
@@ -44,14 +44,14 @@
 							<uni-icons type="mail-open" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-model="form.inviteCode" type="text" maxlength="6" placeholder="邀请码"/>
+							<input v-model="form.inviteCode" type="text" maxlength="6" :placeholder="$t('regi.invitecode')"/>
 						</view>
 					</view>
 					<view class="item noline">
-						<button class="btn a" type="default" @click="register">注册</button>
+						<button class="btn a" type="default" @click="register">{{$t('regi.reg')}}</button>
 					</view>
 					<view class="item noline">
-						<button class="txt a" type="default" @click="login">登录</button>
+						<button class="txt a" type="default" @click="login">{{$t('regi.log')}}</button>
 					</view>
 				</view>
 			</view>

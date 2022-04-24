@@ -1,17 +1,17 @@
 <template>
 	<view>
-		<header-back :name="$t('重置密码')" :hasBack="false"></header-back>
+		<header-back :name="$t('reset.resetpass')" :hasBack="false"></header-back>
 		<view class="dapp">
 			<view class="modify">
 				<view class="inbox">
 					<view  class="security">
-						<input type="password" maxlength="20" v-model="form.password" placeholder="输入新密码">
+						<input type="password" maxlength="20" v-model="form.password" :placeholder="$t('reset.newpass')">
 					</view>
 					<view class="security">
-						<input type="password" maxlength="20" v-model="againPass" placeholder="确认新密码">
+						<input type="password" maxlength="20" v-model="againPass" :placeholder="$t('reset.confirmpass')">
 					</view>
 					<view class="button">
-						<button @click="submitForm">确认</button>
+						<button @click="submitForm">{{$t('reset.confirm')}}</button>
 					</view>
 				</view>
 			</view>

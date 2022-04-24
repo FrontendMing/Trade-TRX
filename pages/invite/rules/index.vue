@@ -1,35 +1,35 @@
 <template>
 	<view>
-		<header-back :name="$t('VIP等级')"></header-back>
+		<header-back :name="$t('rule.viplevel')"></header-back>
 		<view class="dapp">
 			<view class="vip">
 				<view class="invip">
 					<view class="vinfo">
 						<view class="curvip">
-							当前等级
+							{{$t('rule.curlevel')}}
 							<p>{{userInfo.levelName}}</p>
 						</view>
-						<view class="sumdep">TRX充值数量
+						<view class="sumdep">{{$t('rule.depoquantity')}}
 							<p>
 								{{userInfo.basicRecharge}}<label>TRX</label>
 							</p>
 						</view>
-						<view class="upvips" @click="goToTopup">立即升级</view>
+						<view class="upvips" @click="goToTopup">{{$t('rule.upnow')}}</view>
 					</view>
 				</view>
 				<view class="vptabs">
 					<view class="vptabs">
 						<view class="tab">
-							<span :class="{'cur': currentTab === 1}" @click="switchTab(1)">基础</span>
-							<span :class="{'cur': currentTab === 2}" @click="switchTab(2)">返利</span>
+							<span :class="{'cur': currentTab === 1}" @click="switchTab(1)">{{$t('rule.base')}}</span>
+							<span :class="{'cur': currentTab === 2}" @click="switchTab(2)">{{$t('rule.rebate')}}</span>
 						</view>
 						<view class="box">
 							<view v-if="currentTab === 1" class="table">
 								<view class="title">
-									<span>等级</span>
-									<span>充值数量</span>
-									<span>收益</span>
-									<span>日提款</span>
+									<span>{{$t('rule.level')}}</span>
+									<span>{{$t('rule.quantity')}}</span>
+									<span>{{$t('rule.income')}}</span>
+									<span>{{$t('rule.dailywith')}}</span>
 								</view>
 								<ul>
 									<li v-for="(item, index) in basicList" :key="index">
@@ -42,10 +42,10 @@
 							</view>
 							<view v-else class="table">
 								<view class="title">
-									<span>等级</span>
-									<span>邀请返利</span>
-									<span>充值返利</span>
-									<span>挖矿返利</span>
+									<span>{{$t('rule.level')}}</span>
+									<span>{{$t('rule.invirebate')}}</span>
+									<span>{{$t('rule.deporebate')}}</span>
+									<span>{{$t('rule.tradrebate')}}</span>
 								</view>
 								<ul>
 									<li v-for="(item, index) in bounsList" :key="index">
@@ -71,8 +71,8 @@
 						</view>
 					</view>
 				</view>
-				<view class="vptip">如有任何问题，请联系我们
-					<span>在线客服</span>.
+				<view class="vptip">{{$t('rule.contus')}}
+					<span>{{$t('rule.custservice')}}</span>.
 				</view>
 			</view>
 		</view>

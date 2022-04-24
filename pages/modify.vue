@@ -5,27 +5,27 @@
 			<view class="modify">
 				<view class="inbox">
 					<view v-if="type !== 'google'" class="security">
-						<input type="password" maxlength="32" v-model="form.oldPass" :placeholder="oldPwdPlaceholder">
+						<input type="password" maxlength="32" v-model="form.oldPass" :placeholder="$t('modi.oldpass')">
 					</view>
 					<view v-if="type !== 'google'" class="security">
-						<input type="password" maxlength="32" v-model="form.newPass" :placeholder="newPwdPlaceholder">
+						<input type="password" maxlength="32" v-model="form.newPass" :placeholder="$t('modi.newpass')">
 					</view>
 					<view v-if="type !== 'google'" class="security">
-						<input type="password" maxlength="32" v-model="againPass" placeholder="确认新密码">
+						<input type="password" maxlength="32" v-model="againPass" :placeholder="$t('modi.confirmpass')">
 					</view>
 					<view v-if="type === 'google'" class="emailcode">
 						<input type="text" value="sadhfsa42321dfsjdiori24" disabled>
-						<view class="send" @click="copyGoogleText">复制</view>
+						<view class="send" @click="copyGoogleText">{{$t('modi.copy')}}</view>
 					</view>
 					<view v-if="type === 'google'" class="security">
-						<input type="password" maxlength="32" v-model="googleCode" :placeholder="$t('谷歌验证码')">
+						<input type="password" maxlength="32" v-model="googleCode" :placeholder="$t('modi.googlecode')">
 					</view>
 					<view class="emailcode">
-						<input type="number" maxlength="6" v-model="form.code" placeholder="邮件验证码">
-						<view class="send" @click="sendEmailCode">发送</view>
+						<input type="number" maxlength="6" v-model="form.code" :placeholder="$t('modi.mailcode')">
+						<view class="send" @click="sendEmailCode">{{$t('modi.send')}}</view>
 					</view>
 					<view class="button">
-						<button @click="submitForm">确认</button>
+						<button @click="submitForm">{{$t('modi.confirm')}}</button>
 					</view>
 				</view>
 			</view>

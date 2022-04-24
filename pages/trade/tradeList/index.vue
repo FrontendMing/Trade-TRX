@@ -4,19 +4,19 @@
 		<view class="earnbox">
 			<view class="inbox">
 				<view class="inlist">
-					<view class="tit">交易清单</view>
+					<view class="tit">{{$t('tradel.tradinglist')}}</view>
 					<view class="box">
 						<dl>
-							<dt><span>日期</span><span>金额</span></dt>
+							<dt><span>{{$t('tradel.date')}}</span><span>{{$t('tradel.amount')}}</span></dt>
 							<dd v-for="(item,index) in list" :key="index">
 								<view>{{unixTimeToDate(item.createTime)}}
-									<p>量化交易收入</p>
+									<p>{{$t('tradel.revenue')}}</p>
 								</view>
 								<view>{{floatNum(item.amount)}} TRX
 									<p>
-										<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">收取</span>
-										<span v-if="item.status === 1 && !item.isExpired">已收取</span>
-										<span v-if="item.isExpired">已过期</span>
+										<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">{{$t('tradel.receive')}}</span>
+										<span v-if="item.status === 1 && !item.isExpired">{{$t('tradel.received')}}</span>
+										<span v-if="item.isExpired">{{$t('tradel.expired')}}</span>
 									</p>
 								</view>
 							</dd>

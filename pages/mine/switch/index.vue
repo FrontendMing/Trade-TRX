@@ -1,46 +1,46 @@
 <template>
 	<view>
-		<header-back :name="$t('资金转账')"></header-back>
+		<header-back :name="$t('swit.fundtrans')"></header-back>
 		<view class="dapp">
 			<view class="withdraw">
 				<view class="inbox">
 					<view class="tantab">
-						<view :class="{'cur' : currentTab === '1'}" @click="switchTab('1')">转到基础账户</view>
-						<view :class="{'cur' : currentTab === '2'}" @click="switchTab('2')">转到佣金账户</view>
+						<view :class="{'cur' : currentTab === '1'}" @click="switchTab('1')">{{$t('swit.tobasic')}}</view>
+						<view :class="{'cur' : currentTab === '2'}" @click="switchTab('2')">{{$t('swit.topromo')}}</view>
 					</view>
 					<view class="account" v-if="currentTab === '1'">
-						<view class="">佣金账户<p>{{floatNum(commissionData.commAmount)}}<label>TRX</label>
+						<view class="">{{$t('swit.promoacc')}}<p>{{floatNum(commissionData.commAmount)}}<label>TRX</label>
 							</p>
 							<view class="icon">
 								<uni-icons type="forward" color="#fff" size="24"></uni-icons>
 							</view>
 						</view>
-						<view>基础账户<p>{{floatNum(basicData.basicAmount)}}<label>TRX</label>
+						<view>{{$t('swit.basicacc')}}<p>{{floatNum(basicData.basicAmount)}}<label>TRX</label>
 							</p>
 						</view>
 					</view>
 
 					<view class="account" v-if="currentTab === '2'">
-						<view class="s">基础账户<p>{{floatNum(basicData.basicAmount)}}<label>TRX</label>
-							</p>转账限额<p>{{floatNum(basicData.surplusAmount)}}<label>TRX</label>
+						<view class="s">{{$t('swit.basicacc')}}<p>{{floatNum(basicData.basicAmount)}}<label>TRX</label>
+							</p>{{$t('swit.translimit')}}<p>{{floatNum(basicData.surplusAmount)}}<label>TRX</label>
 							</p>
 							<view class="icon">
 								<uni-icons type="forward" color="#fff" size="24"></uni-icons>
 							</view>
 						</view>
-						<view>佣金账户
+						<view>{{$t('swit.promoacc')}}
 							<p>{{floatNum(commissionData.commAmount)}}<label>TRX</label></p>
 						</view>
 					</view>
 					<view class="number">
-						<input type="digit" v-model="amount" placeholder="转换数量"/>
-						<view class="max" @click="getNum">全部</view>
+						<input type="digit" v-model="amount" :placeholder="$t('swit.quantity')"/>
+						<view class="max" @click="getNum">{{$t('swit.max')}}</view>
 					</view>
 					<view class="security">
-						<input type="password" v-model="password" maxlength="32" placeholder="输入您的安全密码">
+						<input type="password" v-model="password" maxlength="32" :placeholder="$t('swit.secupass')">
 					</view>
 					<view class="button">
-						<button @click="submit">确认</button>
+						<button @click="submit">{{$t('swit.confirm')}}</button>
 					</view>
 				</view>
 			</view>

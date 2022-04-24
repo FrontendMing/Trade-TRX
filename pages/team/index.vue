@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back :name="$t('团队')"></header-back>
+		<header-back :name="$t('team.team')"></header-back>
 		<view class="earnbox">
 			<view class="inbox">
 				<view class="isbox">
@@ -22,15 +22,15 @@
 				<view class="isbox">
 					<dl>
 						<dt>
-							<span>账户</span>
-							<span>加入时间</span>
+							<span>{{$t('team.account')}}</span>
+							<span>{{$t('team.time')}}</span>
 						</dt>
 						<dd v-for="(item,index) in list" :key="index">
 							<span>{{item.email}}</span>
 							<span>{{unixTimeToDate(item.joinTime)}}</span>
 						</dd>
 					</dl>
-					<view v-if="!list.length" class="more">没有数据</view>
+					<view v-if="!list.length" class="more">{{$t('team.nodata')}}</view>
 				</view>
 			</view>
 		</view>

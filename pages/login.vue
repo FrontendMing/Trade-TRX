@@ -20,24 +20,24 @@
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-if="inputType" v-model="form.password" type="password" placeholder="登录密码"/>
-							<input v-else v-model="form.password" type="text" placeholder="登录密码"/>
+							<input v-if="inputType" v-model="form.password" type="password" :placeholder="$t('login.logpass')"/>
+							<input v-else v-model="form.password" type="text" :placeholder="$t('login.logpass')"/>
 						</view>
 						<view class="show">
 							<uni-icons type="eye" size="22" @click="inputType = !inputType"></uni-icons>
 						</view>
 					</view>
 					<view class="item noline ra">
-						<switch :checked="remember" @change="e => remember = e.target.value" color="#B73E31"/>记住&自动登录
+						<switch :checked="remember" @change="e => remember = e.target.value" color="#B73E31"/>{{$t('login.remember')}}
 					</view>
 					<view class="item noline">
-						<button class="btn a" type="default" @click="login">登录</button>
+						<button class="btn a" type="default" @click="login">{{$t('login.log')}}</button>
 					</view>
 					<view class="item noline">
-						<button class="txt a" type="default" @click="register">注册</button>
+						<button class="txt a" type="default" @click="register">{{$t('login.reg')}}</button>
 					</view>
 				</view>
-				<view class="bottomlink" @click="forget">忘记密码</view>
+				<view class="bottomlink" @click="forget">{{$t('login.forget')}}</view>
 			</view>
 		</view>
 	</view>

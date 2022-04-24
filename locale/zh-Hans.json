@@ -113,6 +113,91 @@
 	"invDetail.principal": "本金",
 	"invDetail.totintrest": "总本金和收益",
 	"invDetail.estincome": "预计收益",
-	"invDetail.cycdetail": "天，24小时内自动结算"
-
+	"invDetail.cycdetail": "天，24小时内自动结算",
+	
+	"rule.viplevel": "VIP 等级",
+	"rule.curlevel": "当前等级",
+	"rule.depoquantity": "TRX充值数量",
+	"rule.upnow": "立即升级",
+	"rule.base": "基础",
+	"rule.rebate": "返利",
+	"rule.level": "等级",
+	"rule.quantity": "充值数量",
+	"rule.income": "收益",
+	"rule.dailywith": "日提款",
+	"rule.invirebate": "邀请返利",
+	"rule.deporebate": "充值返利",
+	"rule.tradrebate": "挖矿返利",
+	"rule.contus": "如有任何问题，请联系我们",
+	"rule.custservice": "在线客服",
+	
+	"swit.fundtrans": "资金转账",
+	"swit.tobasic": "转到基础账户",
+	"swit.topromo": "转到佣金账户",
+	"swit.promoacc": "佣金账户",
+	"swit.basicacc": "基础账户",
+	"swit.translimit": "转账限额",
+	"swit.quantity": "转换数量",
+	"swit.max": "全部",
+	"swit.secupass": "输入您的安全密码",
+	"swit.confirm": "确认",
+	
+	
+	"team.team": "团队",
+	"team.account": "账户",
+	"team.time": "加入时间",
+	"team.nodata": "没有数据",
+	
+	
+	"topu.deposit": "充值",
+	"topu.tobasacc": "转到基础账户",
+	"topu.toproacc": "转到佣金账户",
+	"topu.twomodes": "投资分为两种模式",
+	"topu.mode1": "1：每天按照协调世界时（UTC）（24:00后）充值到基本账户并获得收益。",
+	"topu.mode2": "2：充值到佣金账户，可按不同周期收取收益，到期返还本金和收益。",
+	"topu.notes": "注释：",
+	"topu.notedetail": "投资前，请根据您的投资需求选择基本账户或推广账户进行投资。 请务必等待账户充值。 这是一个非常关键的问题。",
+	"topu.address": "地址",
+	"topu.copyaddr": "复制地址",
+	"topu.dont": "请不要为其他非TRX资产充值。 充值后约5~10分钟会到账。",
+	"topu.refresh": "如果长时间未到账，请刷新此页面。 最低充值 5TRX，小於 5TRX 無法入賬。",
+	"topu.complete": "充值完成",
+	
+	"tradel.tradinglist": "交易清单",
+	"tradel.date": "日期",
+	"tradel.amount": "金额",
+	"tradel.revenue": "量化交易收入",
+	"tradel.receive": "收取",
+	"tradel.received": "已收取",
+	"tradel.expired": "已过期",
+	
+	"forgot.forgetpass": "忘记密码",
+	"forgot.mailaddr": "邮箱地址",
+	"forgot.submit": "提交",
+	
+	
+	"login.logpass": "登录密码",
+	"login.remember": "记住&自动登录",
+	"login.log": "登录",
+	"login.reg": "注册",
+	"login.forget": "忘记密码",
+	
+	"modi.oldpass": "旧密码",
+	"modi.newpass": "新密码",
+	"modi.confirmpass": "确认新密码",
+	"modi.copy": "复制",
+	"modi.googlecode": "谷歌验证码",
+	"modi.mailcode": "邮件验证码",
+	"modi.send": "发送",
+	"modi.confirm": "确认",
+	
+	"regi.safepass": "安全密码",
+	"regi.invitecode": "邀请码",
+	"regi.reg": "注册",
+	"regi.log": "登录",
+	
+	"reset.resetpass": "重置密码",
+	"reset.newpass": "输入新密码",
+	"reset.confirmpass": "确认新密码",
+	"reset.confirm": "确认"
 }

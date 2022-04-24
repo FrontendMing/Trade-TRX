@@ -1,26 +1,26 @@
 <template>
 	<view>
-		<header-back :name="$t('充值')"></header-back>
+		<header-back :name="$t('topu.deposit')"></header-back>
 		<view class="deposit">
 			<view v-if="!currentTab" class="choose">
 				<view class="base" @click="switchTab(1)">
 					<view class="icon">
 						<image src="/static/image/base.png" mode="widthFix"></image>
 					</view>
-					<view class="name">转到基础账户</view>
+					<view class="name">{{$t('topu.tobasacc')}}</view>
 				</view>
 				<view class="pomo" @click="switchTab(2)">
 					<view class="icon">
 						<image src="/static/image/pomo.png" mode="widthFix"></image>
 					</view>
-					<view class="name">转到佣金账户</view>
+					<view class="name">{{$t('topu.toproacc')}}</view>
 				</view>
 			</view>
 			<view v-if="!currentTab" class="notes">
-				<view class="tit">投资分为两种模式</view>
-				<view class="txt">1：每天按照协调世界时（UTC）（24:00后）充值到基本账户并获得收益。</view>
-				<view class="txt">2：充值到佣金账户，可按不同周期收取收益，到期返还本金和收益。</view>
-				<view class="txt">注释：<p>投资前，请根据您的投资需求选择基本账户或推广账户进行投资。 请务必等待账户充值。 这是一个非常关键的问题。</p>
+				<view class="tit">{{$t('topu.twomodes')}}</view>
+				<view class="txt">{{$t('topu.mode1')}}</view>
+				<view class="txt">{{$t('topu.mode2')}}</view>
+				<view class="txt">{{$t('topu.notes')}}<p>{{$t('topu.notedetail')}}</p>
 				</view>
 			</view>
 			<!-- 二维码页 -->
@@ -29,20 +29,20 @@
 					<view class="img">
 						<uqrcode ref="uQRCode" :text="userInfo.walletAddress" :size="138"/>
 					</view>
-					<p>地址</p>
+					<p>{{$t('topu.address')}}</p>
 				</view>
 				<view class="address">
 					<view class="sadd">
 						<input type="text" :value="userInfo.walletAddress" disabled/>
-						<view class="btn" @click="copyText">复制地址</view>
+						<view class="btn" @click="copyText">{{$t('topu.copyaddr')}}</view>
 					</view>
 					<view class="stip">
-						<p>请不要为其他非TRX资产充值。 充值后约5~10分钟会到账。</p>
-						<p class="red">如果长时间未到账，请刷新此页面。 最低充值 5TRX，小於 5TRX 無法入賬。</p>
+						<p>{{$t('topu.dont')}}</p>
+						<p class="red">{{$t('topu.refresh')}}</p>
 					</view>
 				</view>
 				<view class="realpush">
-					<button @click="submit">充值完成</button>
+					<button @click="submit">{{$t('topu.complete')}}</button>
 				</view>
 			</view>
 		</view>

@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<header-bar :tabName="userInfo.email || ''"></header-bar>
-		<view class="container">
-			<view class="mine">
+		<view class="mine">
+			<view class="mine-content">
 				<view class="logo">
 					<image src="/static/image/mine_logo.png" mode="widthFix"></image>
 				</view>
 				<view class="level">
-					<label for="">{{userInfo.levelName}}</label>
+					<label class="level-label">{{userInfo.levelName}}</label>
 				</view>
 				<view class="balance">
 					<span>{{$t('mine.totalBalance')}}:</span>
@@ -154,143 +154,155 @@
 	}
 </script>
 
-<style scoped>
-.container {
+<style lang="scss" scoped>
+.mine {
 	background: #fff url(/static/image/mine_banner.png) no-repeat top;
 	background-size: 100%;
 	padding: 210px 16px 16px;
-}
-.mine {
-	box-sizing: border-box;
-	margin-top: -100px;
-}
-.logo {
-	display: block;
-	text-align: center;
-}
-.logo>image {
-	width: 119px;
-}
-.mine .level {
-	justify-content: center;
-	display: flex;
-	align-items: center;
-}
-.mine .balance {
-	overflow: hidden;
-	margin-top: 18px;
-	justify-content: center;
-	display: flex;
-	align-items: center;
-}
-.mine .balance>strong {
-	font-size: 22px;
-	color: #b73e31;
-	margin: 0 6px;
-	line-height: 1;
-}
-.mine .balance>span {
-	color: #999;
-	font-size: 15px;
-	font-weight: 500;
-}
-.mine .balance>em {
-	font-style: normal;
-	font-weight: 700;
-	color: #2a2a2a;
-	font-size: 15px;
-}
-.mine .rock {
-	display: flex;
-	width: 100%;
-	align-items: center;
-	padding: 10px 0;
-	background: #fff4f4;
-	border-radius: 10px;
-	margin-top: 12px;
-}
-.mine .rock>view {
-	flex: 1;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	transition: opacity .2s ease 0s;
-}
-.rock>view>image {
-	height: 38px;
-	width: 32px;
-}
-.rock>view>span {
-	margin-left: 6px;
-	font-size: 15px;
-	font-weight: 500;
-}
-.quantity {
-	overflow: hidden;
-	padding: 32px 18px 0 18px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.quantity h2 {
-	font-size: 16px;
-	padding-bottom: 16px;
-}
-.quantity p {
-	line-height: 1.5;
-	color: #999;
-	font-size: 13px;
-}
-.quantity h3 {
-	padding-bottom: 16px;
-	color: #b73e31;
-}
-
-.quantity h3>strong {
-	font-size: 22px;
-}
-.quantity h3>uni-label {
-	font-size: 14px;
-	margin-left: 6px;
-}
-.quantity image {
-	width: 207px;
-}
-.service ul {
-	list-style: none;
-	padding: 0;
-}
-.service ul li {
-	width: 33.333%;
-	float: left;
-	display: flex;
-	flex-direction: column;
-	text-align: center;
-	align-items: center;
-	padding: 16px 0;
-	transition: opacity .2s ease 0s;
-	cursor: pointer;
-}
-.service {
-	overflow: hidden;
-	padding: 12px 12px 0 12px;
-	display: block;
-	background: #ff575e;
-	color: #fff;
-	margin-top: 12px;
-	border-radius: 12px;
-}
-.service li image {
-	width: 50%;
-	height: 50%;
-	margin: auto;
-}
-.mine .service .box>ul>li>p {
-	font-weight: 500;
-	padding-top: 9px;
-	font-size: 13px;
-	min-height: 40px;
+	&-content{
+		box-sizing: border-box;
+		margin-top: -100px;
+		.logo {
+			display: block;
+			text-align: center;
+			&>image {
+				width: 119px;
+			}
+		}
+		.level {
+			justify-content: center;
+			display: flex;
+			align-items: center;
+			&-label{
+				padding: 3px 9px;
+				background: linear-gradient(1turn,#741e15,#b73e31);
+				color: #fff;
+				border-radius: 12px;
+				font-size: 14px;
+				font-weight: 700;
+			}
+		}
+		.balance {
+			overflow: hidden;
+			margin-top: 18px;
+			justify-content: center;
+			display: flex;
+			align-items: center;
+			&>strong {
+				font-size: 22px;
+				color: #b73e31;
+				margin: 0 6px;
+				line-height: 1;
+			}
+			&>span {
+				color: #999;
+				font-size: 15px;
+				font-weight: 500;
+			}
+			&>em {
+				font-style: normal;
+				font-weight: 700;
+				color: #2a2a2a;
+				font-size: 15px;
+			}
+		}
+		.rock {
+			display: flex;
+			width: 100%;
+			align-items: center;
+			padding: 10px 0;
+			background: #fff4f4;
+			border-radius: 10px;
+			margin-top: 12px;
+			&>view {
+				flex: 1;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: opacity .2s ease 0s;
+				&>image {
+					height: 38px;
+					width: 32px;
+				}
+				&>span {
+					margin-left: 6px;
+					font-size: 15px;
+					font-weight: 500;
+				}
+			}
+		}
+		.quantity {
+			overflow: hidden;
+			padding: 32px 18px 0 18px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			h2 {
+				font-size: 16px;
+				padding-bottom: 16px;
+			}
+			p {
+				line-height: 1.5;
+				color: #999;
+				font-size: 13px;
+			}
+			h3 {
+				padding-bottom: 16px;
+				color: #b73e31;
+				&>strong {
+					font-size: 22px;
+				}
+				&>uni-label {
+					font-size: 14px;
+					margin-left: 6px;
+				}
+			}
+			image {
+				width: 207px;
+			}
+		}
+		.service {
+			overflow: hidden;
+			padding: 12px 12px 0 12px;
+			display: block;
+			background: #ff575e;
+			color: #fff;
+			margin-top: 12px;
+			border-radius: 12px;
+			ul {
+				list-style: none;
+				padding: 0;
+				li {
+					width: 33.333%;
+					float: left;
+					display: flex;
+					flex-direction: column;
+					text-align: center;
+					align-items: center;
+					padding: 16px 0;
+					transition: opacity .2s ease 0s;
+					cursor: pointer;
+					image {
+						width: 50%;
+						height: 50%;
+						margin: auto;
+					}
+					p{
+						font-weight: 500;
+						padding-top: 9px;
+						font-size: 13px;
+					}
+				}
+			}
+			.box>ul>li>p {
+				font-weight: 500;
+				padding-top: 9px;
+				font-size: 13px;
+				min-height: 40px;
+			}
+		}
+	}
 }
 </style>

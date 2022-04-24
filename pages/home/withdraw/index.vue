@@ -59,7 +59,7 @@
 						<input type="password" v-model="form.safePass" :placeholder="$t('widtdraw.safeword')">
 					</view>
 					<view class="button">
-						<button @click="submit">{{$t('widtdraw.confirm')}}</button>
+						<button @click="submit">{{$t('system.confirm')}}</button>
 					</view>
 				</view>
 			</view>

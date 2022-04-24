@@ -35,9 +35,6 @@ export default {
 
 <style>
 @import "@/static/style/uniicons.css";
-.container {
-    padding: 15px;
-}
 .loading{
 	text-align: center;
 	padding: 12px 0;

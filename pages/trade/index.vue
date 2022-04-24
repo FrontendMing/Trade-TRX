@@ -1,9 +1,11 @@
 <template>
 	<view>
 		<header-bar :tabName="$t('index.trade')"></header-bar>
-		<view class="container trade">
+		<view class="trade">
 			<view class="rate">+{{floatNum(userInfo.earnings, 2)}}%</view>
-			<view class="level">{{userInfo.levelName}}</view>
+			<view class="level">
+				<label class="level-label">{{userInfo.levelName}}</label>
+			</view>
 			<view class="wkbg">
 				<image mode="aspectFit" src="/static/image/pool_bg.png"/>
 			</view>
@@ -83,108 +85,115 @@ export default {
 
 <style lang="scss" scoped>
 .trade{
-	padding: 15px 0 0 0;
-}
-.rate {
-	font-size: 21px;
-	text-align: center;
-	font-weight: 700;
-	color: #2a2a2a;
-	padding: 24px 0 6px 0;
-}
-.level {
-	justify-content: center;
-	display: flex;
-	align-items: center;
-}
-.wkbg {
-	display: flex;
-	flex-direction: column;
-}
-.wkbg>image {
-	margin: 7px auto;
-	width: 88%;
-}
-.status {
-	text-align: center;
-}
-.tit {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	height: 33px;
-	font-size: 19px;
-	font-weight: 700;
-	margin-bottom: 22px;
-}
-.tit>span {
-	font-size: 14px;
-	font-weight: 400;
-	color: #999;
-	margin-right: 11px;
-	cursor: pointer;
-}
-.trading {
-	padding: 33px 16px;
-	overflow: hidden;
-	padding-left: 33px;
-}
-.trade-list {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 33px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 64px;
-	border-radius: 15px;
-	padding-left: 23px;
-	position: relative;
-	&:nth-of-type(odd) {
-		background: #fff4f3;
+	.rate {
+		font-size: 21px;
+		text-align: center;
+		font-weight: 700;
+		color: #2a2a2a;
+		padding: 24px 0 6px 0;
 	}
-	&-image{
-		width: 52px;
-		position: absolute;
-		top: 0;
-		left: 0;
-		image{
-			width: 100%;
+	.level {
+		justify-content: center;
+		display: flex;
+		align-items: center;
+		&-label{
+			padding: 3px 9px;
+			background: linear-gradient(1turn,#741e15,#b73e31);
+			color: #fff;
+			border-radius: 10px;
+			font-size: 12px;
+			font-weight: 700;
 		}
 	}
-	&-left {
-		padding-left: 54px;
-		font-size: 14px;
-		font-weight: 500;
+	.wkbg {
 		display: flex;
 		flex-direction: column;
-		&>p{
-			font-size: 12px;
-			color: #999;
-			padding-top: 6px;
-			strong{
-				color: #b73e31;
-				margin-right: 6px;
-			}
-			span{
-				font-weight: bold;
-				font-size: 13px;
-				color: #2a2a2a;
+	}
+	.wkbg>image {
+		margin: 7px auto;
+		width: 88%;
+	}
+	.status {
+		text-align: center;
+	}
+	.tit {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 33px;
+		font-size: 19px;
+		font-weight: 700;
+		margin-bottom: 22px;
+	}
+	.tit>span {
+		font-size: 14px;
+		font-weight: 400;
+		color: #999;
+		margin-right: 11px;
+		cursor: pointer;
+	}
+	.trading {
+		padding: 33px 16px;
+		overflow: hidden;
+		padding-left: 33px;
+	}
+	.trade-list {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 33px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 64px;
+		border-radius: 15px;
+		padding-left: 23px;
+		position: relative;
+		&:nth-of-type(odd) {
+			background: #fff4f3;
+		}
+		&-image{
+			width: 52px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			image{
+				width: 100%;
 			}
 		}
-	}
-	&-right {
-		padding-right: 16px;
-		span {
-			background: linear-gradient(1turn,#909399,#c0c4cc);
-			color: #fff;
-			padding: 6px 12px;
-			display: inline-block;
-			font-size: 12px;
-			border-radius: 12px;
-			&.no-get{
-				background: #b73e31;
+		&-left {
+			padding-left: 54px;
+			font-size: 14px;
+			font-weight: 500;
+			display: flex;
+			flex-direction: column;
+			&>p{
+				font-size: 12px;
+				color: #999;
+				padding-top: 6px;
+				strong{
+					color: #b73e31;
+					margin-right: 6px;
+				}
+				span{
+					font-weight: bold;
+					font-size: 13px;
+					color: #2a2a2a;
+				}
+			}
+		}
+		&-right {
+			padding-right: 16px;
+			span {
+				background: linear-gradient(1turn,#909399,#c0c4cc);
+				color: #fff;
+				padding: 6px 12px;
+				display: inline-block;
+				font-size: 12px;
+				border-radius: 12px;
+				&.no-get{
+					background: #b73e31;
+				}
 			}
 		}
 	}

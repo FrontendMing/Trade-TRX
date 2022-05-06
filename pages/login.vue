@@ -12,7 +12,7 @@
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-model="form.email" type="text" placeholder="邮箱"/>
+							<input v-model="form.email" type="text" :placeholder="$t('login.email')"/>
 						</view>
 					</view>
 					<view class="item">

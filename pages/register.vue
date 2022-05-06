@@ -12,7 +12,7 @@
 							<uni-icons type="email" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-model="form.email" type="text" placeholder="邮箱地址" />
+							<input v-model="form.email" type="text" :placeholder="$t('forgot.mailaddr')" />
 						</view>
 					</view>
 					<view class="item">
@@ -20,8 +20,8 @@
 							<uni-icons type="locked" size="22"></uni-icons>
 						</view>
 						<view class="text">
-							<input v-if="loginPassType" v-model="form.loginPass" type="password" placeholder="登录密码"/>
-							<input v-else v-model="form.loginPass" type="text" maxlength="32" placeholder="登录密码"/>
+							<input v-if="loginPassType" v-model="form.loginPass" type="password" :placeholder="$t('login.logpass')"/>
+							<input v-else v-model="form.loginPass" type="text" maxlength="32" :placeholder="$t('login.logpass')"/>
 						</view>
 						<view class="show">
 							<uni-icons type="eye" size="22" @click="loginPassType = !loginPassType"></uni-icons>

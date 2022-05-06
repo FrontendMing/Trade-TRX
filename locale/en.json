@@ -191,7 +191,7 @@
 "forgot.mailaddr": "email address",
 "forgot.submit": "submit",
 
-
+"login.email": "login email",
 "login.logpass": "login password",
 "login.remember": "remember & automatic login",
 "login.log": "login",

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<header-back :name="$t('提款')"></header-back>
+		<header-back :name="$t('mine.withDraw')"></header-back>
 		<view class="dapp">
 			<view class="withdraw">
 				<view class="inbox">

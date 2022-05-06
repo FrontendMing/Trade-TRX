@@ -172,6 +172,9 @@
 			display: inline-block;
 			font-size: 12px;
 			border-radius: 12px;
+			width: 70px;
+			box-sizing: border-box;
+			text-align: center;
 			&.no-get{
 				background: #b73e31;
 			}

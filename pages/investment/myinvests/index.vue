@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<header-back :name="$t('invest.myinvest')"></header-back>
+		<header-back :name="$t('invest.myInvest')"></header-back>
 		<view class="invested">
 			<view class="tab">
-				<span :class="{'cur': currentTab === 1}" @click="switchTab(1)">进行中</span>
-				<span :class="{'cur': currentTab === 2}" @click="switchTab(2)">已结算</span>
+				<span :class="{'cur': currentTab === 1}" @click="switchTab(1)">{{$t('invest.active')}}</span>
+				<span :class="{'cur': currentTab === 2}" @click="switchTab(2)">{{$t('invest.finished')}}</span>
 			</view>
 			<view class="box">
 				<uni-card
@@ -29,11 +29,11 @@
 							<view class="sub-content">{{floatNum(item.pi - item.amount)}}</view>
 						</uni-col>
 						<uni-col :span="12">
-							<view class="sub-title">每日收益率</view>
+							<view class="sub-title">{{$t('invest.dailyRevenue')}}</view>
 							<view class="sub-content">{{floatNum(item.interest, 2)}} %</view>
 						</uni-col>
 						<uni-col :span="12">
-							<view class="sub-title">周期</view>
+							<view class="sub-title">{{$t('invest.cycle')}}</view>
 							<view class="sub-content">{{item.day}} 天</view>
 						</uni-col>
 						<uni-col :span="12">

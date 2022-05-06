@@ -24,7 +24,7 @@
 										<p>{{item.description}}</p>
 									</view>
 									<view>
-										{{floatNum(item.amount)}} TRX
+										<span>{{floatNum(item.amount)}} TRX</span>
 										<p class="sc">{{$t('earn.complete')}}</p>
 									</view>
 								</dd>
@@ -201,6 +201,7 @@ export default {
 	font-size: 14px;
 	font-weight: 500;
 	display: flex;
+	align-items: flex-end;
 	flex-direction: column;
 }
 
@@ -214,8 +215,8 @@ export default {
 	display: block;
 	background: linear-gradient(1turn,#05680d,#10dd15);
 	color: #fff;
+	width: 80px;
 	height: 22px;
-	padding: 0 6px;
 	line-height: 22px;
 	border-radius: 11px;
 	font-size: 12px;

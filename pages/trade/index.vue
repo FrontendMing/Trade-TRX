@@ -24,7 +24,7 @@
 							<p>{{$t('trade.revenue')}}</p>
 						</view>
 						<view class="trade-list-right">
-							<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">收取</span>
+							<span v-if="item.status === 0 && !item.isExpired" class="no-get" @click="getProfit(item.id)">{{$t('tradel.receive')}}</span>
 							<span v-if="item.status === 1 && !item.isExpired">{{$t('trade.received')}}</span>
 							<span v-if="item.isExpired">{{$t('trade.expired')}}</span>
 						</view>

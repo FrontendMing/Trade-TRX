@@ -306,12 +306,14 @@
 				border-radius: 12px;
 
 				ul {
+					display: flex;
+					flex-wrap: wrap;
+					align-items: flex-start;
 					list-style: none;
 					padding: 0;
 
 					li {
 						width: 33.333%;
-						float: left;
 						display: flex;
 						flex-direction: column;
 						text-align: center;

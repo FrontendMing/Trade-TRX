@@ -53,6 +53,8 @@
   "invest.dailyRevenue":"每日收益率",
   "invest.miniInvest":"起投金額",
   "invest.day":"日",
+  "invest.active": "进行中",
+	"invest.finished": "已完成",
   "trade.tradelist":"交易清單",
   "trade.tradingProfit":"交易利潤",
   "trade.viewAll":"查看全部",

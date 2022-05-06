@@ -52,14 +52,15 @@
 
 
 "invest.investmentDetail": "Investment Product details",
-"Invest.myinvest": "my Investment",
+"invest.myInvest": "my Investment",
 "invest.product": "Investment products",
 "invest.topUp": "recharge",
-"Invest.myInvest": "my Investment",
-"invest.cycle": "cycle",
+"invest.cycle": "Cycle",
 "invest.dailyRevenue": "Daily yield",
-"invest.miniInvest": "initial investment amount",
+"invest.miniInvest": "Starting",
 "invest.day": "Day",
+"invest.active": "Active",
+"invest.finished": "Finished",
 
 "trade.tradelist": "transaction list",
 "trade.tradingProfit": "transaction profit",

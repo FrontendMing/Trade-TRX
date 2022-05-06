@@ -185,6 +185,9 @@
 	  overflow: hidden;
 	  cursor: pointer;
 	  white-space: nowrap;
+	  text-overflow: ellipsis;
+	  padding: 0 8px;
+	  box-sizing: border-box;
 	}
 
 	.withdraw .tantab > uni-view.cur {

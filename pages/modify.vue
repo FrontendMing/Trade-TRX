@@ -56,20 +56,20 @@
 		computed: {
 			tabName({ type, }) {
 				return type === 'login'
-							? this.$t('修改登录密码')
+							? this.$t('modi.loginpass')
 							: type === 'safe'
-								? this.$t('修改安全密码') : this.$t('设置谷歌验证器')
+								? this.$t('modi.safepass') : this.$t('modi.setgoogle')
 			},
 			oldPwdPlaceholder({ type, }) {
 				return type === 'login'
-							? this.$t('旧登录密码')
+							? this.$t('modi.oldlogpass')
 							: type === 'safe'
-								? this.$t('旧安全密码') : ''
+								? this.$t('modi.oldsafpass') : ''
 			},
 			newPwdPlaceholder({ type, }) {
 				return type === 'login'
-							? this.$t('新登录密码')
-							: type === 'safe' ? this.$t('新安全密码') : ''
+							? this.$t('modi.newlogpass')
+							: type === 'safe' ? this.$t('modi.newsafpass') : ''
 			},
 		},
 		onLoad(option) {
@@ -79,7 +79,7 @@
 			async copyGoogleText() {
 				await copyText(this.shareUrl)
 				uni.showToast({
-					title:"Copied!",
+					title: this.$t('modi.copy'),
 					icon: 'success'
 				})
 			},
@@ -90,7 +90,7 @@
 					code: this.form.code,
 				})
 				uni.showToast({
-					title: '邮箱验证码发送成功',
+					title: this.$t('modi.mailcodesuc'),
 					icon: 'success'
 				})
 			},
@@ -98,7 +98,7 @@
 				const oldPwdBool = validatepwd(this.form.oldPass)
 				if (!oldPwdBool) {
 					uni.showToast({
-						title: '旧密码输入有误',
+						title: this.$t('modi.oldpasswrong'),
 						icon: 'error'
 					})
 					return false
@@ -106,7 +106,7 @@
 				const newPwdBool = validatepwd(this.form.newPass)
 				if (!newPwdBool) {
 					uni.showToast({
-						title: '新密码为6-20位的大小写字母或数字',
+						title: this.$t('modi.newpassvalid'),
 						icon: 'error'
 					})
 					return false
@@ -114,21 +114,21 @@
 				const againPwdBool = validatepwd(this.againPass)
 				if (!againPwdBool) {
 					uni.showToast({
-						title: '请再次输入新密码',
+						title: this.$t('modi.confirmnewpass'),
 						icon: 'error'
 					})
 					return false
 				}
 				if (this.form.newPass !== this.againPass) {
 					uni.showToast({
-						title: '确认新密码有误',
+						title: this.$t('modi.newpassdiff'),
 						icon: 'error'
 					})
 					return false
 				}
 				if (!this.form.code) {
 					return uni.showToast({
-						title: '请输入邮箱验证码',
+						title: this.$t('modi.mailcode'),
 						icon: 'error'
 					})
 					return false
@@ -171,14 +171,14 @@
 				else {
 					if (!this.googleCOde || (this.form.googleCOde && this.form.googleCOde.length < 6)) {
 						uni.showToast({
-							title: '谷歌验证码输入有误',
+							title: this.$t('modi.googlecodewrong'),
 							icon: 'error'
 						})
 						return false
 					}
 					if (!this.form.code || (this.form.code && this.form.code.length < 6)) {
 						return uni.showToast({
-							title: '邮箱验证码输入有误',
+							title: this.$t('modi.mailcodewrong'),
 							icon: 'error'
 						})
 					}

@@ -74,7 +74,7 @@
 				const emailBool = validateEmail(this.form.email)
 				if (!emailBool) {
 					uni.showToast({
-						title: '请输入正确的邮箱',
+						title: this.$t('login.cormail'),
 						icon: 'error'
 					})
 					return false
@@ -82,7 +82,7 @@
 				const pwdBool = validatepwd(this.form.password)
 				if (!pwdBool) {
 					uni.showToast({
-						title: '密码为6-20位的大小写字母或数字',
+						title: this.$t('login.corpass'),
 						icon: 'error'
 					})
 					return false
@@ -99,7 +99,7 @@
 				uni.setStorageSync('userPassword', this.form.password)
 				uni.setStorageSync('token', data?.token)
 				uni.showToast({
-					title: '登录成功',
+					title: this.$t('login.succ'),
 					complete: function() {
 						setTimeout(() => {
 							uni.switchTab({

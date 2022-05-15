@@ -43,7 +43,7 @@
 				const newPwdBool = validatepwd(this.form.newPass)
 				if (!newPwdBool) {
 					uni.showToast({
-						title: '新密码为6-32位的大小写字母或数字',
+						title: this.$t('reset.validpass'),
 						icon: 'error'
 					})
 					return false
@@ -51,14 +51,14 @@
 				const againPwdBool = validatepwd(this.againPass)
 				if (!againPwdBool) {
 					uni.showToast({
-						title: '请再次输入新密码',
+						title: this.$t('reset.repeatpass'),
 						icon: 'error'
 					})
 					return false
 				}
 				if (this.form.newPass !== this.againPass) {
 					uni.showToast({
-						title: '确认新密码有误',
+						title: this.$t('reset.passdiff'),
 						icon: 'error'
 					})
 					return false
@@ -71,7 +71,7 @@
 				if (!this.verifyForm()) return
 				await this.$api.resetPassword(this.form)
 				uni.showToast({
-					title: '重置密码成功',
+					title: this.$t('reset.succ'),
 					complete: function() {
 						setTimeout(() => {
 							uni.redirectTo({

@@ -87,33 +87,33 @@
 				const emailBool = validateEmail(this.form.email)
 				if (!emailBool) {
 					return uni.showToast({
-						title: '请输入正确的邮箱',
+						title: this.$t('regi.validemail'),
 						icon: 'error'
 					})
 				}
 				const loginPwdBool = validatepwd(this.form.loginPass)
 				if (!loginPwdBool) {
 					return uni.showToast({
-						title: '登录密码为6-20位的大小写字母或数字',
+						title: this.$t('regi.validpass'),
 						icon: 'error'
 					})
 				}
 				const safePwdBool = validatepwd(this.form.safePass)
 				if (!safePwdBool) {
 					return uni.showToast({
-						title: '安全密码为6-20位的大小写字母或数字',
+						title: this.$t('regi.validsafepass'),
 						icon: 'error'
 					})
 				}
 				if (this.form.inviteCode === '') {
 					return uni.showToast({
-						title: '请输入正确的邀请码',
+						title: this.$t('regi.validinvitecode'),
 						icon: 'error'
 					})
 				}
 				await this.$api.register(this.form)
 				uni.showToast({
-					title: '注册成功',
+					title: this.$t('regi.succ'),
 					icon: 'success',
 					complete:function(){
 						setTimeout(() => {

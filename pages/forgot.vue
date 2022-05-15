@@ -40,14 +40,14 @@
 				const emailBool = validateEmail(this.form.email)
 				if (!emailBool) {
 					uni.showToast({
-						title: '请输入正确的邮箱',
+						title: this.$t('login.cormail'),
 						icon: 'error'
 					})
 					return false
 				}
 				const { data, } = await this.$api.sendEmailReset({ email: this.email, })
 				uni.showToast({
-					title: '发送成功，请通过邮箱中的链接重置密码',
+					title: this.$t('forgot.succ'),
 					icon: 'success',
 					complete: function() {
 						setTimeout(() => {

@@ -57,7 +57,7 @@ export default {
 		async copyLink() {
 			await copyText(this.shareUrl)
 			uni.showToast({
-				title:"Copied!",
+				title: this.$t('invite.copy'),
 				icon: 'success'
 			})
 		}

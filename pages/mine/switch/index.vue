@@ -108,7 +108,7 @@
 			async submit() {
 				if (this.amount === 0.0000) {
 					uni.showToast({
-						title: '请输入转账资金',
+						title: this.$t('swit.transamount'),
 						icon: 'error'
 					})
 					return false
@@ -116,7 +116,7 @@
 				const passwordBool = validatepwd(this.password)
 				if (!passwordBool) {
 					uni.showToast({
-						title: '安全密码输入有误',
+						title: this.$t('swit.safepasswrong'),
 						icon: 'error'
 					})
 					return false
@@ -133,7 +133,7 @@
 					})
 				}
 				uni.showToast({
-					title: '转账成功',
+					title: this.$t('swit.transucc'),
 					icon: 'success',
 					complete: () => {
 						this.getUserBasic()

@@ -75,7 +75,7 @@ export default {
 			const target = this.list.find(it => it.id === id)
 			target && (target.status = 1)
 			uni.showToast({
-				title: '收取成功',
+				title: this.$t('trade.succ'),
 				icon: 'success'
 			})
 		},

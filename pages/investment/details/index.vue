@@ -113,7 +113,7 @@ export default {
 			// 校验投资金额
 			if (this.form.amount < this.floatNum(this.productData.minAmount)){
 				uni.showToast({
-					title: '投资金额不能小于起投金额',
+					title: this.$t('detail.miniamount'),
 					icon: 'error'
 				})
 				return false
@@ -122,7 +122,7 @@ export default {
 			const safePassBool = validatepwd(this.form.safePass)
 			if (!safePassBool) {
 				uni.showToast({
-					title: '安全密码输入有误',
+					title: this.$t('detail.safepasswrong'),
 					icon: 'error'
 				})
 				return false
@@ -137,7 +137,7 @@ export default {
 				amount: this.form.amount * Math.pow(10, 4),
 			})
 			uni.showToast({
-				title: '投资成功',
+				title: this.$t('detail.succ'),
 				icon: 'success',
 				complete: function(){
 					setTimeout(() => {

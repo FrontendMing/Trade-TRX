@@ -125,7 +125,7 @@ export default {
 				amount > this.basicData.limitAmount
 			) {
 				uni.showToast({
-					title: '取款金额错误',
+					title: this.$t('with.amountwrong'),
 					icon: 'error'
 				})
 				return false
@@ -133,7 +133,7 @@ export default {
 			// 校验地址
 			if (this.form.address.replace(/^\s*|\s*$/g, '') === '') {
 				uni.showToast({
-					title: '地址不能为空',
+					title: this.$t('with.blankaddr'),
 					icon: 'error'
 				})
 				return false
@@ -142,7 +142,7 @@ export default {
 			const safePassBool = validatepwd(this.form.safePass)
 			if (!safePassBool) {
 				uni.showToast({
-					title: '安全密码输入有误',
+					title: this.$t('with.wrongsafepass'),
 					icon: 'error'
 				})
 				return false
@@ -164,7 +164,7 @@ export default {
 				})
 			}
 			uni.showToast({
-				title: '提款成功',
+				title: this.$t('with.succ'),
 				icon: 'success',
 				complete: () => {
 					setTimeout(() => {

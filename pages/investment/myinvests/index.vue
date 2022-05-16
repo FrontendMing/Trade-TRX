@@ -15,17 +15,17 @@
 				>
 					<template v-slot:title>
 						<view class="box-list-title">
-							<span>订单号：{{item.orderNo}}</span>
+							<span>{{$t('myinve.orderNo')}}：{{item.orderNo}}</span>
 							<uni-icons type="link" size="30" color="#fff" @click="copyText(item.orderNo)"></uni-icons>
 						</view>
 					</template>
 					<uni-row class="box-list-row">
 						<uni-col :span="12">
-							<view class="sub-title">投资金额</view>
+							<view class="sub-title">{{$t('myinve.amount')}}</view>
 							<view class="sub-content">{{floatNum(item.amount)}}</view>
 						</uni-col>
 						<uni-col :span="12">
-							<view class="sub-title">预计收益</view>
+							<view class="sub-title">{{$t('myinve.expectedrevenue')}}</view>
 							<view class="sub-content">{{floatNum(item.pi - item.amount)}}</view>
 						</uni-col>
 						<uni-col :span="12">
@@ -34,14 +34,14 @@
 						</uni-col>
 						<uni-col :span="12">
 							<view class="sub-title">{{$t('invest.cycle')}}</view>
-							<view class="sub-content">{{item.day}} 天</view>
+							<view class="sub-content">{{item.day}} {{$t('myinve.day')}}</view>
 						</uni-col>
 						<uni-col :span="12">
-							<view class="sub-title">投资时间</view>
+							<view class="sub-title">{{$t('myinve.invetime')}}</view>
 							<view class="sub-content">{{unixTimeToDate(item.createdAt)}}</view>
 						</uni-col>
 						<uni-col :span="12">
-							<view class="sub-title">到期时间</view>
+							<view class="sub-title">{{$t('myinve.exptime')}}</view>
 							<view class="sub-content">{{unixTimeToDate(item.settlementDate)}}</view>
 						</uni-col>
 					</uni-row>
@@ -121,7 +121,7 @@
 			async copyText(orderNo) {
 				await copyText(orderNo)
 				uni.showToast({
-					title:"Copied!",
+					title: this.$t('myinve.copied'),
 					icon: 'success'
 				})
 			},

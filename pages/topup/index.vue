@@ -76,7 +76,7 @@
 			async copyText() {
 				await copyText(this.userInfo.walletAddress)
 				uni.showToast({
-					title:"Copied!",
+					title: this.$t('topu.copied'),
 					icon: 'success'
 				})
 			},
@@ -90,7 +90,7 @@
 					await this.$api.rechargeCommission()
 				}
 				uni.showToast({
-					title: '提交成功',
+					title: this.$t('topu.succ'),
 					icon: 'success',
 					complete: function() {
 						setTimeout(() => {

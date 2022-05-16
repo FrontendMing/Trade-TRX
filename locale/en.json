@@ -3,6 +3,8 @@
 "locale.zh-hans": "简体中文",
 "locale.zh-hant": "繁體中文",
 "locale.ja": "Japanese",
+"locale.kr": "한국어",
+"locale.sp": "Español",
 
 "system.login": "login",
 "system.register": "Registration",

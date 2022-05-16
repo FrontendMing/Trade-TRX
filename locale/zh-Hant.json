@@ -3,6 +3,8 @@
 	"locale.zh-hans": "简体中文",
 	"locale.zh-hant": "繁體中文",
 	"locale.ja": "日語",
+	"locale.kr": "한국어",
+
 	"system.login": "登入",
 	"system.register": "注册",
 	"system.resetPassword": "重置密碼",

@@ -24,7 +24,7 @@
 			<view class="popup-dialog">
 				<view class="locale-item" v-for="(item, index) in locales" :key="index" @click="onLocaleChange(item)">
 					<text class="text">{{item.text}}</text>
-					<uni-icons type="checkmarkempty" size="20" color="green" v-if="item.code == localeCode"></uni-icons>
+					<uni-icons style="line-height:1;" type="checkmarkempty" size="18" color="green" v-if="item.code == localeCode"></uni-icons>
 				</view>
 			</view>
 		</uni-popup>
@@ -60,6 +60,18 @@ export default {
 					text: this.$t('locale.zh-hant'),
 					code: 'zh-Hant'
 			    },
+				{
+					text: this.$t('locale.ja'),
+					code: 'ja'
+				},
+				{
+					text: this.$t('locale.kr'),
+					code: 'kr'
+				},
+				{
+					text: this.$t('locale.sp'),
+					code: 'sp'
+				},
 			]
         },
 		localeCode() {
@@ -164,7 +176,7 @@ export default {
 }
 .popup-dialog{
 	width: 50vw;
-	height: 170px;
+	height: auto;
 	padding: 10px 20px;
 	border-radius: 11px;
 	box-sizing: border-box;
@@ -172,7 +184,7 @@ export default {
 .locale-item{
 	width: 100%;
     font-size: 14px;
-	line-height: 50px;
+	line-height: 2;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

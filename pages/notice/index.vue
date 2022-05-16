@@ -22,7 +22,10 @@ import { unixTimeToDate, } from '@/utils/index.js'
 const LANG_TYPE = {
 	'zh-Hans': 'zh_cn',
 	'zh-Hant': 'zh_hk',
-	'en': 'en'
+	'en': 'en',
+	'ja': 'ja',
+	'kr': 'kr',
+	'sp': 'sp',
 }
 export default {
 	components: {

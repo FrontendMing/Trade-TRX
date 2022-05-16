@@ -3,6 +3,8 @@
 	"locale.zh-hans": "简体中文",
 	"locale.zh-hant": "繁体中文",
 	"locale.ja": "日语",
+	"locale.kr": "한국어",
+	"locale.sp": "Español",
 
 	"system.login": "로그인",
 	"system.register": "회원가입",

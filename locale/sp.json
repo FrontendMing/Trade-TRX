@@ -1,4 +1,11 @@
 {
+	"locale.en": "English",
+	"locale.zh-hans": "简体中文",
+	"locale.zh-hant": "繁體中文",
+	"locale.ja": "日語",
+	"locale.kr": "한국어",
+	"locale.sp": "Español",
+
 	"system.login": "Iniciar sesión",
 	"system.register": "Registrarse",
 	"system.resetPassword": "restablecer contraseña",
